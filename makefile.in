@@ -1,0 +1,139 @@
+# $Id: makefile.in,v 1.2 2011/07/23 18:11:26 tom Exp $
+
+SHELL		= /bin/sh
+
+#### Start of system configuration section. ####
+
+top_srcdir	= @top_srcdir@
+srcdir		= @srcdir@
+srcdir_sl	= @srcdir@/
+VPATH		= @srcdir@
+@SET_MAKE@
+
+CC		= @CC@
+CPP		= @CPP@
+LINK		= @LINK_PREFIX@ $(CC) $(CFLAGS)
+INSTALL		= @INSTALL@
+INSTALL_PROGRAM	= @INSTALL_PROGRAM@
+INSTALL_SCRIPT	= @INSTALL_SCRIPT@
+INSTALL_DATA	= @INSTALL_DATA@
+
+EXTRA_CFLAGS	= @EXTRA_CFLAGS@
+CFLAGS		= @CFLAGS@ $(EXTRA_CFLAGS)
+LIBS		= @LIBS@
+
+LINT		= @LINT@
+CTAGS		= @CTAGS@
+ETAGS		= @ETAGS@
+
+x		= @EXEEXT@
+o		= .@OBJEXT@
+
+transform	= @program_transform_name@
+TARGET		= tctest
+ACTUAL		= `echo $(TARGET)|sed '$(transform)'`
+
+PROGRAM		= $(TARGET)$x
+
+prefix		= @prefix@
+exec_prefix	= @exec_prefix@
+
+manext		= 1
+bindir		= @bindir@
+mandir		= @mandir@/man$(manext)
+
+#### End of system configuration section. ####
+
+LN_S		= @LN_S@
+RM		= rm -f
+
+CPPFLAGS	= -I. -I$(srcdir) \
+		-DHAVE_CONFIG_H @CPPFLAGS@
+
+LDFLAGS		= @LDFLAGS@ @EXTRA_LDFLAGS@
+
+BINDIR		= $(DESTDIR)$(bindir)
+MANDIR		= $(DESTDIR)$(mandir)
+
+INSTALL_DIRS    = $(BINDIR) $(MANDIR)
+
+.SUFFIXES: .c .i $o
+
+.c.i:
+	@RULE_CC@
+	@ECHO_CC@$(CPP) -C $(CPPFLAGS) $< >$@
+.c$o:
+	@RULE_CC@
+	@ECHO_CC@$(CC) -c $(CPPFLAGS) $(CFLAGS) $<
+
+OBJ =	tctest$o
+
+# This should be "$(OBJ:$o=.c)", but IRIX64's make (and some not very old
+# BSD-makes) cannot handle it.
+SRC =	$(OBJ:.o=.c)
+
+ALL =	$(PROGRAM)
+
+all ::	$(ALL)
+
+$(PROGRAM): $(OBJ)
+	@ECHO_LD@$(LINK) $(CFLAGS) $(LDFLAGS) -o $@ $(OBJ) $(LIBS)
+
+check: $(PROGRAM)
+	cd testing && ./run_test.sh
+
+NAME_OF_ACTUAL = $(ACTUAL)$x
+PATH_OF_ACTUAL = $(BINDIR)/$(ACTUAL)$x
+
+install-bin \
+install-full \
+install :: \
+		$(INSTALL_DIRS) \
+		$(PROGRAM)
+	@echo "** installing $(NAME_OF_ACTUAL)"
+	$(INSTALL_PROGRAM) $(PROGRAM) $(PATH_OF_ACTUAL)
+
+	@echo 'Completed install of program.'
+
+install-man \
+install :: $(MANDIR)
+	$(INSTALL_DATA) $(srcdir)/tctest.1 $(MANDIR)/$(TARGET).$(manext)
+
+uninstall-bin \
+uninstall ::
+	@ECHO_CC@- $(RM) $(PATH_OF_ACTUAL)
+	@echo 'Completed uninstall of program.'
+
+uninstall-man \
+uninstall ::
+	- $(RM) $(MANDIR)/$(TARGET).$(manext)
+
+mostlyclean ::
+	- $(RM) *.[oi] o$(PROGRAM) $(MKTBLS)
+	- $(RM) core core.* *.stackdump *~ *.tmp *.BAK *.bb* *.da *.gcov
+
+clean :: mostlyclean
+	- $(RM) $(ALL)
+
+distclean :: clean
+	- $(RM) makefile config.status config.cache config.log config.h
+
+realclean: distclean
+	- $(RM) test_*$x
+	- $(RM) tags TAGS
+
+lint:
+	$(LINT) $(CPPFLAGS) $(SRC) $(LIBS)
+
+TAG_SRC = $(SRC) $(HDRS)
+
+tags:	$(TAG_SRC)
+	$(CTAGS) $(TAG_SRC)
+
+TAGS:	$(TAG_SRC)
+	$(ETAGS) $(TAG_SRC)
+
+$(OBJ):	config.h
+
+$(INSTALL_DIRS):
+	mkdir -p $@

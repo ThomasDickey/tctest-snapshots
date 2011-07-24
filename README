@@ -1,0 +1,11 @@
+-- $Id: README,v 1.1 2011/07/23 17:06:03 tom Exp $
+
+This program exercises the termcap library, displaying its contents in a
+consistent format.  It is used to highlight differences in termcap library
+implementations by making it easy to compare the data which is returned when
+querying the termcap library.
+
+Long ago, ncurses documentation referred to a "tctest" program.  This is a
+different program; the other was never published.
+
+-- Thomas E. Dickey (2011).
