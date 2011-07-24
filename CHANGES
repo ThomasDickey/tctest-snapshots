@@ -1,0 +1,98 @@
+2011-07-23  Thomas E. Dickey  <dickey@invisible-island.net>
+
+	* testing/run_test.sh: typo
+
+	* testing/run_test.sh: if there is an error, leave the ".tmp" file
+
+	* tctest.c:
+	add setjmp/longjmp to stop Solaris termcap from dumping core on too-large
+	entries.
+
+	* testing/vim-amiga.ref:
+	regen this with Solaris termcap library, because it fixes values for "li"
+	which my old build of BSD 4.3 termcap allows to use the terminal's value.
+
+	* testing/run_test.sh: cleanup
+
+	* makefile.in: use test-script
+
+	* testing/freebsd.ref, testing/vim-amiga.ref: RCS_BASE
+
+	* tctest.c:
+	format result as a termcap file, one capability per line, to simplify diffs
+
+	* testing/run_test.sh, README: RCS_BASE
+
+	* tctest.c: add -a option
+
+	* tctest.c: add -l option, for listing name and aliases
+
+	* tctest.c:
+	tgetstr() might return -1 for cancelled values in some implementations.
+
+	* tctest.c:
+	as alternative to -b, dump the conventional names defined in ncurses.
+
+	* tctest.c: start adding options: -b, -e and -f.
+
+	* makefile.in, aclocal.m4, configure, configure.in: RCS_BASE
+
+	* tctest.c: todo "-o"
+
+	* tctest.c: to-do list
+
+2011-07-22  Thomas E. Dickey  <dickey@invisible-island.net>
+
+	* tctest.c:
+	for a start, trim out the features that assume I have terminfo, from ncurses.
+
+	* testing/vim-amiga.tc: RCS_BASE
+
+2011-04-01  Thomas E. Dickey  <dickey@invisible-island.net>
+
+	* config.sub: RCS_BASE
+
+2011-02-02  Thomas E. Dickey  <dickey@invisible-island.net>
+
+	* config.guess: RCS_BASE
+
+2011-01-15  Thomas E. Dickey  <dickey@invisible-island.net>
+
+	* tctest.c: RCS_BASE
+
+2010-09-04  Thomas E. Dickey  <dickey@invisible-island.net>
+
+	* package/debian/source/format: RCS_BASE
+
+2010-08-08  gavin
+
+	* testing/freebsd.tc: FROM_KEYS
+
+2010-04-20  Thomas E. Dickey  <dickey@invisible-island.net>
+
+	* package/debian/compat: RCS_BASE
+
+2003-11-29  Thomas E. Dickey  <dickey@invisible-island.net>
+
+	* install-sh: RCS_BASE
+
+1994-07-11  Thomas E. Dickey  <dickey@clark.net>
+
+	* config_h.in: RCS_BASE
+
+1992-08-25  Thomas E. Dickey  <dickey@software.org>
+
+	* testing/bsd44.tc: RCS_BASE
+
+1990-05-21  Thomas E. Dickey  <dickey@software.org>
+
+	* testing/bsd43.tc: RCS_BASE
+
+1983-07-01  Thomas E. Dickey
+
+	* testing/bsd42.tc: RCS_BASE
+
+1979-12-31  Thomas E. Dickey
+
+	* testing/3bsd.tc: RCS_BASE
+
