@@ -1,3 +1,57 @@
+2011-07-24  Thomas E. Dickey  <dickey@invisible-island.net>
+
+	* makefile.in: widen the mostlyclean rule to add valgrind's core-files.
+
+	* tctest.c: compiler warning
+
+	* configure: regen
+
+	* tctest.c:
+	if we can link with use_env(), it's probably because we're also linked
+	with (n)curses.  Ask it to leave the lines/columns values alone.
+
+	* configure.in: add configure-check for use_env()
+
+	* testing/run_test.sh:
+	adjust $PATH to allow for diffstat in /usr/local/bin
+
+	* testing/freebsd.ref:
+	regen using a copy of BSD 4.2 termcap with its buffer-size set to 4096,
+	to just get the "correct" settings.
+
+	* tctest.c: use const strings.
+
+	* configure: regen
+
+	* tctest.1, package/debian/copyright, COPYING, package/tctest.spec:
+	RCS_BASE
+
+	* tctest.c: add copyright and version message
+
+	* makefile.in: add VERSION file
+
+	* package/debian/rules, package/debian/docs, package/debian/watch, package/debian/control, package/debian/changelog:
+	RCS_BASE
+
+	* testing/run_test.sh:
+	only summarize results with diffstat since they can be quite large.
+
+	* VERSION: RCS_BASE
+
+	* testing/run_test.sh:
+	try to override some of the environment variables that can affect results
+
+	* tctest.c:
+	use ncurses' _nc_infotocap() to translate terminfo strings back to termcap.
+
+	* configure.in:
+	add options --with-ncurses, --with-ncursesw and --with-curses to override
+	the default search for a termcap library
+
+	* aclocal.m4: add CF_FUNC_TGETENT
+
+	* configure.in: add xterm's check for full tgetent()
+
 2011-07-23  Thomas E. Dickey  <dickey@invisible-island.net>
 
 	* testing/run_test.sh: typo

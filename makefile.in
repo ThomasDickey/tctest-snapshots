@@ -1,4 +1,4 @@
-# $Id: makefile.in,v 1.2 2011/07/23 18:11:26 tom Exp $
+# $Id: makefile.in,v 1.4 2011/07/24 23:16:59 tom Exp $
 
 SHELL		= /bin/sh
 
@@ -48,7 +48,7 @@ LN_S		= @LN_S@
 RM		= rm -f
 
 CPPFLAGS	= -I. -I$(srcdir) \
-		-DHAVE_CONFIG_H @CPPFLAGS@
+		-DHAVE_CONFIG_H -DVERSION=`cat $(srcdir)/VERSION` @CPPFLAGS@
 
 LDFLAGS		= @LDFLAGS@ @EXTRA_LDFLAGS@
 
@@ -109,8 +109,9 @@ uninstall ::
 	- $(RM) $(MANDIR)/$(TARGET).$(manext)
 
 mostlyclean ::
-	- $(RM) *.[oi] o$(PROGRAM) $(MKTBLS)
-	- $(RM) core core.* *.stackdump *~ *.tmp *.BAK *.bb* *.da *.gcov
+	- $(RM) *.[oi] o$(PROGRAM)
+	- $(RM) *core* *.stackdump *~ *.tmp *.BAK *.bb* *.da *.gcov
+	- $(RM) testing/*core* testing/*.stackdump testing/*.tmp
 
 clean :: mostlyclean
 	- $(RM) $(ALL)

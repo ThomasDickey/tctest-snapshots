@@ -1,11 +1,18 @@
 #!/bin/sh
-# $Id: run_test.sh,v 1.4 2011/07/23 20:05:27 tom Exp $
+# $Id: run_test.sh,v 1.7 2011/07/24 20:31:24 tom Exp $
 # test-script for tctest
 
 PROG="${TCTEST:-../tctest}"
 
-PATH=/bin:/usr/bin
+PATH=/bin:/usr/bin:$PATH
 export PATH
+
+unset LINES
+unset COLUMNS
+
+TERMINFO=`pwd`; export TERMINFO
+TERMPATH=`pwd`; export TERMPATH
+TERMINFO_DIRS=`pwd`; export TERMINFO_DIRS
 
 for name in *.tc
 do
@@ -19,7 +26,7 @@ do
 			echo "...okay $name"
 			rm -f $root.tmp
 		else
-			diff -u $root.ref $root.tmp
+			diff $root.ref $root.tmp |diffstat
 		fi
 	else
 		mv $root.tmp $root.ref
