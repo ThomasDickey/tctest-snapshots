@@ -1,0 +1,14 @@
+Source: tctest
+Maintainer: Thomas E. Dickey <dickey@invisible-island.net>
+Section: misc
+Priority: optional
+Standards-Version: 3.8.4
+Build-Depends: debhelper (>= 5)
+Homepage: http://invisible-island.net/tctest/
+
+Package: tctest
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: test termcap library interface
+ The 'tctest' program makes several checks for syntax and other features of
+ a termcap library interface, e.g,. such as provided by ncurses.

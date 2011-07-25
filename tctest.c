@@ -1,7 +1,28 @@
+/******************************************************************************
+ * Copyright 2011 by Thomas E. Dickey                                         *
+ * All Rights Reserved.                                                       *
+ *                                                                            *
+ * Permission to use, copy, modify, and distribute this software and its      *
+ * documentation for any purpose and without fee is hereby granted, provided  *
+ * that the above copyright notice appear in all copies and that both that    *
+ * copyright notice and this permission notice appear in supporting           *
+ * documentation, and that the name of the above listed copyright holder(s)   *
+ * not be used in advertising or publicity pertaining to distribution of the  *
+ * software without specific, written prior permission.                       *
+ *                                                                            *
+ * THE ABOVE LISTED COPYRIGHT HOLDER(S) DISCLAIM ALL WARRANTIES WITH REGARD   *
+ * TO THIS SOFTWARE, INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY AND  *
+ * FITNESS, IN NO EVENT SHALL THE ABOVE LISTED COPYRIGHT HOLDER(S) BE LIABLE  *
+ * FOR ANY SPECIAL, INDIRECT OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES          *
+ * WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN      *
+ * ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR *
+ * IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.                *
+ ******************************************************************************/
+
 /*
  * Author: Thomas E. Dickey
  *
- * $Id: tctest.c,v 1.11 2011/07/23 19:32:29 tom Exp $
+ * $Id: tctest.c,v 1.16 2011/07/24 21:36:01 tom Exp $
  *
  * A simple demo of the termcap interface.
  *
@@ -13,6 +34,8 @@
  * TODO: option -o for testing tputs for each string capability
  * TODO: option -s for testing growth of tgetstr buffer
  */
+#include <config.h>
+
 #include <stdlib.h>
 #include <unistd.h>
 #include <stdio.h>
@@ -22,16 +45,31 @@
 #include <signal.h>
 #include <setjmp.h>
 
+#if defined(USE_TERMINFO) && defined(HAVE__NC_INFOTOCAP)
+extern char *_nc_infotocap(const char *, const char *, int const);
+#define USE_LIBTIC 1
+#endif
+
+#ifdef HAVE_USE_ENV
+#include <curses.h>
+#endif
+
 #ifdef HAVE_TERMCAP_H
 #include <termcap.h>
 #endif
 
+#ifndef HAVE_TERMCAP_H
 /* only the newer implementations provide prototypes */
 extern int tgetflag(char *);
 extern int tgetnum(char *);
 extern int tgetent(char *, char *);
 extern int tputs(char *, int, int (*)(int));
 extern char *tgetstr(char *, char **);
+#endif
+
+#ifndef NCURSES_CONST
+#define NCURSES_CONST		/* nothing */
+#endif
 
 #define FCOLS 2
 #define FNULL(type) "%s %-*s cancelled ", #type, FCOLS
@@ -53,11 +91,11 @@ failed(const char *msg)
     exit(EXIT_FAILURE);
 }
 
-static char *
+static const char *
 find_termcap_file(void)
 {
-    char *result;
-    char *env = getenv("TERMCAP");
+    const char *result;
+    const char *env = getenv("TERMCAP");
 
     result = "/etc/termcap";
     if (env != 0 && *env == '/')
@@ -68,7 +106,7 @@ find_termcap_file(void)
 static FILE *
 open_termcap_file(void)
 {
-    char *name = find_termcap_file();
+    const char *name = find_termcap_file();
     FILE *fp = fopen(name, "r");
     if (fp == 0)
 	failed(name);
@@ -79,7 +117,7 @@ static void
 set_termcap_file(const char *fname)
 {
     const char *format = "TERMCAP=%s";
-    char *prefix = "";
+    const char *prefix = "";
     char *value;
     char buffer[1024];
 
@@ -135,7 +173,7 @@ show_list(char **list)
     if (list != 0) {
 	int n;
 	for (n = 0; list[n] != 0; ++n) {
-	    char *next = list[n + 1] ? "\\" : "";
+	    const char *next = list[n + 1] ? "\\" : "";
 	    printf("%s%s\n", list[n], next);
 	}
     }
@@ -203,8 +241,9 @@ loadit(char *buffer, char *name)
 }
 
 static char *
-dumpit(char *cap)
+dumpit(const char *cap)
 {
+    char *capname = (NCURSES_CONST char *) cap;
     char *result = 0;
     char buffer[1024], *append = 0;
     /*
@@ -218,11 +257,16 @@ dumpit(char *cap)
     char *str;
     int num;
 
-    if ((str = tgetstr(cap, &ap)) != 0) {
+    if ((str = tgetstr(capname, &ap)) != 0) {
+#ifdef USE_LIBTIC
+	char *cpy = _nc_infotocap(0, str, 1);
+	if (cpy != 0)
+	    str = cpy;
+#endif
 	if (str == (char *) -1) {
-	    sprintf(buffer, "\t:%s@:", cap);
+	    sprintf(buffer, "\t:%s@:", capname);
 	} else {
-	    sprintf(buffer, "\t:%s=", cap);
+	    sprintf(buffer, "\t:%s=", capname);
 	    append = buffer + strlen(buffer);
 	    while (*str != 0) {
 		int ch = (unsigned char) (*str++);
@@ -274,10 +318,10 @@ dumpit(char *cap)
 	}
 	strcpy(append, ":");
 	result = strdup(buffer);
-    } else if ((num = tgetnum(cap)) >= 0) {
-	sprintf(buffer, "\t:%s#%d:", cap, num);
+    } else if ((num = tgetnum(capname)) >= 0) {
+	sprintf(buffer, "\t:%s#%d:", capname, num);
 	result = strdup(buffer);
-    } else if (tgetflag(cap) > 0) {
+    } else if (tgetflag(capname) > 0) {
 	sprintf(buffer, "\t:%s:", cap);
 	result = strdup(buffer);
     }
@@ -326,7 +370,7 @@ brute_force(char *name)
 static char **
 conventional(char *name)
 {
-    static char *tbl[] =
+    static const char *tbl[] =
     {
 	"!1", "!2", "!3", "#1", "#2", "#3", "#4", "%0", "%1", "%2", "%3",
 	"%4", "%5", "%6", "%7", "%8", "%9", "%a", "%b", "%c", "%d", "%e",
@@ -478,6 +522,7 @@ usage(void)
 	"  -f NAME   use this termcap file",
 	"  -l        list names and aliases in termcap file",
 	"  -v        verbose (prints names to stderr to track tgetent calls)",
+	"  -V        print the program version and exit"
     };
     size_t n;
     for (n = 0; n < sizeof(tbl) / sizeof(tbl[0]); ++n) {
@@ -493,7 +538,7 @@ main(int argc, char *argv[])
     int n;
     char *name;
 
-    while ((ch = getopt(argc, argv, "abef:lv")) != -1) {
+    while ((ch = getopt(argc, argv, "abef:lvV")) != -1) {
 	switch (ch) {
 	case 'a':
 	    a_opt = 1;
@@ -513,10 +558,21 @@ main(int argc, char *argv[])
 	case 'v':
 	    v_opt = 1;
 	    break;
+	case 'V':
+	    printf("tctest - %d\n", VERSION);
+	    exit(EXIT_SUCCESS);
 	default:
 	    usage();
 	}
     }
+
+    /*
+     * If we are really linked to the (n)curses library, ask it to leave
+     * the lines/columns values alone.
+     */
+#ifdef HAVE_USE_ENV
+    use_env(0);
+#endif
 
     /*
      * Unless we are asking for the $TERMCAP variable, suppress it.

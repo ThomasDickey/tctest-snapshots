@@ -1,4 +1,4 @@
-dnl $Id: aclocal.m4,v 1.1 2011/07/23 12:24:30 tom Exp $
+dnl $Id: aclocal.m4,v 1.2 2011/07/24 10:57:02 tom Exp $
 dnl
 dnl See
 dnl		http://invisible-island.net/autoconf/autoconf.html
@@ -1080,6 +1080,131 @@ ifelse([$4],,[
 ],[$4])
 else
 ifelse([$5],,AC_MSG_WARN(Cannot find $3 library),[$5])
+fi
+])dnl
+dnl ---------------------------------------------------------------------------
+dnl CF_FUNC_TGETENT version: 17 updated: 2011/07/14 19:34:47
+dnl ---------------
+dnl Check for tgetent function in termcap library.  If we cannot find this,
+dnl we'll use the $LINES and $COLUMNS environment variables to pass screen
+dnl size information to subprocesses.  (We cannot use terminfo's compatibility
+dnl function, since it cannot provide the termcap-format data).
+dnl
+dnl If the --disable-full-tgetent option is given, we'll settle for the first
+dnl tgetent function we find.  Since the search list in that case does not
+dnl include the termcap library, that allows us to default to terminfo.
+AC_DEFUN([CF_FUNC_TGETENT],
+[
+# compute a reasonable value for $TERM to give tgetent(), since we may be
+# running in 'screen', which sets $TERMCAP to a specific entry that is not
+# necessarily in /etc/termcap - unsetenv is not portable, so we cannot simply
+# discard $TERMCAP.
+cf_TERMVAR=vt100
+if test -n "$TERMCAP"
+then
+	cf_TERMCAP=`echo "$TERMCAP" | tr '\n' ' ' | sed -e 's/^..|//' -e 's/|.*//'`
+	case "$cf_TERMCAP" in #(vi
+	screen*.*) #(vi
+		;;
+	*)
+		cf_TERMVAR="$cf_TERMCAP"
+		;;
+	esac
+fi
+test -z "$cf_TERMVAR" && cf_TERMVAR=vt100
+
+AC_MSG_CHECKING(if we want full tgetent function)
+CF_ARG_DISABLE(full-tgetent,
+	[  --disable-full-tgetent  disable check for full tgetent function],
+	cf_full_tgetent=no,
+	cf_full_tgetent=yes,yes)
+AC_MSG_RESULT($cf_full_tgetent)
+
+if test "$cf_full_tgetent" = yes ; then
+	cf_test_message="full tgetent"
+else
+	cf_test_message="tgetent"
+fi
+
+AC_CACHE_CHECK(for $cf_test_message function,cf_cv_lib_tgetent,[
+cf_save_LIBS="$LIBS"
+cf_cv_lib_tgetent=no
+if test "$cf_full_tgetent" = yes ; then
+	cf_TERMLIB="termcap termlib ncurses curses"
+	cf_TERMTST="buffer[[0]] == 0"
+else
+	cf_TERMLIB="termlib ncurses curses"
+	cf_TERMTST="0"
+fi
+for cf_termlib in '' $cf_TERMLIB ; do
+	LIBS="$cf_save_LIBS"
+	test -n "$cf_termlib" && CF_ADD_LIB($cf_termlib)
+	AC_TRY_RUN([
+/* terminfo implementations ignore the buffer argument, making it useless for
+ * the xterm application, which uses this information to make a new TERMCAP
+ * environment variable.
+ */
+int main()
+{
+	char buffer[1024];
+	buffer[0] = 0;
+	tgetent(buffer, "$cf_TERMVAR");
+	${cf_cv_main_return:-return} ($cf_TERMTST); }],
+	[echo "yes, there is a termcap/tgetent in $cf_termlib" 1>&AC_FD_CC
+	 if test -n "$cf_termlib" ; then
+	 	cf_cv_lib_tgetent="-l$cf_termlib"
+	 else
+	 	cf_cv_lib_tgetent=yes
+	 fi
+	 break],
+	[echo "no, there is no termcap/tgetent in $cf_termlib" 1>&AC_FD_CC],
+	[echo "cross-compiling, cannot verify if a termcap/tgetent is present in $cf_termlib" 1>&AC_FD_CC])
+done
+LIBS="$cf_save_LIBS"
+])
+
+# If we found a working tgetent(), set LIBS and check for termcap.h.
+# (LIBS cannot be set inside AC_CACHE_CHECK; the commands there should
+# not have side effects other than setting the cache variable, because
+# they are not executed when a cached value exists.)
+if test "x$cf_cv_lib_tgetent" != xno ; then
+	test "x$cf_cv_lib_tgetent" != xyes && CF_ADD_LIBS($cf_cv_lib_tgetent)
+	AC_DEFINE(USE_TERMCAP)
+	if test "$cf_full_tgetent" = no ; then
+		AC_TRY_COMPILE([
+#include <termcap.h>],[
+#ifdef NCURSES_VERSION
+make an error
+#endif],[AC_DEFINE(HAVE_TERMCAP_H)])
+	else
+		AC_CHECK_HEADERS(termcap.h)
+	fi
+else
+        # If we didn't find a tgetent() that supports the buffer
+        # argument, look again to see whether we can find even
+        # a crippled one.  A crippled tgetent() is still useful to
+        # validate values for the TERM environment variable given to
+        # child processes.
+	AC_CACHE_CHECK(for partial tgetent function,cf_cv_lib_part_tgetent,[
+	cf_cv_lib_part_tgetent=no
+	for cf_termlib in $cf_TERMLIB ; do
+		LIBS="$cf_save_LIBS -l$cf_termlib"
+		AC_TRY_LINK([],[tgetent(0, "$cf_TERMVAR")],
+			[echo "there is a terminfo/tgetent in $cf_termlib" 1>&AC_FD_CC
+			 cf_cv_lib_part_tgetent="-l$cf_termlib"
+			 break])
+	done
+	LIBS="$cf_save_LIBS"
+	])
+
+	if test "$cf_cv_lib_part_tgetent" != no ; then
+		CF_ADD_LIBS($cf_cv_lib_part_tgetent)
+		AC_CHECK_HEADERS(termcap.h)
+
+                # If this is linking against ncurses, we'll trigger the
+                # ifdef in resize.c that turns the termcap stuff back off.
+		AC_DEFINE(USE_TERMINFO)
+	fi
 fi
 ])dnl
 dnl ---------------------------------------------------------------------------
