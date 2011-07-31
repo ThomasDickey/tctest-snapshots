@@ -1,4 +1,4 @@
-# $Id: makefile.in,v 1.4 2011/07/24 23:16:59 tom Exp $
+# $Id: makefile.in,v 1.5 2011/07/27 21:15:06 tom Exp $
 
 SHELL		= /bin/sh
 
@@ -111,7 +111,7 @@ uninstall ::
 mostlyclean ::
 	- $(RM) *.[oi] o$(PROGRAM)
 	- $(RM) *core* *.stackdump *~ *.tmp *.BAK *.bb* *.da *.gcov
-	- $(RM) testing/*core* testing/*.stackdump testing/*.tmp
+	- $(RM) testing/*core* testing/*.stackdump testing/*.all testing/*.err testing/*.std
 
 clean :: mostlyclean
 	- $(RM) $(ALL)

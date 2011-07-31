@@ -1,8 +1,8 @@
 Summary:  tctest - termcap library checker
 %define AppProgram tctest
-%define AppVersion 20110724
+%define AppVersion 20110730
 %define AppRelease 1
-# $XTermId: tctest.spec,v 1.1 2011/07/24 17:41:20 tom Exp $
+# $XTermId: tctest.spec,v 1.2 2011/07/31 01:01:42 tom Exp $
 Name: %{AppProgram}
 Version: %{AppVersion}
 Release: %{AppRelease}

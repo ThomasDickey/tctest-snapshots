@@ -1,5 +1,5 @@
 # vile:tcmode
-sx:\
+ansi:\
 	:am:\
 	:bs:\
 	:ce=\E[K:\
@@ -11,8 +11,8 @@ sx:\
 	:nd=\E[C:\
 	:pt:\
 	:up=\E[A:
-# alias ansi
-Mu:\
+# alias sx
+sun:\
 	:AL=\E[%dL:\
 	:DC=\E[%dP:\
 	:DL=\E[%dM:\
@@ -58,8 +58,8 @@ Mu:\
 	:ue=\E[m:\
 	:up=\E[A:\
 	:us=\E[4m:
-# alias sun
-M-:\
+# alias Mu
+sun-e:\
 	:AL=\E[%dL:\
 	:DC=\E[%dP:\
 	:DL=\E[%dM:\
@@ -102,10 +102,10 @@ M-:\
 	:ue=\E[m:\
 	:up=\E[A:\
 	:us=\E[4m:
-# alias sun-e
 # alias sun-nic
 # alias sune
-Mu:\
+# alias M-
+sun-s:\
 	:AL=\E[%dL:\
 	:DC=\E[%dP:\
 	:DL=\E[%dM:\
@@ -120,7 +120,10 @@ Mu:\
 	:co#80:\
 	:dc=\E[P:\
 	:dl=\E[M:\
+	:ds=\E]l\E\\:\
 	:ei=:\
+	:fs=\E\\:\
+	:hs:\
 	:ic=\E[@:\
 	:im=:\
 	:k1=\E[224z:\
@@ -148,12 +151,13 @@ Mu:\
 	:rs=\E[s:\
 	:se=\E[m:\
 	:so=\E[7m:\
+	:ts=\E]l:\
 	:ue=\E[m:\
 	:up=\E[A:\
 	:us=\E[4m:
-# alias sun-s
+# alias Mu
 # (alias differs)
-Mu:\
+sun-e-s:\
 	:AL=\E[%dL:\
 	:DC=\E[%dP:\
 	:DL=\E[%dM:\
@@ -168,9 +172,9 @@ Mu:\
 	:co#80:\
 	:dc=\E[P:\
 	:dl=\E[M:\
-	:ei=:\
-	:ic=\E[@:\
-	:im=:\
+	:ds=\E]l\E\\:\
+	:fs=\E\\:\
+	:hs:\
 	:k1=\E[224z:\
 	:k2=\E[225z:\
 	:k3=\E[226z:\
@@ -196,14 +200,14 @@ Mu:\
 	:rs=\E[s:\
 	:se=\E[m:\
 	:so=\E[7m:\
+	:ts=\E]l:\
 	:ue=\E[m:\
 	:up=\E[A:\
 	:us=\E[4m:
-# alias sun-e-s
-# (alias differs)
 # alias sun-s-e
+# alias Mu
 # (alias differs)
-M0:\
+sun-48:\
 	:AL=\E[%dL:\
 	:DC=\E[%dP:\
 	:DL=\E[%dM:\
@@ -249,8 +253,8 @@ M0:\
 	:ue=\E[m:\
 	:up=\E[A:\
 	:us=\E[4m:
-# alias sun-48
-M1:\
+# alias M0
+sun-34:\
 	:AL=\E[%dL:\
 	:DC=\E[%dP:\
 	:DL=\E[%dM:\
@@ -296,8 +300,8 @@ M1:\
 	:ue=\E[m:\
 	:up=\E[A:\
 	:us=\E[4m:
-# alias sun-34
-M2:\
+# alias M1
+sun-24:\
 	:AL=\E[%dL:\
 	:DC=\E[%dP:\
 	:DL=\E[%dM:\
@@ -343,8 +347,8 @@ M2:\
 	:ue=\E[m:\
 	:up=\E[A:\
 	:us=\E[4m:
-# alias sun-24
-M3:\
+# alias M2
+sun-17:\
 	:AL=\E[%dL:\
 	:DC=\E[%dP:\
 	:DL=\E[%dM:\
@@ -390,8 +394,8 @@ M3:\
 	:ue=\E[m:\
 	:up=\E[A:\
 	:us=\E[4m:
-# alias sun-17
-v9:\
+# alias M3
+925a:\
 	:al=\EE:\
 	:am:\
 	:bs:\
@@ -431,9 +435,9 @@ v9:\
 	:vb=\Eb\200\200\200\200\200\200\200\200\200\200\200\200\200\200\Ed:\
 	:ve=\E.4:\
 	:vs=\E.2:
-# alias 925a
 # alias tvi925a
-d0:\
+# alias v9
+vt100:\
 	:am:\
 	:bs:\
 	:cd=50\E[J:\
@@ -477,10 +481,10 @@ d0:\
 	:us=2\E[4m:\
 	:vt#3:\
 	:xn:
-# alias vt100
 # alias vt100-am
 # alias vt100am
-AA:\
+# alias d0
+amiga:\
 	:#4=\233\sA:\
 	:%1=\233?~:\
 	:%i=\233\s@:\
@@ -537,8 +541,8 @@ AA:\
 	:us=\E[4m:\
 	:ve=\E[1\sp:\
 	:vi=\E[0\sp:
-# alias amiga
-a0:\
+# alias AA
+acorn0:\
 	:#4=\334:\
 	:%i=\335:\
 	:F1=\321:\
@@ -582,16 +586,19 @@ a0:\
 	:li#32:\
 	:me=^W^Q^E\200\200\200\200\200\200\200:\
 	:mr=^W^Q^E\200\200\200\200\200\200\200:\
+	:sb=^W^G^A^B\200\200\200\200\200\200:\
+	:sd=\336:\
 	:se=^W^Q^E\200\200\200\200\200\200\200:\
 	:sf=^W^G^A^C\200\200\200\200\200\200:\
 	:so=^W^Q^E\200\200\200\200\200\200\200:\
 	:sr=^W^G^A^B\200\200\200\200\200\200:\
+	:su=\337:\
 	:up=^K:\
 	:vb=^R^C^G^Y^D\200\200\200\200^Ye\200^E\200^D^Ye\200\200\200\200:\
 	:ve=^W^A^A\200\200\200\200\200\200\200:\
 	:vi=^W^A\200\200\200\200\200\200\200\200:
-# alias acorn0
-ag:\
+# alias a0
+acorn_generic:\
 	:#4=\334:\
 	:%i=\335:\
 	:F1=\321:\
@@ -634,12 +641,15 @@ ag:\
 	:li#32:\
 	:me=^W^Q^E\200\200\200\200\200\200\200:\
 	:mr=^W^Q^E\200\200\200\200\200\200\200:\
+	:sb=^W^G^A^B\200\200\200\200\200\200:\
+	:sd=\336:\
 	:se=^W^Q^E\200\200\200\200\200\200\200:\
 	:sf=^W^G^A^C\200\200\200\200\200\200:\
 	:so=^W^Q^E\200\200\200\200\200\200\200:\
 	:sr=^W^G^A^B\200\200\200\200\200\200:\
+	:su=\337:\
 	:up=^K:\
 	:vb=^R^C^G^Y^D\200\200\200\200^Ye\200^E\200^D^Ye\200\200\200\200:\
 	:ve=^W^A^A\200\200\200\200\200\200\200:\
 	:vi=^W^A\200\200\200\200\200\200\200\200:
-# alias acorn_generic
+# alias ag

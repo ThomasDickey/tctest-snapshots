@@ -254,7 +254,6 @@ q102:\
 	:le=\b:\
 	:li#24:\
 	:ma=^K^P\f\s:\
-	:ma=^K^P\f\s:\
 	:nd=\f:\
 	:se=\EG0:\
 	:sg#1:\
@@ -283,7 +282,6 @@ q101:\
 	:le=\b:\
 	:li#24:\
 	:ma=^K^P:\
-	:ma=^K^P:\
 	:md=\E(:\
 	:me=\EG0:\
 	:mh=\E):\
@@ -308,6 +306,10 @@ x1720:\
 # alias 1700
 # alias x1750
 5410:\
+	:BO=\E[0;7m:\
+	:DS=\E[2m:\
+	:EE=\E[m:\
+	:KM=/usr/lib/ua/kmap.5410:\
 	:al=\E[L:\
 	:am:\
 	:bs:\
@@ -713,6 +715,10 @@ dmd620-w:\
 # alias 620DMD-w
 # alias 620MTG-w
 5420:\
+	:BO=\E[0;7m:\
+	:DS=\E[2m:\
+	:EE=\E[m:\
+	:KM=/usr/lib/ua/kmap.5420:\
 	:al=\E[L:\
 	:am:\
 	:bs:\
@@ -758,8 +764,12 @@ dmd620-w:\
 # alias tty5420
 # alias att4415
 5425:\
+	:BO=\E[0;7m:\
+	:DS=\E[2m:\
+	:EE=\E[m:\
 	:FE=\E|:\
 	:FL=\E[%d;00q%-16s\E~:\
+	:KM=/usr/lib/ua/kmap.5425:\
 	:al=\E[L:\
 	:am:\
 	:bs:\
@@ -804,7 +814,7 @@ dmd620-w:\
 # alias 4425
 # alias tty5425
 # alias att4425
-t4:\
+4420:\
 	:al=\EL:\
 	:am:\
 	:bs:\
@@ -829,9 +839,14 @@ t4:\
 	:up=\E7:\
 	:ve=\ER:\
 	:vs=\ER:
-# alias 4420
 # alias tty4420
+# alias t4
 pc6300plus:\
+	:BO=\E[0;7m:\
+	:CI=\E[=1C:\
+	:CV=\E[=C:\
+	:EE=\E[m:\
+	:KM=/usr/lib/ua/kmap.s5:\
 	:al=\E[1L:\
 	:am:\
 	:bs:\
@@ -882,6 +897,7 @@ AT386:\
 	:RI=\E[%dC:\
 	:SF=\E[%dS:\
 	:SR=\E[%dT:\
+	:TC=\E[%d@:\
 	:UP=\E[%dA:\
 	:ac=``a1fxgqh0jYk?lZm@nEooppqDrrsstCu4vAwBx3yyzz{{||}}~~:\
 	:ae=\E[10m:\
@@ -951,7 +967,14 @@ AT386:\
 # alias at386
 # alias 386AT
 # alias 386at
-s4:\
+PC7300:\
+	:BO=\E[0;7m:\
+	:CI=\E[=1C:\
+	:CV=\E[=C:\
+	:DS=\E[2m:\
+	:EE=\E[m:\
+	:KM=/usr/lib/ua/kmap.s4:\
+	:XS=\E[9m:\
 	:al=\E[1L:\
 	:am:\
 	:bs:\
@@ -986,14 +1009,20 @@ s4:\
 	:ue=\E[m:\
 	:up=\E[A:\
 	:us=\E[4m:
-# alias PC7300
 # alias unixpc
 # alias pc7300
 # alias 7300
 # alias 3b1
+# alias s4
 b610:\
+	:BO=\E[0;7m:\
+	:CI=\E[25l:\
+	:CV=\E[25h:\
+	:DS=\E[2m:\
+	:EE=\E[m:\
 	:FE=\E[2p:\
 	:FL=\E[%d;00q%-16s\E[0p:\
+	:KM=/usr/lib/ua/kmap.s4:\
 	:al=\E[L:\
 	:am:\
 	:bs:\
@@ -1070,7 +1099,6 @@ dm1520:\
 	:ku=^_:\
 	:le=\b:\
 	:li#24:\
-	:ma=^\\s^_^P^YH:\
 	:ma=^\\s^_^P^YH:\
 	:nd=^\:\
 	:pt:\
@@ -1654,13 +1682,13 @@ ibm-apl:\
 	:le=\b:\
 	:li#25:\
 	:ma=^\\s^_^P^YH:\
-	:ma=^\\s^_^P^YH:\
 	:nd=^\:\
 	:pt:\
 	:up=^_:\
 	:xn:
 # alias apl
 rtpc:\
+	:I0=f10:\
 	:al=\EL:\
 	:am:\
 	:bs:\
@@ -1707,6 +1735,7 @@ rtpc:\
 	:mr=\Ep:\
 	:nd=\EC:\
 	:pt:\
+	:sb:\
 	:se=\Ez:\
 	:so=\EZ:\
 	:sr=\EA:\
@@ -1718,6 +1747,7 @@ rtpc:\
 # alias ibmapa16
 # alias ibm6155
 ibmapa8c:\
+	:I0=f10:\
 	:al=\EL:\
 	:am:\
 	:bs:\
@@ -1764,6 +1794,7 @@ ibmapa8c:\
 	:mr=\Ep:\
 	:nd=\EC:\
 	:pt:\
+	:sb:\
 	:se=\Ez:\
 	:so=\EZ:\
 	:sr=\EA:\
@@ -1776,6 +1807,7 @@ ibmapa8c:\
 # alias ibm6154
 # alias ibm6153
 ibmapa8c-c:\
+	:I0=f10:\
 	:al=\EL:\
 	:am:\
 	:bs:\
@@ -1823,6 +1855,7 @@ ibmapa8c-c:\
 	:mr=\Ep:\
 	:nd=\EC:\
 	:pt:\
+	:sb:\
 	:se=\EB:\
 	:so=\EF\Ef3;:\
 	:sr=\EA:\
@@ -1833,6 +1866,7 @@ ibmapa8c-c:\
 	:us=\EF\Ef2;:
 # alias ibm6154-c
 ibmmono:\
+	:I0=f10:\
 	:al=\EL:\
 	:am:\
 	:bs:\
@@ -1879,6 +1913,7 @@ ibmmono:\
 	:mr=\Ep:\
 	:nd=\EC:\
 	:pt:\
+	:sb:\
 	:se=\Ez:\
 	:so=\EZ:\
 	:sr=\EA:\
@@ -1890,6 +1925,7 @@ ibmmono:\
 # alias ibmconsole
 # alias ibm5151
 ibmega-c:\
+	:I0=f10:\
 	:al=\EL:\
 	:am:\
 	:bs:\
@@ -1936,6 +1972,7 @@ ibmega-c:\
 	:mr=\Ep:\
 	:nd=\EC:\
 	:pt:\
+	:sb:\
 	:se=\EB:\
 	:so=\EF\Ef3;:\
 	:sr=\EA:\
@@ -1962,7 +1999,9 @@ hft-c:\
 	:ec=\E[%dX:\
 	:ed=\E[4l:\
 	:ei=\E[4l:\
+	:el=\E[K:\
 	:ho=\E[H:\
+	:ht:\
 	:im=\E[4h:\
 	:is=\Eb\E[m^O\E[?7h:\
 	:k0=\E[010q:\
@@ -1977,6 +2016,7 @@ hft-c:\
 	:k9=\E[009q:\
 	:kb=\E[D:\
 	:kd=\E[B:\
+	:kf=\E[C:\
 	:kh=\E[H:\
 	:ku=\E[A:\
 	:li#25:\
@@ -2051,6 +2091,7 @@ hft:\
 	:us=\E[4m:\
 	:xo:
 ibm5081:\
+	:I0=f10:\
 	:al=\EL:\
 	:am:\
 	:bs:\
@@ -2097,6 +2138,7 @@ ibm5081:\
 	:mr=\Ep:\
 	:nd=\EC:\
 	:pt:\
+	:sb:\
 	:se=\Ez:\
 	:so=\EZ:\
 	:sr=\EA:\
@@ -2107,6 +2149,7 @@ ibm5081:\
 	:us=\EW:
 # alias ibmmpel
 ibm5081-c:\
+	:I0=f10:\
 	:al=\EL:\
 	:am:\
 	:bs:\
@@ -2153,6 +2196,7 @@ ibm5081-c:\
 	:mr=\Ep:\
 	:nd=\EC:\
 	:pt:\
+	:sb:\
 	:se=\EB:\
 	:so=\EF\Ef3;:\
 	:sr=\EA:\
@@ -2163,6 +2207,25 @@ ibm5081-c:\
 	:us=\EF\Ef2;:
 # alias ibmmpel-c
 ibm3151:\
+	:U6=\E\sr!!\s8"P:\
+	:U7=\E\sr!!\s8$D:\
+	:U8=\E<A:\
+	:U9=\E<@:\
+	:Ub=\E4$a:\
+	:Uc=\E4@:\
+	:Uf=\E4(a:\
+	:Ug=\E4@:\
+	:Up=v:\
+	:Uq=w:\
+	:Ur=u:\
+	:Us=q:\
+	:Ut=t:\
+	:Uu=n:\
+	:Uv=x:\
+	:Uw=j:\
+	:Ux=k:\
+	:Uy=l:\
+	:Uz=m:\
 	:am:\
 	:bc=\ED:\
 	:cd=\EJ:\
@@ -2206,6 +2269,25 @@ ibm3151:\
 # alias ibm3162
 # alias Ibm3162
 ibm3151-25:\
+	:U6=\E\sr!!\s9"P:\
+	:U7=\E\sr!!\s9$D:\
+	:U8=\E<A:\
+	:U9=\E<@:\
+	:Ub=\E4$a:\
+	:Uc=\E4@:\
+	:Uf=\E4(a:\
+	:Ug=\E4@:\
+	:Up=v:\
+	:Uq=w:\
+	:Ur=u:\
+	:Us=q:\
+	:Ut=t:\
+	:Uu=n:\
+	:Uv=x:\
+	:Uw=j:\
+	:Ux=k:\
+	:Uy=l:\
+	:Uz=m:\
 	:am:\
 	:bc=\ED:\
 	:cd=\EJ:\
@@ -2411,10 +2493,42 @@ luna:\
 	:up=\E[A:
 # alias luna68k
 scoansi:\
+	:CL=\E[U:\
+	:CR=\E[V:\
 	:CW=\E[M:\
+	:EN=\E[F:\
+	:G1=?:\
+	:G2=Z:\
+	:G3=@:\
+	:G4=Y:\
+	:G5=;:\
+	:G6=I:\
+	:G7=H:\
+	:G8=<:\
+	:GC=E:\
+	:GD=B:\
+	:GE=\E[10m:\
+	:GH=D:\
+	:GL=4:\
+	:GR=C:\
+	:GS=\E[12m:\
+	:GU=A:\
+	:GV=3:\
+	:Gc=N:\
+	:Gd=K:\
+	:Gh=M:\
+	:Gl=L:\
+	:Gu=J:\
+	:Gv=\072:\
+	:HM=\E[H:\
+	:NU=\E[N:\
+	:PD=\E[G:\
 	:PU=\E[I:\
 	:RC=\E[P:\
 	:RF=\E[O:\
+	:RT=\n:\
+	:WL=\E[S:\
+	:WR=\E[T:\
 	:al=\E[L:\
 	:am:\
 	:bs:\
@@ -2523,7 +2637,6 @@ vc404:\
 	:le=\b:\
 	:li#24:\
 	:ma=^Z^P^U\s:\
-	:ma=^Z^P^U\s:\
 	:nd=^U:\
 	:up=^Z:
 vc404-s:\
@@ -2542,7 +2655,6 @@ vc404-s:\
 	:ku=^Z:\
 	:le=\b:\
 	:li#24:\
-	:ma=^Z^P^U\s:\
 	:ma=^Z^P^U\s:\
 	:nd=^U:\
 	:se=^O:\
@@ -2788,7 +2900,6 @@ soroc:\
 	:le=\b:\
 	:li#24:\
 	:ma=^K^P^R\f\f\s:\
-	:ma=^K^P^R\f\f\s:\
 	:nd=\f:\
 	:up=^K:
 iq140:\
@@ -2823,7 +2934,6 @@ iq140:\
 	:ku=^K:\
 	:le=\b:\
 	:li#24:\
-	:ma=^Kk\nj\bh\fl^^h:\
 	:ma=^Kk\nj\bh\fl^^h:\
 	:nd=\f:\
 	:se=\E^_:\
@@ -3947,6 +4057,7 @@ v603:\
 	:pt:\
 	:rc=2\E8:\
 	:rs=\E>\E[?3l\E[?4l\E[?7h\E[?8h:\
+	:sb=\EM:\
 	:sc=2\E7:\
 	:se=\E[27m:\
 	:sf=\ED:\
@@ -4110,7 +4221,6 @@ terak:\
 	:ku=^_:\
 	:le=\b:\
 	:li#24:\
-	:ma=^\\s^_^P^YH:\
 	:ma=^\\s^_^P^YH:\
 	:nd=^\:\
 	:pt:\
@@ -4635,6 +4745,7 @@ psterm:\
 	:dl=\EK:\
 	:do=\EP:\
 	:ei=\ENi:\
+	:el=\ENl:\
 	:fs=\ENl:\
 	:ho=\ER:\
 	:hs:\
@@ -4659,6 +4770,7 @@ psterm:\
 	:sc=^]:\
 	:se=\ENo:\
 	:sf=\EW:\
+	:sl=\EOl:\
 	:so=\EOo:\
 	:sr=\EX:\
 	:te=\ENt:\
@@ -4975,7 +5087,6 @@ delta:\
 	:le=\b:\
 	:li#27:\
 	:ma=^K\n^Z^P^Y\s:\
-	:ma=^K\n^Z^P^Y\s:\
 	:nc:\
 	:nd=^Y:\
 	:up=^Z:\
@@ -4997,7 +5108,6 @@ mdl110:\
 	:ic=3.5^NA^]:\
 	:le=\b:\
 	:li#24:\
-	:ma=^Z^P:\
 	:ma=^Z^P:\
 	:nd=^U:\
 	:se=^NG:\
@@ -5021,7 +5131,6 @@ zen30:\
 	:im=\Eq:\
 	:le=\b:\
 	:li#24:\
-	:ma=\f\s^R\f^K^P:\
 	:ma=\f\s^R\f^K^P:\
 	:mi:\
 	:nd=\f:\
@@ -5166,7 +5275,6 @@ mt70:\
 	:le=\b:\
 	:li#24:\
 	:ma=j\nk^P^K^Pl\s^R\f\f\s:\
-	:ma=j\nk^P^K^Pl\s^R\f\f\s:\
 	:mi:\
 	:nd=\f:\
 	:se=\EG0:\
@@ -5215,7 +5323,10 @@ m2-nam:\
 	:ug#0:\
 	:up=\E[A:\
 	:us=\E[4m:\
-	:xn:
+	:xn:\
+	:zb=\E[5m:\
+	:zc=lkmjqxtuwvn:\
+	:zd=\E[1m:
 # alias minitel
 # alias minitel-2
 # alias minitel-2-nam
@@ -5237,6 +5348,10 @@ mod2:\
 	:sr=5\EI:\
 	:up=2\EA:
 wsiris:\
+	:CT#2:\
+	:CZ=*Bblack,red,green,yellow,blue,magenta,cyan,*Fwhite:\
+	:HE=\E7F7:\
+	:HS=\E7F2:\
 	:al=\EL:\
 	:am:\
 	:bs:\
@@ -7766,7 +7881,6 @@ annarbor:\
 	:le=\b:\
 	:li#40:\
 	:ma=^_\s^N^P:\
-	:ma=^_\s^N^P:\
 	:nd=^_:\
 	:pt:\
 	:st=^]^P1:\
@@ -7787,7 +7901,6 @@ ansi.sys:\
 	:kr=\f:\
 	:ku=^K:\
 	:li#25:\
-	:ma=\bh\nj^Kk\fl^^H:\
 	:ma=\bh\nj^Kk\fl^^H:\
 	:md=\E[1m:\
 	:me=\E[m:\
@@ -7817,7 +7930,6 @@ ansi.sysk:\
 	:ks=\E[;71;30p\E[;72;11p\E[;73;27;21p\E[;77;12p\E[;80;10p\E[;81;27;4p\E[;82;27;27;105p\E[;83;127p:\
 	:ku=^K:\
 	:li#25:\
-	:ma=\bh\nj^Kk\fl^^H:\
 	:ma=\bh\nj^Kk\fl^^H:\
 	:md=\E[1m:\
 	:me=\E[m:\
@@ -7849,7 +7961,6 @@ nansi.sys:\
 	:kr=\f:\
 	:ku=^K:\
 	:li#25:\
-	:ma=\bh\nj^Kk\fl^^H:\
 	:ma=\bh\nj^Kk\fl^^H:\
 	:md=\E[1m:\
 	:me=\E[m:\
@@ -7883,7 +7994,6 @@ nansi.sysk:\
 	:ks=\E[;71;30p\E[;72;11p\E[;73;27;21p\E[;77;12p\E[;80;10p\E[;81;27;4p\E[;82;27;27;105p\E[;83;127p:\
 	:ku=^K:\
 	:li#25:\
-	:ma=\bh\nj^Kk\fl^^H:\
 	:ma=\bh\nj^Kk\fl^^H:\
 	:md=\E[1m:\
 	:me=\E[m:\
@@ -8903,6 +9013,7 @@ pcvt22h:\
 	:SF=\E[%dS:\
 	:SR=\E[%dT:\
 	:UP=\E[%dA:\
+	:Xs:\
 	:ac=llmmkkjjuuttvvwwqqxxnnpprr``aa:\
 	:ae=^O:\
 	:al=\E[L:\
@@ -8986,6 +9097,7 @@ pcvt25h:\
 	:SF=\E[%dS:\
 	:SR=\E[%dT:\
 	:UP=\E[%dA:\
+	:Xs:\
 	:ac=llmmkkjjuuttvvwwqqxxnnpprr``aa:\
 	:ae=^O:\
 	:al=\E[L:\
@@ -9069,6 +9181,7 @@ pcvt32h:\
 	:SF=\E[%dS:\
 	:SR=\E[%dT:\
 	:UP=\E[%dA:\
+	:Xs:\
 	:ac=llmmkkjjuuttvvwwqqxxnnpprr``aa:\
 	:ae=^O:\
 	:al=\E[L:\
@@ -9152,6 +9265,7 @@ pcvt37h:\
 	:SF=\E[%dS:\
 	:SR=\E[%dT:\
 	:UP=\E[%dA:\
+	:Xs:\
 	:ac=llmmkkjjuuttvvwwqqxxnnpprr``aa:\
 	:ae=^O:\
 	:al=\E[L:\
@@ -9235,6 +9349,7 @@ pcvt40h:\
 	:SF=\E[%dS:\
 	:SR=\E[%dT:\
 	:UP=\E[%dA:\
+	:Xs:\
 	:ac=llmmkkjjuuttvvwwqqxxnnpprr``aa:\
 	:ae=^O:\
 	:al=\E[L:\
@@ -9318,6 +9433,7 @@ pcvt47h:\
 	:SF=\E[%dS:\
 	:SR=\E[%dT:\
 	:UP=\E[%dA:\
+	:Xs:\
 	:ac=llmmkkjjuuttvvwwqqxxnnpprr``aa:\
 	:ae=^O:\
 	:al=\E[L:\
@@ -9401,6 +9517,7 @@ pcvt22hw:\
 	:SF=\E[%dS:\
 	:SR=\E[%dT:\
 	:UP=\E[%dA:\
+	:Xs:\
 	:ac=llmmkkjjuuttvvwwqqxxnnpprr``aa:\
 	:ae=^O:\
 	:al=\E[L:\
@@ -9484,6 +9601,7 @@ pcvt25hw:\
 	:SF=\E[%dS:\
 	:SR=\E[%dT:\
 	:UP=\E[%dA:\
+	:Xs:\
 	:ac=llmmkkjjuuttvvwwqqxxnnpprr``aa:\
 	:ae=^O:\
 	:al=\E[L:\
@@ -9567,6 +9685,7 @@ pcvt32hw:\
 	:SF=\E[%dS:\
 	:SR=\E[%dT:\
 	:UP=\E[%dA:\
+	:Xs:\
 	:ac=llmmkkjjuuttvvwwqqxxnnpprr``aa:\
 	:ae=^O:\
 	:al=\E[L:\
@@ -9650,6 +9769,7 @@ pcvt37hw:\
 	:SF=\E[%dS:\
 	:SR=\E[%dT:\
 	:UP=\E[%dA:\
+	:Xs:\
 	:ac=llmmkkjjuuttvvwwqqxxnnpprr``aa:\
 	:ae=^O:\
 	:al=\E[L:\
@@ -9733,6 +9853,7 @@ pcvt40hw:\
 	:SF=\E[%dS:\
 	:SR=\E[%dT:\
 	:UP=\E[%dA:\
+	:Xs:\
 	:ac=llmmkkjjuuttvvwwqqxxnnpprr``aa:\
 	:ae=^O:\
 	:al=\E[L:\
@@ -9816,6 +9937,7 @@ pcvt47hw:\
 	:SF=\E[%dS:\
 	:SR=\E[%dT:\
 	:UP=\E[%dA:\
+	:Xs:\
 	:ac=llmmkkjjuuttvvwwqqxxnnpprr``aa:\
 	:ae=^O:\
 	:al=\E[L:\
@@ -9968,7 +10090,7 @@ pcvtXX:\
 	:us=\E[4m:\
 	:vt#3:\
 	:xn:
-40:\
+tty40:\
 	:al=160\EL:\
 	:bs:\
 	:cd=160\EJ:\
@@ -9986,19 +10108,19 @@ pcvtXX:\
 	:so=\E3:\
 	:up=\E7:\
 	:vb=:
-# alias tty40
 # alias ds40
 # alias ds40/2
 # alias ds40-2
 # alias dataspeed40
-33:\
+# alias 40
+tty33:\
 	:co#72:\
 	:do=\n:\
 	:hc:\
 	:os:
-# alias tty33
 # alias tty
-43:\
+# alias 33
+tty43:\
 	:am:\
 	:bs:\
 	:co#132:\
@@ -10007,8 +10129,8 @@ pcvtXX:\
 	:kb=\b:\
 	:le=\b:\
 	:os:
-# alias tty43
-37:\
+# alias 43
+tty37:\
 	:bs:\
 	:do=\n:\
 	:hc:\
@@ -10017,7 +10139,7 @@ pcvtXX:\
 	:le=\b:\
 	:os:\
 	:up=\E7:
-# alias tty37
+# alias 37
 4424:\
 	:al=\EL:\
 	:am:\
@@ -10471,16 +10593,11 @@ tek4025a:\
 	:DO=^]dow\s%d;:\
 	:LE=^]lef\s%d;:\
 	:RI=^]rig\s%d;:\
-	:SF=^]dow\s%d;:\
-	:UP=^]up\s%d;:\
 	:al=^K^]ili;:\
 	:am:\
 	:bl=^G:\
-	:bs:\
 	:bt=^]bac;:\
 	:bw:\
-	:ce=^]dch\s80;:\
-	:ch=\r^]rig\s%d;:\
 	:cl=^]era;\n^]rup;:\
 	:co#80:\
 	:cr=\r:\
@@ -10494,13 +10611,7 @@ tek4025a:\
 	:le=\b:\
 	:li#34:\
 	:nd=^]rig;:\
-	:pt:\
-	:rs=!com\s29^]del\s0^]rss\st^]buf^]buf\sn^]cle^]dis^]dup^]ech\sr^]eol^]era\sg^]for\sn^]pad\s203^]pad\s209^]sno\sn^]sto\s9\s17\s25\s33\s41\s49\s57\s65\s73^]wor\s0;:\
-	:sf=\n:\
-	:ta=\t:\
-	:up=^K:\
-	:xo:\
-	:xx:
+	:rs=!com\s29^]del\s0^]rss\st^]buf^]buf\sn^]cle^]dis^]dup^]ech\sr^]eol:
 # alias 4025a
 ^]era g^]for n^]pad 203^]pad 209^]sno n^]sto 9 17 25 33 41 49 57 65 73\
 :\
@@ -11029,7 +11140,6 @@ intext:\
 	:ku=^\:\
 	:le=^_:\
 	:li#24:\
-	:ma=^K^P^R\f\f\s:\
 	:ma=^K^P^R\f\f\s:\
 	:nd=^^:\
 	:pt:\
@@ -12711,6 +12821,7 @@ cons25w:\
 	:AB=\E[4%dm:\
 	:AF=\E[3%dm:\
 	:AL=\E[%dL:\
+	:AX:\
 	:Co#8:\
 	:DC=\E[%dP:\
 	:DL=\E[%dM:\
@@ -12801,6 +12912,7 @@ cons25:\
 	:AB=\E[4%dm:\
 	:AF=\E[3%dm:\
 	:AL=\E[%dL:\
+	:AX:\
 	:Co#8:\
 	:DC=\E[%dP:\
 	:DL=\E[%dM:\
@@ -12980,6 +13092,7 @@ cons30:\
 	:AB=\E[4%dm:\
 	:AF=\E[3%dm:\
 	:AL=\E[%dL:\
+	:AX:\
 	:Co#8:\
 	:DC=\E[%dP:\
 	:DL=\E[%dM:\
@@ -13157,6 +13270,7 @@ cons43:\
 	:AB=\E[4%dm:\
 	:AF=\E[3%dm:\
 	:AL=\E[%dL:\
+	:AX:\
 	:Co#8:\
 	:DC=\E[%dP:\
 	:DL=\E[%dM:\
@@ -13334,6 +13448,7 @@ cons50:\
 	:AB=\E[4%dm:\
 	:AF=\E[3%dm:\
 	:AL=\E[%dL:\
+	:AX:\
 	:Co#8:\
 	:DC=\E[%dP:\
 	:DL=\E[%dM:\
@@ -13513,6 +13628,7 @@ cons60:\
 	:AB=\E[4%dm:\
 	:AF=\E[3%dm:\
 	:AL=\E[%dL:\
+	:AX:\
 	:Co#8:\
 	:DC=\E[%dP:\
 	:DL=\E[%dM:\
@@ -13690,6 +13806,7 @@ cons25-w:\
 	:AB=\E[4%dm:\
 	:AF=\E[3%dm:\
 	:AL=\E[%dL:\
+	:AX:\
 	:Co#8:\
 	:DC=\E[%dP:\
 	:DL=\E[%dM:\
@@ -13780,6 +13897,7 @@ cons30-w:\
 	:AB=\E[4%dm:\
 	:AF=\E[3%dm:\
 	:AL=\E[%dL:\
+	:AX:\
 	:Co#8:\
 	:DC=\E[%dP:\
 	:DL=\E[%dM:\
@@ -13870,6 +13988,7 @@ cons43-w:\
 	:AB=\E[4%dm:\
 	:AF=\E[3%dm:\
 	:AL=\E[%dL:\
+	:AX:\
 	:Co#8:\
 	:DC=\E[%dP:\
 	:DL=\E[%dM:\
@@ -13960,6 +14079,7 @@ cons50-w:\
 	:AB=\E[4%dm:\
 	:AF=\E[3%dm:\
 	:AL=\E[%dL:\
+	:AX:\
 	:Co#8:\
 	:DC=\E[%dP:\
 	:DL=\E[%dM:\
@@ -14051,6 +14171,7 @@ cons60-w:\
 	:AB=\E[4%dm:\
 	:AF=\E[3%dm:\
 	:AL=\E[%dL:\
+	:AX:\
 	:Co#8:\
 	:DC=\E[%dP:\
 	:DL=\E[%dM:\
@@ -14141,6 +14262,7 @@ cons25r:\
 	:AB=\E[4%dm:\
 	:AF=\E[3%dm:\
 	:AL=\E[%dL:\
+	:AX:\
 	:Co#8:\
 	:DC=\E[%dP:\
 	:DL=\E[%dM:\
@@ -14324,6 +14446,7 @@ cons30r:\
 	:AB=\E[4%dm:\
 	:AF=\E[3%dm:\
 	:AL=\E[%dL:\
+	:AX:\
 	:Co#8:\
 	:DC=\E[%dP:\
 	:DL=\E[%dM:\
@@ -14503,6 +14626,7 @@ cons43r:\
 	:AB=\E[4%dm:\
 	:AF=\E[3%dm:\
 	:AL=\E[%dL:\
+	:AX:\
 	:Co#8:\
 	:DC=\E[%dP:\
 	:DL=\E[%dM:\
@@ -14682,6 +14806,7 @@ cons50r:\
 	:AB=\E[4%dm:\
 	:AF=\E[3%dm:\
 	:AL=\E[%dL:\
+	:AX:\
 	:Co#8:\
 	:DC=\E[%dP:\
 	:DL=\E[%dM:\
@@ -14861,6 +14986,7 @@ cons60r:\
 	:AB=\E[4%dm:\
 	:AF=\E[3%dm:\
 	:AL=\E[%dL:\
+	:AX:\
 	:Co#8:\
 	:DC=\E[%dP:\
 	:DL=\E[%dM:\
@@ -15040,6 +15166,7 @@ cons25r-v:\
 	:AB=\E[4%dm:\
 	:AF=\E[3%dm:\
 	:AL=\E[%dL:\
+	:AX:\
 	:Co#8:\
 	:DC=\E[%dP:\
 	:DL=\E[%dM:\
@@ -15223,6 +15350,7 @@ cons30r-v:\
 	:AB=\E[4%dm:\
 	:AF=\E[3%dm:\
 	:AL=\E[%dL:\
+	:AX:\
 	:Co#8:\
 	:DC=\E[%dP:\
 	:DL=\E[%dM:\
@@ -15402,6 +15530,7 @@ cons43r-v:\
 	:AB=\E[4%dm:\
 	:AF=\E[3%dm:\
 	:AL=\E[%dL:\
+	:AX:\
 	:Co#8:\
 	:DC=\E[%dP:\
 	:DL=\E[%dM:\
@@ -15581,6 +15710,7 @@ cons50r-v:\
 	:AB=\E[4%dm:\
 	:AF=\E[3%dm:\
 	:AL=\E[%dL:\
+	:AX:\
 	:Co#8:\
 	:DC=\E[%dP:\
 	:DL=\E[%dM:\
@@ -15760,6 +15890,7 @@ cons60r-v:\
 	:AB=\E[4%dm:\
 	:AF=\E[3%dm:\
 	:AL=\E[%dL:\
+	:AX:\
 	:Co#8:\
 	:DC=\E[%dP:\
 	:DL=\E[%dM:\
@@ -15939,6 +16070,7 @@ cons25l2:\
 	:AB=\E[4%dm:\
 	:AF=\E[3%dm:\
 	:AL=\E[%dL:\
+	:AX:\
 	:Co#8:\
 	:DC=\E[%dP:\
 	:DL=\E[%dM:\
@@ -16116,6 +16248,7 @@ cons30l2:\
 	:AB=\E[4%dm:\
 	:AF=\E[3%dm:\
 	:AL=\E[%dL:\
+	:AX:\
 	:Co#8:\
 	:DC=\E[%dP:\
 	:DL=\E[%dM:\
@@ -16293,6 +16426,7 @@ cons43l2:\
 	:AB=\E[4%dm:\
 	:AF=\E[3%dm:\
 	:AL=\E[%dL:\
+	:AX:\
 	:Co#8:\
 	:DC=\E[%dP:\
 	:DL=\E[%dM:\
@@ -16470,6 +16604,7 @@ cons50l2:\
 	:AB=\E[4%dm:\
 	:AF=\E[3%dm:\
 	:AL=\E[%dL:\
+	:AX:\
 	:Co#8:\
 	:DC=\E[%dP:\
 	:DL=\E[%dM:\
@@ -16647,6 +16782,7 @@ cons60l2:\
 	:AB=\E[4%dm:\
 	:AF=\E[3%dm:\
 	:AL=\E[%dL:\
+	:AX:\
 	:Co#8:\
 	:DC=\E[%dP:\
 	:DL=\E[%dM:\
@@ -16824,6 +16960,7 @@ cons25l1:\
 	:AB=\E[4%dm:\
 	:AF=\E[3%dm:\
 	:AL=\E[%dL:\
+	:AX:\
 	:Co#8:\
 	:DC=\E[%dP:\
 	:DL=\E[%dM:\
@@ -17001,6 +17138,7 @@ cons30l1:\
 	:AB=\E[4%dm:\
 	:AF=\E[3%dm:\
 	:AL=\E[%dL:\
+	:AX:\
 	:Co#8:\
 	:DC=\E[%dP:\
 	:DL=\E[%dM:\
@@ -17178,6 +17316,7 @@ cons43l1:\
 	:AB=\E[4%dm:\
 	:AF=\E[3%dm:\
 	:AL=\E[%dL:\
+	:AX:\
 	:Co#8:\
 	:DC=\E[%dP:\
 	:DL=\E[%dM:\
@@ -17355,6 +17494,7 @@ cons50l1:\
 	:AB=\E[4%dm:\
 	:AF=\E[3%dm:\
 	:AL=\E[%dL:\
+	:AX:\
 	:Co#8:\
 	:DC=\E[%dP:\
 	:DL=\E[%dM:\
@@ -17532,6 +17672,7 @@ cons60l1:\
 	:AB=\E[4%dm:\
 	:AF=\E[3%dm:\
 	:AL=\E[%dL:\
+	:AX:\
 	:Co#8:\
 	:DC=\E[%dP:\
 	:DL=\E[%dM:\
@@ -17709,6 +17850,7 @@ cons25l1-w:\
 	:AB=\E[4%dm:\
 	:AF=\E[3%dm:\
 	:AL=\E[%dL:\
+	:AX:\
 	:Co#8:\
 	:DC=\E[%dP:\
 	:DL=\E[%dM:\
@@ -17799,6 +17941,7 @@ cons30l1-w:\
 	:AB=\E[4%dm:\
 	:AF=\E[3%dm:\
 	:AL=\E[%dL:\
+	:AX:\
 	:Co#8:\
 	:DC=\E[%dP:\
 	:DL=\E[%dM:\
@@ -17889,6 +18032,7 @@ cons43l1-w:\
 	:AB=\E[4%dm:\
 	:AF=\E[3%dm:\
 	:AL=\E[%dL:\
+	:AX:\
 	:Co#8:\
 	:DC=\E[%dP:\
 	:DL=\E[%dM:\
@@ -17979,6 +18123,7 @@ cons50l1-w:\
 	:AB=\E[4%dm:\
 	:AF=\E[3%dm:\
 	:AL=\E[%dL:\
+	:AX:\
 	:Co#8:\
 	:DC=\E[%dP:\
 	:DL=\E[%dM:\
@@ -18069,6 +18214,7 @@ cons60l1-w:\
 	:AB=\E[4%dm:\
 	:AF=\E[3%dm:\
 	:AL=\E[%dL:\
+	:AX:\
 	:Co#8:\
 	:DC=\E[%dP:\
 	:DL=\E[%dM:\
@@ -18159,6 +18305,7 @@ cons25l7:\
 	:AB=\E[4%dm:\
 	:AF=\E[3%dm:\
 	:AL=\E[%dL:\
+	:AX:\
 	:Co#8:\
 	:DC=\E[%dP:\
 	:DL=\E[%dM:\
@@ -18336,6 +18483,7 @@ cons30l7:\
 	:AB=\E[4%dm:\
 	:AF=\E[3%dm:\
 	:AL=\E[%dL:\
+	:AX:\
 	:Co#8:\
 	:DC=\E[%dP:\
 	:DL=\E[%dM:\
@@ -18513,6 +18661,7 @@ cons43l7:\
 	:AB=\E[4%dm:\
 	:AF=\E[3%dm:\
 	:AL=\E[%dL:\
+	:AX:\
 	:Co#8:\
 	:DC=\E[%dP:\
 	:DL=\E[%dM:\
@@ -18690,6 +18839,7 @@ cons50l7:\
 	:AB=\E[4%dm:\
 	:AF=\E[3%dm:\
 	:AL=\E[%dL:\
+	:AX:\
 	:Co#8:\
 	:DC=\E[%dP:\
 	:DL=\E[%dM:\
@@ -18867,6 +19017,7 @@ cons60l7:\
 	:AB=\E[4%dm:\
 	:AF=\E[3%dm:\
 	:AL=\E[%dL:\
+	:AX:\
 	:Co#8:\
 	:DC=\E[%dP:\
 	:DL=\E[%dM:\
@@ -23126,11 +23277,12 @@ vt340-color:\
 	:ve=\E[?25h:\
 	:vi=\E[?25l:\
 	:xn:
-SC:\
+screen:\
 	:@7=\E[4~:\
 	:AB=\E[4%dm:\
 	:AF=\E[3%dm:\
 	:AL=\E[%dL:\
+	:AX:\
 	:Co#8:\
 	:DC=\E[%dP:\
 	:DL=\E[%dM:\
@@ -23145,6 +23297,7 @@ SC:\
 	:F8=\E[32~:\
 	:F9=\E[33~:\
 	:FA=\E[34~:\
+	:G0:\
 	:IC=\E[%d@:\
 	:LE=\E[%dD:\
 	:RI=\E[%dC:\
@@ -23229,12 +23382,13 @@ SC:\
 	:vi=\E[?25l:\
 	:vs=\E[34l:\
 	:xn:
-# alias screen
-SB:\
+# alias SC
+screen-bce:\
 	:@7=\E[4~:\
 	:AB=\E[4%dm:\
 	:AF=\E[3%dm:\
 	:AL=\E[%dL:\
+	:AX:\
 	:Co#8:\
 	:DC=\E[%dP:\
 	:DL=\E[%dM:\
@@ -23249,6 +23403,7 @@ SB:\
 	:F8=\E[32~:\
 	:F9=\E[33~:\
 	:FA=\E[34~:\
+	:G0:\
 	:IC=\E[%d@:\
 	:LE=\E[%dD:\
 	:RI=\E[%dC:\
@@ -23334,12 +23489,13 @@ SB:\
 	:vi=\E[?25l:\
 	:vs=\E[34l:\
 	:xn:
-# alias screen-bce
-SH:\
+# alias SB
+screen-s:\
 	:@7=\E[4~:\
 	:AB=\E[4%dm:\
 	:AF=\E[3%dm:\
 	:AL=\E[%dL:\
+	:AX:\
 	:Co#8:\
 	:DC=\E[%dP:\
 	:DL=\E[%dM:\
@@ -23354,6 +23510,7 @@ SH:\
 	:F8=\E[32~:\
 	:F9=\E[33~:\
 	:FA=\E[34~:\
+	:G0:\
 	:IC=\E[%d@:\
 	:LE=\E[%dD:\
 	:RI=\E[%dC:\
@@ -23441,12 +23598,13 @@ SH:\
 	:vi=\E[?25l:\
 	:vs=\E[34l:\
 	:xn:
-# alias screen-s
-SW:\
+# alias SH
+screen-w:\
 	:@7=\E[4~:\
 	:AB=\E[4%dm:\
 	:AF=\E[3%dm:\
 	:AL=\E[%dL:\
+	:AX:\
 	:Co#8:\
 	:DC=\E[%dP:\
 	:DL=\E[%dM:\
@@ -23461,6 +23619,7 @@ SW:\
 	:F8=\E[32~:\
 	:F9=\E[33~:\
 	:FA=\E[34~:\
+	:G0:\
 	:IC=\E[%d@:\
 	:LE=\E[%dD:\
 	:RI=\E[%dC:\
@@ -23545,13 +23704,14 @@ SW:\
 	:vi=\E[?25l:\
 	:vs=\E[34l:\
 	:xn:
-# alias screen-w
+# alias SW
 xterm-new:\
 	:@7=\EOF:\
 	:@8=\EOM:\
 	:AB=\E[4%dm:\
 	:AF=\E[3%dm:\
 	:AL=\E[%dL:\
+	:AX:\
 	:Co#8:\
 	:DC=\E[%dP:\
 	:DL=\E[%dM:\
@@ -23638,6 +23798,7 @@ xterm-basic:\
 	:AB=\E[4%dm:\
 	:AF=\E[3%dm:\
 	:AL=\E[%dL:\
+	:AX:\
 	:Co#8:\
 	:DC=\E[%dP:\
 	:DL=\E[%dM:\
@@ -23704,6 +23865,7 @@ xterm-vt220:\
 	:AB=\E[4%dm:\
 	:AF=\E[3%dm:\
 	:AL=\E[%dL:\
+	:AX:\
 	:Co#8:\
 	:DC=\E[%dP:\
 	:DL=\E[%dM:\
@@ -24206,6 +24368,7 @@ xterm-noapp:\
 	:AB=\E[4%dm:\
 	:AF=\E[3%dm:\
 	:AL=\E[%dL:\
+	:AX:\
 	:Co#8:\
 	:DC=\E[%dP:\
 	:DL=\E[%dM:\
@@ -24386,6 +24549,7 @@ xterm-16color:\
 	:AB=\E[4%dm:\
 	:AF=\E[3%dm:\
 	:AL=\E[%dL:\
+	:AX:\
 	:Co#8:\
 	:DC=\E[%dP:\
 	:DL=\E[%dM:\
@@ -24474,6 +24638,7 @@ xterm-88color:\
 	:AB=\E[48;5;%dm:\
 	:AF=\E[38;5;%dm:\
 	:AL=\E[%dL:\
+	:AX:\
 	:Co#88:\
 	:DC=\E[%dP:\
 	:DL=\E[%dM:\
@@ -24562,6 +24727,7 @@ xterm-256color:\
 	:AB=\E[48;5;%dm:\
 	:AF=\E[38;5;%dm:\
 	:AL=\E[%dL:\
+	:AX:\
 	:Co#256:\
 	:DC=\E[%dP:\
 	:DL=\E[%dM:\
@@ -24650,6 +24816,7 @@ xterm-nrc:\
 	:AB=\E[4%dm:\
 	:AF=\E[3%dm:\
 	:AL=\E[%dL:\
+	:AX:\
 	:Co#8:\
 	:DC=\E[%dP:\
 	:DL=\E[%dM:\
@@ -24738,6 +24905,7 @@ xterm-rep:\
 	:AB=\E[4%dm:\
 	:AF=\E[3%dm:\
 	:AL=\E[%dL:\
+	:AX:\
 	:Co#8:\
 	:DC=\E[%dP:\
 	:DL=\E[%dM:\
@@ -24826,6 +24994,7 @@ xterm-xmc:\
 	:AB=\E[4%dm:\
 	:AF=\E[3%dm:\
 	:AL=\E[%dL:\
+	:AX:\
 	:Co#8:\
 	:DC=\E[%dP:\
 	:DL=\E[%dM:\
@@ -24994,6 +25163,7 @@ xterm-hp:\
 	:AB=\E[4%dm:\
 	:AF=\E[3%dm:\
 	:AL=\E[%dL:\
+	:AX:\
 	:Co#8:\
 	:DC=\E[%dP:\
 	:DL=\E[%dM:\
@@ -25076,6 +25246,7 @@ xterm-sco:\
 	:AB=\E[4%dm:\
 	:AF=\E[3%dm:\
 	:AL=\E[%dL:\
+	:AX:\
 	:Co#8:\
 	:DC=\E[%dP:\
 	:DL=\E[%dM:\
@@ -25205,6 +25376,7 @@ xterm-sun:\
 	:AB=\E[4%dm:\
 	:AF=\E[3%dm:\
 	:AL=\E[%dL:\
+	:AX:\
 	:Co#8:\
 	:DC=\E[%dP:\
 	:DL=\E[%dM:\
@@ -25284,6 +25456,93 @@ xterm-sun:\
 	:vs=\E[?12;25h:\
 	:xn:
 xterm-ic:\
+	:@7=\EOF:\
+	:@8=\EOM:\
+	:AB=\E[4%dm:\
+	:AF=\E[3%dm:\
+	:AL=\E[%dL:\
+	:AX:\
+	:Co#8:\
+	:DC=\E[%dP:\
+	:DL=\E[%dM:\
+	:DO=\E[%dB:\
+	:F1=\E[23~:\
+	:F2=\E[24~:\
+	:IC=\E[%d@:\
+	:K2=\EOE:\
+	:Km=\E[M:\
+	:LE=\E[%dD:\
+	:RI=\E[%dC:\
+	:UP=\E[%dA:\
+	:ae=\E(B:\
+	:al=\E[L:\
+	:am:\
+	:as=\E(0:\
+	:bl=^G:\
+	:bs:\
+	:cd=\E[J:\
+	:ce=\E[K:\
+	:cl=\E[H\E[2J:\
+	:cm=\E[%i%d;%dH:\
+	:co#80:\
+	:cs=\E[%i%d;%dr:\
+	:ct=\E[3g:\
+	:dc=\E[P:\
+	:dl=\E[M:\
+	:ho=\E[H:\
+	:ic=\E[@:\
+	:is=\E[!p\E[?3;4l\E[4l\E>:\
+	:k1=\EOP:\
+	:k2=\EOQ:\
+	:k3=\EOR:\
+	:k4=\EOS:\
+	:k5=\E[15~:\
+	:k6=\E[17~:\
+	:k7=\E[18~:\
+	:k8=\E[19~:\
+	:k9=\E[20~:\
+	:k;=\E[21~:\
+	:kD=\E[3~:\
+	:kI=\E[2~:\
+	:kN=\E[6~:\
+	:kP=\E[5~:\
+	:kb=\b:\
+	:kd=\EOB:\
+	:ke=\E[?1l\E>:\
+	:kh=\EOH:\
+	:kl=\EOD:\
+	:km:\
+	:kn#12:\
+	:kr=\EOC:\
+	:ks=\E[?1h\E=:\
+	:ku=\EOA:\
+	:le=\b:\
+	:li#24:\
+	:md=\E[1m:\
+	:me=\E[m:\
+	:ml=\El:\
+	:mr=\E[7m:\
+	:ms:\
+	:mu=\Em:\
+	:nd=\E[C:\
+	:op=\E[39;49m:\
+	:pa#64:\
+	:rc=\E8:\
+	:rs=\E[!p\E[?3;4l\E[4l\E>:\
+	:sc=\E7:\
+	:se=\E[27m:\
+	:sf=\n:\
+	:so=\E[7m:\
+	:sr=\EM:\
+	:st=\EH:\
+	:ue=\E[24m:\
+	:up=\E[A:\
+	:us=\E[4m:\
+	:ut:\
+	:ve=\E[?12l\E[?25h:\
+	:vi=\E[?25l:\
+	:vs=\E[?12;25h:\
+	:xn:
 # alias xterm-vi
 xterm-r6:\
 	:*6=\E[4~:\
@@ -25434,6 +25693,7 @@ xterm-xfree86:\
 	:AB=\E[4%dm:\
 	:AF=\E[3%dm:\
 	:AL=\E[%dL:\
+	:AX:\
 	:Co#8:\
 	:DC=\E[%dP:\
 	:DL=\E[%dM:\
@@ -25522,6 +25782,7 @@ xterm:\
 	:AB=\E[4%dm:\
 	:AF=\E[3%dm:\
 	:AL=\E[%dL:\
+	:AX:\
 	:Co#8:\
 	:DC=\E[%dP:\
 	:DL=\E[%dM:\
@@ -25702,6 +25963,8 @@ dtterm:\
 	:vi=\E[?25l:\
 	:xn:
 vs100t:\
+	:Al=\E+%+\s:\
+	:Dl=\E-%+\s:\
 	:al=\EI:\
 	:am:\
 	:bs:\
@@ -25745,8 +26008,10 @@ kterm:\
 	:F8=\E[32~:\
 	:F9=\E[33~:\
 	:FA=\E[34~:\
+	:KJ:\
 	:LE=\E[%dD:\
 	:RI=\E[%dC:\
+	:TY=ascii:\
 	:UP=\E[%dA:\
 	:ae=\E(B:\
 	:al=\E[L:\
@@ -25838,8 +26103,10 @@ kterm-color:\
 	:F8=\E[32~:\
 	:F9=\E[33~:\
 	:FA=\E[34~:\
+	:KJ:\
 	:LE=\E[%dD:\
 	:RI=\E[%dC:\
+	:TY=ascii:\
 	:UP=\E[%dA:\
 	:ae=\E(B:\
 	:al=\E[L:\
@@ -26133,7 +26400,7 @@ hp2645:\
 	:vt#6:\
 	:xs:
 # alias 2645
-hp:\
+hpterm:\
 	:al=\EL:\
 	:am:\
 	:bs:\
@@ -26167,7 +26434,7 @@ hp:\
 	:us=\E&dD:\
 	:vt#6:\
 	:xs:
-# alias hpterm
+# alias hp
 hp2626:\
 	:al=\EL:\
 	:am:\
@@ -28033,7 +28300,6 @@ adm31:\
 	:le=\b:\
 	:li#24:\
 	:ma=j\nk^P^K^Pl\s^R\f\f\s:\
-	:ma=j\nk^P^K^Pl\s^R\f\f\s:\
 	:mi:\
 	:nd=\f:\
 	:se=\EG0:\
@@ -28073,7 +28339,6 @@ adm3:\
 	:do=\n:\
 	:le=\b:\
 	:li#24:\
-	:ma=^K^P:\
 	:ma=^K^P:
 # alias 3
 adm42:\
@@ -28094,7 +28359,6 @@ adm42:\
 	:ip=6*:\
 	:le=\b:\
 	:li#24:\
-	:ma=^K^P:\
 	:ma=^K^P:\
 	:nd=\f:\
 	:pc=^?:\
@@ -28121,7 +28385,6 @@ adm5:\
 	:ku=^K:\
 	:le=\b:\
 	:li#24:\
-	:ma=\bh\nj^Kk\fl^^H:\
 	:ma=\bh\nj^Kk\fl^^H:\
 	:nd=\f:\
 	:se=\EG:\
@@ -28190,7 +28453,6 @@ adm12:\
 	:le=\b:\
 	:li#24:\
 	:ma=j\nk^P^K^Pl\s^R\f\f\s:\
-	:ma=j\nk^P^K^Pl\s^R\f\f\s:\
 	:mi:\
 	:nd=\f:\
 	:se=\EG0:\
@@ -28210,7 +28472,6 @@ adm3a:\
 	:le=\b:\
 	:li#24:\
 	:ma=^K^P:\
-	:ma=^K^P:\
 	:nd=\f:\
 	:up=^K:
 # alias 3a
@@ -28228,7 +28489,6 @@ adm3a+:\
 	:ku=^K:\
 	:le=\b:\
 	:li#24:\
-	:ma=^K^P:\
 	:ma=^K^P:\
 	:nd=\f:\
 	:up=^K:
@@ -28273,7 +28533,6 @@ adm22:\
 	:l7=F7:\
 	:li#24:\
 	:ma=j\nk^P^K^Pl\s^R\f\f\s:\
-	:ma=j\nk^P^K^Pl\s^R\f\f\s:\
 	:nd=\f:\
 	:se=\E(:\
 	:so=\E):\
@@ -28300,7 +28559,6 @@ adm11:\
 	:ku=^K:\
 	:li#24:\
 	:ma=\bh\nj^Kk\fl^^H:\
-	:ma=\bh\nj^Kk\fl^^H:\
 	:nd=\f:\
 	:se=\E(:\
 	:so=\E):\
@@ -28319,7 +28577,6 @@ mime3a:\
 	:ku=^Z:\
 	:le=\b:\
 	:li#24:\
-	:ma=^X\s^K\n^Z^P:\
 	:ma=^X\s^K\n^Z^P:\
 	:nd=\f:\
 	:up=^K:
@@ -28365,7 +28622,6 @@ microterm5:\
 	:le=\b:\
 	:li#24:\
 	:ma=^Z^P^Xl^Kj:\
-	:ma=^Z^P^Xl^Kj:\
 	:nd=^X:\
 	:sr=3\EH:\
 	:uc=\b\EA:\
@@ -28390,7 +28646,6 @@ act5s:\
 	:ku=^Z:\
 	:le=\b:\
 	:li#48:\
-	:ma=^Z^P^Xl^Kj:\
 	:ma=^Z^P^Xl^Kj:\
 	:nd=^X:\
 	:sr=3\EH:\
@@ -28417,7 +28672,6 @@ mime-fb:\
 	:ku=^Z:\
 	:le=\b:\
 	:li#24:\
-	:ma=^X\s^K\n^Z^P:\
 	:ma=^X\s^K\n^Z^P:\
 	:nd=^X:\
 	:pt:\
@@ -28448,7 +28702,6 @@ mime-hb:\
 	:le=\b:\
 	:li#24:\
 	:ma=^X\s^K\n^Z^P:\
-	:ma=^X\s^K\n^Z^P:\
 	:nd=^X:\
 	:pt:\
 	:se=^Y:\
@@ -28477,7 +28730,6 @@ mime:\
 	:ku=^Z:\
 	:le=\b:\
 	:li#24:\
-	:ma=^X\s^K\n^Z^P:\
 	:ma=^X\s^K\n^Z^P:\
 	:nd=^X:\
 	:pt:\
@@ -28569,7 +28821,6 @@ mime3ax:\
 	:le=\b:\
 	:li#24:\
 	:ma=^X\s^K\n^Z^P:\
-	:ma=^X\s^K\n^Z^P:\
 	:nd=\f:\
 	:pt:\
 	:up=^K:
@@ -28586,7 +28837,6 @@ pe550:\
 	:le=\b:\
 	:li#24:\
 	:ll=\EH\EA:\
-	:ma=^Z^P:\
 	:ma=^Z^P:\
 	:nd=\EC:\
 	:up=\EA:
@@ -28729,7 +28979,6 @@ netx:\
 	:le=\b:\
 	:li#16:\
 	:ma=j\nk^Pl\s:\
-	:ma=j\nk^Pl\s:\
 	:nd=\E+@A:\
 	:pc=\200:\
 	:sr=\E=@@^K:\
@@ -28744,7 +28993,6 @@ sexidy:\
 	:kd=^S:\
 	:le=\b:\
 	:li#24:\
-	:ma=^X\n:\
 	:ma=^X\n:\
 	:nd=^S:\
 	:up=^W:
@@ -28761,7 +29009,6 @@ ubell:\
 	:le=\b:\
 	:li#24:\
 	:ma=j\nk^P^K^Pl\s:\
-	:ma=j\nk^P^K^Pl\s:\
 	:nd=\f:\
 	:pt:\
 	:up=^K:
@@ -28776,7 +29023,6 @@ xitex:\
 	:ho=^D:\
 	:le=\b:\
 	:li#16:\
-	:ma=j\nk^Pl\s:\
 	:ma=j\nk^Pl\s:\
 	:nd=\E+@A:\
 	:pc=\200:\
@@ -28908,7 +29154,6 @@ tvi912:\
 	:le=\b:\
 	:li#24:\
 	:ma=^K^P\f\s:\
-	:ma=^K^P\f\s:\
 	:nd=\f:\
 	:pt:\
 	:se=\Ek:\
@@ -28954,7 +29199,6 @@ tvi912:\
 	:ku=^K:\
 	:le=\b:\
 	:li#24:\
-	:ma=^K^P\f\s:\
 	:ma=^K^P\f\s:\
 	:nd=\f:\
 	:pt:\
@@ -29003,7 +29247,6 @@ tvi912:\
 	:le=\b:\
 	:li#24:\
 	:ma=^K^P\f\s:\
-	:ma=^K^P\f\s:\
 	:nd=\f:\
 	:pt:\
 	:se=\Ek:\
@@ -29049,7 +29292,6 @@ tvi912-2p:\
 	:ku=^K:\
 	:le=\b:\
 	:li#24:\
-	:ma=^K^P\f\s:\
 	:ma=^K^P\f\s:\
 	:nd=\f:\
 	:pt:\
@@ -29108,7 +29350,6 @@ tvi950-ap:\
 	:ku=^K:\
 	:le=\b:\
 	:li#24:\
-	:ma=^Vj^Kk\bh\fl^^H:\
 	:ma=^Vj^Kk\bh\fl^^H:\
 	:mi:\
 	:ms:\
@@ -29169,7 +29410,6 @@ tvi950-b:\
 	:le=\b:\
 	:li#24:\
 	:ma=^Vj^Kk\bh\fl^^H:\
-	:ma=^Vj^Kk\bh\fl^^H:\
 	:mi:\
 	:ms:\
 	:nd=\f:\
@@ -29228,7 +29468,6 @@ tvi950-ns:\
 	:le=\b:\
 	:li#24:\
 	:ma=^Vj^Kk\bh\fl^^H:\
-	:ma=^Vj^Kk\bh\fl^^H:\
 	:mi:\
 	:ms:\
 	:nd=\f:\
@@ -29279,7 +29518,6 @@ tvi925:\
 	:kr=\f:\
 	:ku=^K:\
 	:li#24:\
-	:ma=^V\n\f\s:\
 	:ma=^V\n\f\s:\
 	:nd=\f:\
 	:pt:\
@@ -29332,7 +29570,6 @@ tvi925vb:\
 	:kr=\f:\
 	:ku=^K:\
 	:li#24:\
-	:ma=^V\n\f\s:\
 	:ma=^V\n\f\s:\
 	:nd=\f:\
 	:pt:\
@@ -29387,7 +29624,6 @@ tvi925n:\
 	:ku=^K:\
 	:li#24:\
 	:ma=^V\n\f\s:\
-	:ma=^V\n\f\s:\
 	:nd=\f:\
 	:pt:\
 	:sg#1:\
@@ -29435,7 +29671,6 @@ tvi925vbn:\
 	:kr=\f:\
 	:ku=^K:\
 	:li#24:\
-	:ma=^V\n\f\s:\
 	:ma=^V\n\f\s:\
 	:nd=\f:\
 	:pt:\
@@ -29527,7 +29762,6 @@ tvi950:\
 	:le=\b:\
 	:li#24:\
 	:ma=^Vj^Kk\bh\fl^^H:\
-	:ma=^Vj^Kk\bh\fl^^H:\
 	:mi:\
 	:ms:\
 	:nd=\f:\
@@ -29588,7 +29822,6 @@ tvi950-2p:\
 	:ku=^K:\
 	:le=\b:\
 	:li#24:\
-	:ma=^Vj^Kk\bh\fl^^H:\
 	:ma=^Vj^Kk\bh\fl^^H:\
 	:mi:\
 	:ms:\
@@ -29653,7 +29886,6 @@ tvi950-4p:\
 	:le=\b:\
 	:li#24:\
 	:ma=^Vj^Kk\bh\fl^^H:\
-	:ma=^Vj^Kk\bh\fl^^H:\
 	:mi:\
 	:ms:\
 	:nd=\f:\
@@ -29715,7 +29947,6 @@ tvi950-rv:\
 	:le=\b:\
 	:li#24:\
 	:ma=^Vj^Kk\bh\fl^^H:\
-	:ma=^Vj^Kk\bh\fl^^H:\
 	:mi:\
 	:ms:\
 	:nd=\f:\
@@ -29776,7 +30007,6 @@ tvi950-rv-2p:\
 	:ku=^K:\
 	:le=\b:\
 	:li#24:\
-	:ma=^Vj^Kk\bh\fl^^H:\
 	:ma=^Vj^Kk\bh\fl^^H:\
 	:mi:\
 	:ms:\
@@ -29841,7 +30071,6 @@ tvi950-rv-4p:\
 	:le=\b:\
 	:li#24:\
 	:ma=^Vj^Kk\bh\fl^^H:\
-	:ma=^Vj^Kk\bh\fl^^H:\
 	:mi:\
 	:ms:\
 	:nd=\f:\
@@ -29900,7 +30129,6 @@ tvi924:\
 	:ku=^K:\
 	:li#24:\
 	:ma=^Vj^Kk\fl^^H^R\f:\
-	:ma=^Vj^Kk\fl^^H^R\f:\
 	:nd=\f:\
 	:pt:\
 	:se=\EG0:\
@@ -29951,7 +30179,6 @@ tvi924vb:\
 	:ku=^K:\
 	:li#24:\
 	:ma=^Vj^Kk\fl^^H^R\f:\
-	:ma=^Vj^Kk\fl^^H^R\f:\
 	:nd=\f:\
 	:pt:\
 	:se=\EG0:\
@@ -29983,7 +30210,6 @@ tvipt:\
 	:kr=\f:\
 	:ku=^K:\
 	:li#24:\
-	:ma=^Kk\fl^R\f:\
 	:ma=^Kk\fl^R\f:\
 	:nd=\f:\
 	:se=\EF:\
@@ -30017,7 +30243,6 @@ tvi910:\
 	:kr=\f:\
 	:ku=^K:\
 	:li#24:\
-	:ma=^Kk\fl^R\f:\
 	:ma=^Kk\fl^R\f:\
 	:nd=\f:\
 	:pt:\
@@ -30062,7 +30287,6 @@ tvi910+:\
 	:ku=^K:\
 	:li#24:\
 	:ll=\E=7\s:\
-	:ma=^K^P\f\s:\
 	:ma=^K^P\f\s:\
 	:nd=\f:\
 	:pt:\
@@ -30148,7 +30372,6 @@ ims950-b:\
 	:le=\b:\
 	:li#24:\
 	:ma=^Vj^Kk\bh\fl^^H:\
-	:ma=^Vj^Kk\bh\fl^^H:\
 	:mi:\
 	:ms:\
 	:nd=\f:\
@@ -30188,7 +30411,6 @@ ims950-ns:\
 	:le=\b:\
 	:li#24:\
 	:ma=^Vj^Kk\bh\fl^^H:\
-	:ma=^Vj^Kk\bh\fl^^H:\
 	:mi:\
 	:ms:\
 	:nd=\f:\
@@ -30223,7 +30445,6 @@ ims950:\
 	:is=\EDF\EC\Ed\EG0\Er\EO\E'\E(\E%\Ew\EX\Ee\s^O\t\El\E016\E004\Ex0\200\200\Ex1\200\200\Ex2\200\200\t\Ex3\200\200\Ex4\r\200\Ef\r:\
 	:le=\b:\
 	:li#24:\
-	:ma=^Vj^Kk\bh\fl^^H:\
 	:ma=^Vj^Kk\bh\fl^^H:\
 	:mi:\
 	:ms:\
@@ -30263,7 +30484,6 @@ ims950-rv:\
 	:is=\EDF\EC\Eb\EG0\Eg\Er\EO\E'\E(\E%\Ew\EX\Ee\s^O\t\El\E016\E004\Ex0\200\200\Ex1\200\200\Ex2\200\200\t\Ex3\200\200\Ex4\r\200:\
 	:le=\b:\
 	:li#24:\
-	:ma=^Vj^Kk\bh\fl^^H:\
 	:ma=^Vj^Kk\bh\fl^^H:\
 	:mi:\
 	:ms:\
@@ -30340,7 +30560,6 @@ tvi955:\
 	:ku=^K:\
 	:le=\b:\
 	:li#24:\
-	:ma=^Vj^Kk\bh\fl^^H:\
 	:ma=^Vj^Kk\bh\fl^^H:\
 	:mb=\EG2:\
 	:me=\EG0\E[=5l:\
@@ -30431,7 +30650,6 @@ tvi955-w:\
 	:le=\b:\
 	:li#24:\
 	:ma=^Vj^Kk\bh\fl^^H:\
-	:ma=^Vj^Kk\bh\fl^^H:\
 	:mb=\EG2:\
 	:me=\EG0\E[=5l:\
 	:mh=\E[=5h:\
@@ -30520,7 +30738,6 @@ tvi955-hb:\
 	:ku=^K:\
 	:le=\b:\
 	:li#24:\
-	:ma=^Vj^Kk\bh\fl^^H:\
 	:ma=^Vj^Kk\bh\fl^^H:\
 	:mb=\EG2:\
 	:md=\E[=5l:\
@@ -31046,7 +31263,6 @@ wyse925:\
 	:kr=\f:\
 	:ku=^K:\
 	:li#24:\
-	:ma=^V\n\f\s:\
 	:ma=^V\n\f\s:\
 	:nd=\f:\
 	:pt:\
@@ -32944,7 +33160,6 @@ wy99:\
 	:ll=\Ea24R1C:\
 	:lm#0:\
 	:ma=^Kj\nk\bh\fl^^H:\
-	:ma=^Kj\nk\bh\fl^^H:\
 	:mb=\Ee1\EG2:\
 	:md=\Ee1\EG6:\
 	:me=\Ee0\E(:\
@@ -33699,7 +33914,25 @@ trs2:\
 # alias trsII
 # alias trs80II
 trs16:\
+	:BC=\E[^?\sq:\
+	:BF=\E[?33l:\
+	:BN=\E[?33h:\
+	:CF=\ERc:\
+	:CN=\ERC:\
+	:G1=`:\
+	:G2=_:\
+	:G3=b:\
+	:G4=a:\
+	:GD=c:\
+	:GE=\ERg:\
+	:GH=u:\
+	:GS=\ERG:\
+	:GU=e:\
+	:GV=s:\
+	:NM=\ER@:\
 	:NR=\ERD:\
+	:PN=\E]=:\
+	:PS=\E]+:\
 	:UC=\E[_\sq:\
 	:al=\EL:\
 	:am:\
@@ -34039,7 +34272,6 @@ kt7:\
 	:ku=^K:\
 	:li#24:\
 	:ma=^V\n\f\s:\
-	:ma=^V\n\f\s:\
 	:nd=\f:\
 	:pt:\
 	:se=\EG0:\
@@ -34090,6 +34322,21 @@ apple-80:\
 	:nd=^\\072up=^_:\
 	:up=^_:
 lisa:\
+	:CF=\E[5h:\
+	:CO=\E[5l:\
+	:G1=c:\
+	:G2=f:\
+	:G3=e:\
+	:G4=d:\
+	:GC=b:\
+	:GD=s:\
+	:GE=\E[10m:\
+	:GH=a:\
+	:GL=v:\
+	:GR=t:\
+	:GS=\E[11m:\
+	:GU=u:\
+	:GV=`:\
 	:al=\E[L:\
 	:am:\
 	:bs:\
@@ -34120,6 +34367,21 @@ lisa:\
 	:up=\E[A:\
 	:us=\E[4m:
 liswb:\
+	:CF=\E[5h:\
+	:CO=\E[5l:\
+	:G1=c:\
+	:G2=f:\
+	:G3=e:\
+	:G4=d:\
+	:GC=b:\
+	:GD=s:\
+	:GE=\E[10m:\
+	:GH=a:\
+	:GL=v:\
+	:GR=t:\
+	:GS=\E[11m:\
+	:GU=u:\
+	:GV=`:\
 	:al=\E[L:\
 	:am:\
 	:bs:\
@@ -34149,7 +34411,7 @@ liswb:\
 	:ue=\E[0;7m:\
 	:up=\E[A:\
 	:us=\E[4m:
-pc:\
+ibmpc:\
 	:am:\
 	:bs:\
 	:bw:\
@@ -34168,7 +34430,7 @@ pc:\
 	:ue=\E[0m:\
 	:up=\E[A:\
 	:us=\E[4m:
-# alias ibmpc
+# alias pc
 pc3:\
 	:@7=\E[F:\
 	:AB=\E[1;%dx:\
@@ -34237,11 +34499,33 @@ pc3:\
 	:ut:
 # alias ibmpc3
 ibmx:\
+	:CL=\E[M:\
+	:CR=\E[N:\
 	:CW=\E[E:\
+	:EN=\E[d:\
+	:G1=\E[191g:\
+	:G2=\E[218g:\
+	:G3=\E[192g:\
+	:G4=\E[217g:\
+	:GC=b:\
+	:GD=\E[194g:\
+	:GE=\E[10m:\
+	:GH=\E[196g:\
+	:GL=v:\
+	:GR=t:\
+	:GS=\E[11m:\
+	:GU=\E[193g:\
+	:GV=\E[179g:\
+	:HM=\E[Y:\
 	:MR=\E[0m:\
+	:NU=\E[F:\
+	:PD=\E[e:\
 	:PU=\E[Z:\
 	:RC=\E[H:\
 	:RF=\E[G:\
+	:RT=\n:\
+	:WL=\E[K:\
+	:WR=\E[L:\
 	:al=\E[L:\
 	:am:\
 	:bs:\
@@ -34295,11 +34579,33 @@ ibmc:\
 	:up=\EA:
 # alias ibmcpc
 ibmcx:\
+	:CL=\E[M:\
+	:CR=\E[N:\
 	:CW=\E[E:\
+	:EN=\E[d:\
+	:G1=\E[191g:\
+	:G2=\E[218g:\
+	:G3=\E[192g:\
+	:G4=\E[217g:\
+	:GC=b:\
+	:GD=\E[194g:\
+	:GE=\E[10m:\
+	:GH=\E[196g:\
+	:GL=v:\
+	:GR=t:\
+	:GS=\E[11m:\
+	:GU=\E[193g:\
+	:GV=\E[179g:\
+	:HM=\E[Y:\
 	:MR=\E[0m:\
+	:NU=\E[F:\
+	:PD=\E[e:\
 	:PU=\E[Z:\
 	:RC=\E[H:\
 	:RF=\E[G:\
+	:RT=\n:\
+	:WL=\E[K:\
+	:WR=\E[L:\
 	:al=\E[L:\
 	:am:\
 	:bs:\
@@ -34340,7 +34646,6 @@ kaypro:\
 	:kr=\f:\
 	:ku=^K:\
 	:li#24:\
-	:ma=^K^P:\
 	:ma=^K^P:\
 	:nd=\f:\
 	:up=^K:
@@ -34451,7 +34756,14 @@ mac:\
 	:xn:
 # alias macintosh
 zen50:\
+	:BS=^U:\
+	:CL=^V:\
+	:CR=^B:\
 	:DK=\n:\
+	:HM=^^:\
+	:LK=\b:\
+	:RK=\f:\
+	:UK=^K:\
 	:al=\EE:\
 	:am:\
 	:bs:\
@@ -34469,7 +34781,6 @@ zen50:\
 	:kr=\f:\
 	:ku=^K:\
 	:li#24:\
-	:ma=\bh\fl\nj^Kk:\
 	:ma=\bh\fl\nj^Kk:\
 	:se=\EGO:\
 	:sg#1:\
@@ -34759,7 +35070,6 @@ yterm10:\
 	:ku=^K:\
 	:li#24:\
 	:ma=\bh\nj^Kk\fl^^H:\
-	:ma=\bh\nj^Kk\fl^^H:\
 	:nd=^\:\
 	:pt:\
 	:rc=\E8:\
@@ -34797,7 +35107,6 @@ yterm11:\
 	:kr=\f:\
 	:ku=^K:\
 	:li#24:\
-	:ma=\bh\nj^Kk\fl^^H:\
 	:ma=\bh\nj^Kk\fl^^H:\
 	:nd=^\:\
 	:pt:\
@@ -34837,7 +35146,6 @@ yterm10nat:\
 	:ku=^K:\
 	:li#24:\
 	:ma=\bh\nj^Kk\fl^^H:\
-	:ma=\bh\nj^Kk\fl^^H:\
 	:nd=^\:\
 	:rc=\E8:\
 	:sc=\E7:\
@@ -34863,7 +35171,6 @@ kermit:\
 	:ku=^K:\
 	:li#24:\
 	:ma=\bh\nj^Kk\fl^^H:\
-	:ma=\bh\nj^Kk\fl^^H:\
 	:nd=\EC:\
 	:up=\EA:
 kermitam:\
@@ -34883,7 +35190,6 @@ kermitam:\
 	:ku=^K:\
 	:li#24:\
 	:ma=\bh\nj^Kk\fl^^H:\
-	:ma=\bh\nj^Kk\fl^^H:\
 	:nd=\EC:\
 	:up=\EA:
 pckermit:\
@@ -34900,7 +35206,6 @@ pckermit:\
 	:kr=\f:\
 	:ku=^K:\
 	:li#25:\
-	:ma=\bh\nj^Kk\fl^^H:\
 	:ma=\bh\nj^Kk\fl^^H:\
 	:nd=\EC:\
 	:up=\EA:
@@ -34924,7 +35229,6 @@ pckermit120:\
 	:kr=\f:\
 	:ku=^K:\
 	:li#24:\
-	:ma=\bh\nj^Kk\fl^^H:\
 	:ma=\bh\nj^Kk\fl^^H:\
 	:nd=\EC:\
 	:pt:\
@@ -34953,7 +35257,6 @@ msk227:\
 	:kr=\f:\
 	:ku=^K:\
 	:li#24:\
-	:ma=\bh\nj^Kk\fl^^H:\
 	:ma=\bh\nj^Kk\fl^^H:\
 	:nd=\EC:\
 	:pt:\
@@ -34986,7 +35289,6 @@ msk227am:\
 	:kr=\f:\
 	:ku=^K:\
 	:li#24:\
-	:ma=\bh\nj^Kk\fl^^H:\
 	:ma=\bh\nj^Kk\fl^^H:\
 	:nd=\EC:\
 	:pt:\
@@ -35030,7 +35332,6 @@ msk22714:\
 	:kr=\f:\
 	:ku=^K:\
 	:li#24:\
-	:ma=\bh\nj^Kk\fl^^H:\
 	:ma=\bh\nj^Kk\fl^^H:\
 	:md=\E[1m:\
 	:me=\E[m:\
@@ -35182,11 +35483,39 @@ vid:\
 	:up=\EA:
 # alias vidtex
 fos:\
+	:CF=\E]:\
+	:CL=^Ac\r:\
+	:CN=^?:\
+	:CO=\E\\:\
+	:CR=^Ad\r:\
 	:CW=^Ah\r:\
 	:DL=^Ae\r:\
+	:EN=^Ak\r:\
+	:G1=(:\
+	:G2=\s:\
+	:G3=":\
+	:G4=*:\
+	:GD=#:\
+	:GE=^O:\
+	:GG=0:\
+	:GH=&:\
+	:GS=\Eo:\
+	:GU=%:\
+	:GV=-:\
+	:HM=^Al:\
+	:HP=^A@\r:\
+	:MP=\E+F:\
+	:NU=^Aj\r:\
+	:PD=^Ao\r:\
+	:PL=^Am\r:\
+	:PR=^Ap\r:\
 	:PU=^An\r:\
 	:RC=^Ag\r:\
 	:RF=^Af\r:\
+	:RT=^Aq\r:\
+	:TB=\r:\
+	:WL=^Aa\r:\
+	:WR=^Ab\r:\
 	:al=15^\E:\
 	:am:\
 	:bs=\b:\
@@ -35210,6 +35539,9 @@ fos:\
 	:ku=^Ax\r:\
 	:li#25:\
 	:nl=5\n:\
+	:re=\EI:\
+	:rg=0:\
+	:rv=\EH:\
 	:se=^\I`:\
 	:sg=0:\
 	:so=^\H`:\
@@ -35236,7 +35568,6 @@ basis:\
 	:ku=^K:\
 	:le=\b:\
 	:li#24:\
-	:ma=^K^P^R\f\f\s:\
 	:ma=^K^P^R\f\f\s:\
 	:nd=\f:\
 	:nl=5000*\n:\
@@ -35314,6 +35645,7 @@ ibmaed:\
 	:le=\b:\
 	:li#24:\
 	:nd=\EC:\
+	:sb=\ES:\
 	:se=\E6\s:\
 	:sg#1:\
 	:so=\E6$:\
