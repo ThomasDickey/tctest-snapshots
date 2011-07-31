@@ -1,3 +1,98 @@
+2011-07-31  Thomas E. Dickey  <dickey@invisible-island.net>
+
+	* tctest.c: implement -s option
+
+	* tctest.1: add -s option
+
+	* tctest.c: fix sign-extension in use of ctype macros
+
+2011-07-30  Thomas E. Dickey  <dickey@invisible-island.net>
+
+	* package/debian/changelog, package/tctest.spec, VERSION: bump
+
+	* testing/escapes.ref:
+	termcap library has more bugs to research - use this as reference.
+
+	* tctest.c: add another debug-trace
+
+	* testing/escapes.ref, testing/escapes.tc: RCS_BASE
+
+	* testing/freebsd.ref, testing/bsd43.ref, testing/bsd42.ref:
+	regen with fixed BSD4.2 library which checks for dangling backslash at the
+	end of an entry (a syntax error).
+
+	* tctest.c:
+	provide for generating statistics if "-v" option is repeated.
+
+2011-07-29  Thomas E. Dickey  <dickey@invisible-island.net>
+
+	* testing/freebsd.ref, testing/bsd43.ref, testing/bsd42.ref, testing/vim-amiga.ref:
+	regen
+
+	* tctest.c:
+	modify so that the 2-character short-name used in antique termcaps is
+	processed last, since it is not guaranteed to be unique.  This is done
+	to fix (among others) an obscure problem with the tvi912 entry in bsd42.tc
+
+	* configure: regen
+
+	* tctest.c: instrument for leak-checking with ncurses
+
+	* configure.in: add checks for ncurses no-leaks functions
+
+2011-07-28  Thomas E. Dickey  <dickey@invisible-island.net>
+
+	* testing/run_test.sh:
+	improve use of environment variables so the test looks only at the test
+	data-file.
+
+2011-07-27  Thomas E. Dickey  <dickey@invisible-island.net>
+
+	* tctest.c: remove unused debug-code
+
+	* tctest.c: escape backslashes before calling _nc_infotocap()
+
+	* testing/run_test.sh:
+	collect numbers for both standard and complete flavors.
+
+	* tctest.c: add a "-o" option to simplify testing.
+
+	* makefile.in: change run_test.sh, making different temporary files.
+
+	* testing/vim-amiga.ref, testing/freebsd.ref: regen using "-b" option
+
+	* tctest.c: "#" is a legal character in capability names
+
+	* tctest.c: remove duplicate "ma" entry from conventional table.
+
+	* testing/bsd43.ref:
+	regen using "-b" (brute-force) option to pick up non-standard capabilities.
+	this also eliminates a duplicate "ma" capability due to table error.
+
+	* testing/bsd42.ref: regen, eliminating a duplicate "ma" line
+
+	* testing/run_test.sh:
+	prefer "-b" option, since the termcaps may contain nonstandard entries
+
+	* testing/bsd43.ref, testing/bsd42.ref: RCS_BASE
+
+2011-07-26  Thomas E. Dickey  <dickey@invisible-island.net>
+
+	* tctest.c: remove leftover debug variable
+
+	* tctest.c:
+	ncurses' translation makes "\^" and "\\" into "\136" and "\134",
+	which do not match the common usage in BSD termcaps.  Fix.
+
+	* tctest.c:
+	suppress expansion of escapes if we're getting _nc_infotocap() to help.
+
+2011-07-25  Thomas E. Dickey  <dickey@invisible-island.net>
+
+	* testing/run_test.sh:
+	set TERMINFO_DIRS to specify that the termcap file should be read first
+	(new feature of ncurses)
+
 2011-07-24  Thomas E. Dickey  <dickey@invisible-island.net>
 
 	* makefile.in: widen the mostlyclean rule to add valgrind's core-files.
