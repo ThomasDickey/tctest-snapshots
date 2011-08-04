@@ -1,3 +1,38 @@
+2011-08-04  Thomas E. Dickey  <dickey@invisible-island.net>
+
+	* tctest.c: fix count for tgetent() calls for terminfo systems.
+
+	* tctest.c: gcc warnings
+
+	* testing/run_test.sh:
+	collect statistics with the summary-option of tctest
+
+	* package/debian/changelog, package/tctest.spec, VERSION: bump
+
+	* tctest.1: document -o and -w options
+
+	* tctest.c: split-out the warning-related stuff as a new option "-w"
+
+	* tctest.c:
+	adapt table from ncurses to provide "params" parameter to _nc_infotocap()
+	which controls whether it tries to convert parameter-functions.  Add a
+	simple check of the result from tgetstr() for unrecognized parameter
+	functions.
+
+2011-08-03  Thomas E. Dickey  <dickey@invisible-island.net>
+
+	* testing/escapes.ref: regen
+
+	* testing/escapes.tc: typo
+
+	* testing/escapes.tc: add test-case for carets
+
+	* testing/vim-amiga.ref, testing/freebsd.ref, testing/bsd43.ref, testing/bsd42.ref:
+	regen
+
+	* tctest.c:
+	remove two cases which are terminfo-specific, to help test ncurses' conversion
+
 2011-07-31  Thomas E. Dickey  <dickey@invisible-island.net>
 
 	* tctest.c: implement -s option

@@ -22,17 +22,15 @@
 /*
  * Author: Thomas E. Dickey
  *
- * $Id: tctest.c,v 1.28 2011/07/30 20:28:10 tom Exp $
+ * $Id: tctest.c,v 1.33 2011/08/04 10:53:53 tom Exp $
  *
- * A simple demo of the termcap interface.
+ * A simple test-program for the termcap interface.
  *
  * TODO: if using ncurses, attempt to link with libtic to allow reformatting
  * TODO: option -E for setting $TERMCAP based on file's contents
  * TODO: option -L for listing size with tc's included (store file in memory).
  * TODO: option -e for testing the $TERMCAP variable
- * TODO: option -i for testing internal features such as escaping
  * TODO: option -o for testing tputs for each string capability
- * TODO: option -s for testing growth of tgetstr buffer
  */
 #include <config.h>
 
@@ -78,16 +76,30 @@ extern void _nc_freeall(void);
 #define FNULL(type) "%s %-*s cancelled ", #type, FCOLS
 #define FNAME(type) "%s %-*s = ", #type, FCOLS
 
+#define DumpIt       (a_opt || !(l_opt || s_opt))
 #define isCapName(c) (isgraph(c) && strchr("^=:\\", c) == 0)
+#define UCH(c)       ((unsigned char)(c))
 
+/* options */
 static int a_opt = 0;
 static int b_opt = 0;
 static int e_opt = 0;
 static char *f_opt = 0;
 static int l_opt = 0;
+static int s_opt = 0;
 static int v_opt = 0;
+static int w_opt = 0;
+
+/* "-s" report */
+static unsigned total_entries;
+static unsigned total_tgetent;
+static unsigned total_wasted0;
+static unsigned total_aliases;
+static unsigned total_toobig0;
+static unsigned total_toobig1;
 
 static FILE *output;
+static FILE *report;
 
 static void
 failed(const char *msg)
@@ -202,6 +214,236 @@ same_list(char **a, char **b)
     return result;
 }
 
+static unsigned
+count_aliases(char *buffer)
+{
+    unsigned result = 0;
+    char *p, *q;
+
+    for (p = q = buffer; *p != '\0' && *p != ':'; ++p) {
+	if (*p == '|') {
+	    if ((p - q) > 1)
+		++result;
+	    q = p;
+	}
+    }
+    if (p != buffer && *p == ':')
+	--result;
+
+    return result;
+}
+
+static unsigned
+count_wasted0(char *buffer)
+{
+    char *p;
+    unsigned wasted = 0;
+
+    /*
+     * The termcap library may strip out newlines, but leave
+     * unnecessary tabs and an extra colon.
+     */
+    for (p = buffer; *p; ++p) {
+	if (*p == '\\') {
+	    if ((*++p) == '\0')
+		break;
+	} else if (*p == ':') {
+	    if (isspace(UCH(p[1]))) {
+		while (isspace(UCH(p[1]))) {
+		    ++wasted;
+		    ++p;
+		}
+		if (p[1] == ':') {
+		    ++wasted;
+		    ++p;
+		}
+	    }
+	}
+    }
+    return wasted;
+}
+
+static void
+count_tgetent(char *buffer)
+{
+    if (buffer != 0 && *buffer != '\0') {
+	unsigned wasted = count_wasted0(buffer);
+	unsigned length = strlen(buffer);
+
+	total_entries++;
+	total_tgetent += strlen(buffer);
+	total_wasted0 += wasted;
+	total_aliases += count_aliases(buffer);
+	total_toobig0 += (length > 1023);
+	total_toobig1 += ((length - wasted) > 1023);
+    }
+}
+
+/*
+ * This table is adapted from ncurses, using MKparametrized.sh:
+ * A value of -1 in the table means suppress both pad and % translations.
+ * A value of 0 (no entry in the table) means do pad but not % translations.
+ * A value of 1 in the table means do both pad and % translations.
+ */
+static int
+uses_params(char *capname)
+{
+#define DATA(name, value) { name, value }
+    static const struct {
+	const char *name;
+	short value;
+    } table[] = {
+	DATA("#1", 1),
+	    DATA("#2", 1),
+	    DATA("#3", 1),
+	    DATA("#4", 1),
+	    DATA("AB", 1),
+	    DATA("AF", 1),
+	    DATA("AL", 1),
+	    DATA("CM", 1),
+	    DATA("CW", 1),
+	    DATA("DC", 1),
+	    DATA("DI", 1),
+	    DATA("DL", 1),
+	    DATA("DO", 1),
+	    DATA("G1", -1),
+	    DATA("G2", -1),
+	    DATA("G3", -1),
+	    DATA("G4", -1),
+	    DATA("GC", -1),
+	    DATA("GD", -1),
+	    DATA("GH", -1),
+	    DATA("GL", -1),
+	    DATA("GR", -1),
+	    DATA("GU", -1),
+	    DATA("GV", -1),
+	    DATA("Gm", 1),
+	    DATA("IC", 1),
+	    DATA("Ic", 1),
+	    DATA("Ip", 1),
+	    DATA("LE", 1),
+	    DATA("ML", 1),
+	    DATA("MT", 1),
+	    DATA("QD", 1),
+	    DATA("RI", 1),
+	    DATA("S1", 1),
+	    DATA("SC", 1),
+	    DATA("SF", 1),
+	    DATA("SR", 1),
+	    DATA("Sb", 1),
+	    DATA("Sf", 1),
+	    DATA("UP", 1),
+	    DATA("WG", 1),
+	    DATA("Xy", 1),
+	    DATA("YZ", 1),
+	    DATA("Yw", 1),
+	    DATA("Yz", 1),
+	    DATA("ZA", 1),
+	    DATA("ZB", 1),
+	    DATA("ZC", 1),
+	    DATA("ZD", 1),
+	    DATA("ZE", 1),
+	    DATA("Zc", 1),
+	    DATA("Zj", 1),
+	    DATA("Zl", 1),
+	    DATA("Zm", 1),
+	    DATA("Zn", 1),
+	    DATA("Zp", 1),
+	    DATA("Zr", 1),
+	    DATA("Zt", 1),
+	    DATA("Zy", 1),
+	    DATA("ac", -1),
+	    DATA("ch", 1),
+	    DATA("cm", 1),
+	    DATA("cs", 1),
+	    DATA("cv", 1),
+	    DATA("ec", 1),
+	    DATA("pO", 1),
+	    DATA("pk", 1),
+	    DATA("pl", 1),
+	    DATA("pn", 1),
+	    DATA("pn", 1),
+	    DATA("px", 1),
+	    DATA("rp", 1),
+	    DATA("sA", 1),
+	    DATA("sL", 1),
+	    DATA("sa", 1),
+	    DATA("sp", 1),
+	    DATA("ts", 1),
+	    DATA("u0", 1),
+	    DATA("u1", 1),
+	    DATA("u2", 1),
+	    DATA("u3", 1),
+	    DATA("u4", 1),
+	    DATA("u5", 1),
+	    DATA("u6", 1),
+	    DATA("u7", 1),
+	    DATA("u8", 1),
+	    DATA("u9", 1),
+	    DATA("wi", 1),
+	    DATA("xl", 1),
+    };
+#undef DATA
+    size_t n;
+    int result = 0;
+    /* FIXME bsearch */
+    for (n = 0; n < sizeof(table) / sizeof(table[0]); ++n) {
+	if (!strcmp(capname, table[n].name)) {
+	    result = table[n].value;
+	    break;
+	}
+    }
+
+    return result;
+}
+
+static void
+check_tgoto(char *capname, char *buffer)
+{
+    if (buffer != 0 && *buffer != '\0') {
+	char *p;
+	int done = 0;
+	for (p = buffer; !done && (*p != '\0'); ++p) {
+	    if (*p == '\\') {
+		if (*++p == '\0') {
+		    break;
+		}
+	    } else if (*p == '%') {
+		char *mark = p;
+		if (*++p == '\0' || *p == ':') {
+		    fprintf(report, "%s - trailing %%\n", capname);
+		    break;
+		} else {
+		    int need = 0;
+		    switch (*p) {
+		    case 'd':
+		    case '2':
+		    case '3':
+		    case '.':
+		    case 'i':
+		    case '%':
+		    case 'B':
+		    case 'D':
+		    case 'r':
+			need = 0;
+		    case '+':
+			need = 1;
+			break;
+		    case '>':
+			need = 2;
+			break;
+		    default:
+			fprintf(report, "%s - unrecognized escape %s\n",
+				capname, mark);
+			done = 1;
+			break;
+		    }
+		}
+	    }
+	}
+    }
+}
+
 static jmp_buf my_jumper;
 
 static void
@@ -222,16 +464,12 @@ setcatch(void (*function) (int))
  * will dump core rather than return an error.
  */
 static int
-loadit(char *buffer, char *name)
+load_safely(char *buffer, char *name)
 {
     int result;
 
-    if (v_opt)
-	fprintf(stderr, "loading %s\n", name);
     setcatch(catcher);
     if (setjmp(my_jumper) != 0) {
-	if (v_opt)
-	    fprintf(stderr, "...failed %s\n", name);
 	result = 0;
     } else {
 	result = 0;
@@ -239,23 +477,41 @@ loadit(char *buffer, char *name)
 	if (tgetent(buffer, name) >= 0) {
 	    result = 1;
 	}
-	if (v_opt)
-	    fprintf(stderr, "...loaded %s\n", name);
     }
     setcatch(SIG_DFL);
+    return result;
+}
+
+static int
+loadit(char *buffer, char *name)
+{
+    int result;
+
+    if (v_opt)
+	fprintf(report, "loading %s\n", name);
+
+    result = load_safely(buffer, name);
+
+    if (result && s_opt) {
+	count_tgetent(buffer);
+    }
+
+    if (v_opt)
+	fprintf(report, "...%s %s\n", result ? "loaded" : "failed", name);
     return result;
 }
 
 static char *
 dumpit(const char *cap, char **areap)
 {
-    char *capname = (NCURSES_CONST char *) cap;
+    NCURSES_CONST char *capname = (NCURSES_CONST char *) cap;
     char *result = 0;
     char buffer[1024], *append = 0;
     char *str;
     int num;
 
     if ((str = tgetstr(capname, areap)) != 0) {
+	int params = uses_params(capname);
 	char *cpy = 0;
 #ifdef USE_LIBTIC
 	char mybuf[4096];
@@ -268,27 +524,30 @@ dumpit(const char *cap, char **areap)
 	    *p++ = *q;
 	}
 	*p = 0;
-	cpy = _nc_infotocap(0, mybuf, 1);
+	cpy = _nc_infotocap(0, mybuf, params);
 	if (cpy != 0) {
 	    if (v_opt > 3) {
-		fprintf(stderr, "string %s\n", capname);
-		fprintf(stderr, "< %s\n", str);
-		fprintf(stderr, "> %s\n", cpy);
+		fprintf(report, "string %s\n", capname);
+		fprintf(report, "< %s\n", str);
+		fprintf(report, "> %s\n", cpy);
 	    }
 	    str = cpy;
+	} else if (params) {
+	    if (w_opt)
+		fprintf(report, "cannot translate %s=%s\n", capname, mybuf);
+	    params = 0;
 	}
 #endif
 	if (str == (char *) -1) {
 	    sprintf(buffer, "\t:%s@:", capname);
 	} else {
+	    if (params > 0 && w_opt)
+		check_tgoto(capname, buffer);
 	    sprintf(buffer, "\t:%s=", capname);
 	    append = buffer + strlen(buffer);
 	    while (*str != 0) {
 		int ch = (unsigned char) (*str++);
 		switch (ch) {
-		case '\177':
-		    strcpy(append, "^?");
-		    break;
 		case '\033':
 		    strcpy(append, "\\E");
 		    break;
@@ -304,9 +563,6 @@ dumpit(const char *cap, char **areap)
 		case '\r':
 		    strcpy(append, "\\r");
 		    break;
-		case ' ':
-		    strcpy(append, "\\s");
-		    break;
 		case '\t':
 		    strcpy(append, "\\t");
 		    break;
@@ -315,6 +571,19 @@ dumpit(const char *cap, char **areap)
 			strcpy(append, "\\^");
 		    } else {
 			strcpy(append, "^");
+			if (w_opt) {
+			    if (!isalpha(UCH(*str))) {
+				if (*str == '@') {
+				    fprintf(report, "unexpected escape ^@\n");
+				} else if (!strchr("[\\]^_", *str)) {
+				    fprintf(report,
+					    "unexpected escape ^%c\n", *str);
+				}
+			    }
+			}
+			if (*str > 32 && *str < 127) {
+			    sprintf(append + 1, "%c", *str++);
+			}
 		    }
 		    break;
 		case ':':
@@ -340,7 +609,7 @@ dumpit(const char *cap, char **areap)
 		    }
 		    break;
 		default:
-		    if (isgraph(ch))
+		    if (isgraph(UCH(ch)))
 			sprintf(append, "%c", ch);
 		    else if (ch < 32)
 			sprintf(append, "^%c", ch + '@');
@@ -374,38 +643,17 @@ report_one_size(char *buffer, int count, char *area, int length)
 	 * be empty.
 	 */
 	if (*buffer != '\0') {
-	    char *p;
-	    int wasted = 0;
-	    int buflen = (int) strlen(buffer);
-	    /*
-	     * The termcap library may strip out newlines, but leave
-	     * unnecessary tabs and an extra colon.
-	     */
-	    for (p = buffer; *p; ++p) {
-		if (*p == '\\') {
-		    if ((*++p) == '\0')
-			break;
-		} else if (*p == ':') {
-		    if (isspace(p[1])) {
-			while (isspace(p[1])) {
-			    ++wasted;
-			    ++p;
-			}
-			if (p[1] == ':') {
-			    ++wasted;
-			    ++p;
-			}
-		    }
-		}
-	    }
-	    fprintf(stderr, "\t%4d bytes total (%.1f%%)\n",
+	    unsigned wasted = count_wasted0(buffer);
+	    unsigned buflen = strlen(buffer);
+
+	    fprintf(report, "\t%4d bytes total (%.1f%%)\n",
 		    buflen, PCT(buflen, 1023));
 	    if (wasted) {
-		fprintf(stderr, "\t%4d wasted space (%.1f%%)\n",
+		fprintf(report, "\t%4d wasted space (%.1f%%)\n",
 			wasted, PCT(wasted, buflen));
 	    }
 	}
-	fprintf(stderr, "\t%4d capabilities\n", count);
+	fprintf(report, "\t%4d capabilities\n", count);
 	if (length) {
 	    int numstrings = 1;
 	    int n;
@@ -424,14 +672,14 @@ report_one_size(char *buffer, int count, char *area, int length)
 		    }
 		}
 	    }
-	    fprintf(stderr, "\t%4d strings\n", numstrings);
-	    fprintf(stderr, "\t%4d bytes of strings\n", length);
+	    fprintf(report, "\t%4d strings\n", numstrings);
+	    fprintf(report, "\t%4d bytes of strings\n", length);
 	    if (wasted) {
-		fprintf(stderr, "\t%4d wasted nulls\n", wasted);
+		fprintf(report, "\t%4d wasted nulls\n", wasted);
 	    }
 	}
 	if ((v_opt > 2) && (*buffer != '\0')) {
-	    fprintf(stderr, "TERMCAP=%s\n", buffer);
+	    fprintf(report, "TERMCAP=%s\n", buffer);
 	}
     }
 }
@@ -579,24 +827,34 @@ dump_entry(char *name, int *in_file, int *in_data, char ***last)
 {
     char **list = dump_by_name(name);
 
+    fflush(report);
     if (*in_file) {
-	fprintf(output, "# vile:tcmode\n");
+	if (DumpIt)
+	    fprintf(output, "# vile:tcmode\n");
 	*in_file = 0;
     }
     if (list) {
 	if (*in_data) {
-	    fprintf(output, "%s:\\\n", name);
 	    free_list(*last);
-	    show_list(list);
+	    if (DumpIt) {
+		fprintf(output, "%s:\\\n", name);
+		show_list(list);
+	    } else if (l_opt) {
+		fprintf(output, "# %s\n", name);
+	    }
 	    *last = list;
 	} else {
-	    fprintf(output, "# alias %s\n", name);
-	    if (!same_list(list, *last)) {
-		fprintf(output, "# (alias differs)\n");
+	    if (DumpIt) {
+		fprintf(output, "# alias %s\n", name);
+		if (!same_list(list, *last)) {
+		    fprintf(output, "# (alias differs)\n");
+		}
+	    } else if (l_opt) {
+		fprintf(output, "# alias %s\n", name);
 	    }
 	    free_list(list);
 	}
-    } else {
+    } else if (DumpIt || l_opt) {
 	fprintf(output, "# %s %s\n", *in_data ? "name" : "alias", name);
     }
     *in_data = 0;
@@ -616,7 +874,7 @@ dump_all(int contents)
 	char *later = 0;
 	char *value;
 
-	if (*buffer == '#' || isspace(*buffer))
+	if (*buffer == '#' || isspace(UCH(*buffer)))
 	    continue;
 	while ((value = strtok(next, "|")) != 0 && strchr(value, ':') == 0) {
 	    if (contents) {
@@ -625,7 +883,8 @@ dump_all(int contents)
 		} else {
 		    dump_entry(value, &in_file, &in_data, &last);
 		}
-	    } else {
+	    } else if (DumpIt || l_opt) {
+		fflush(report);
 		fprintf(output, "# %s %s\n", next ? "name" : "alias", value);
 	    }
 	    next = 0;
@@ -652,8 +911,10 @@ usage(void)
 	"  -f NAME   use this termcap file",
 	"  -l        list names and aliases in termcap file",
 	"  -o NAME   write to this termcap-like file",
+	"  -s        report summary statistics for each input file",
 	"  -v        verbose (prints names to stderr to track tgetent calls),",
 	"            repeat to get statistics and buffer content",
+	"  -w        show warnings",
 	"  -V        print the program version and exit"
     };
     size_t n;
@@ -671,7 +932,8 @@ main(int argc, char *argv[])
     char *name;
 
     output = stdout;
-    while ((ch = getopt(argc, argv, "abef:lo:vV")) != -1) {
+    report = stderr;
+    while ((ch = getopt(argc, argv, "abef:lo:svwV")) != -1) {
 	switch (ch) {
 	case 'a':
 	    a_opt = 1;
@@ -693,8 +955,14 @@ main(int argc, char *argv[])
 	    if (output == 0)
 		failed(optarg);
 	    break;
+	case 's':
+	    s_opt = 1;
+	    break;
 	case 'v':
 	    v_opt++;
+	    break;
+	case 'w':
+	    w_opt++;
 	    break;
 	case 'V':
 	    printf("tctest - %d\n", VERSION);
@@ -726,12 +994,13 @@ main(int argc, char *argv[])
 	set_termcap_file(f_opt);
     }
 
-    if (a_opt || l_opt) {
+    if (a_opt || l_opt || s_opt) {
 	if (optind < argc) {
-	    fprintf(stderr, "The -l option conflicts with explicit names\n");
+	    fprintf(stderr,
+		    "The -a,-l,-s options conflict with explicit names\n");
 	    usage();
 	}
-	dump_all(a_opt);
+	dump_all(a_opt || s_opt);
     } else if (optind < argc) {
 	for (n = optind; n < argc; ++n) {
 	    dump_one(argv[n]);
@@ -741,6 +1010,21 @@ main(int argc, char *argv[])
     } else {
 	static char dumb[] = "dumb";
 	dump_one(dumb);
+    }
+
+    if (s_opt) {
+	fflush(output);
+	fprintf(report, "FILE %s\n", find_termcap_file());
+	fprintf(report, "%6u calls to tgetent\n", total_entries);
+	if (total_entries) {
+	    fprintf(report, "%6u total names+aliases\n", total_aliases);
+	    fprintf(report, "%6u total size\n", total_tgetent);
+	    fprintf(report, "%6u total waste\n", total_wasted0);
+	    fprintf(report, "%6u average size\n", total_tgetent / total_entries);
+	    fprintf(report, "%6u total too large\n", total_toobig0);
+	    fprintf(report, "%6u total too large w/o waste\n", total_toobig1);
+	}
+	fflush(report);
     }
 
     if (output != stdout)

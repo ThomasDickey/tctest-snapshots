@@ -54,7 +54,7 @@ agile:\
 	:hc:\
 	:hd=\ED:\
 	:hu=\EU:\
-	:is=\r\s\s\s\s\s\s\s\s\E9:\
+	:is=\r\040\040\040\040\040\040\040\040\E9:\
 	:kb=\b:\
 	:le=\b:\
 	:nl=\n:\
@@ -89,11 +89,11 @@ dtc:\
 	:nc:\
 	:nd=^PR:\
 	:nl=\n:\
-	:pc=^?:\
+	:pc=\177:\
 	:te=20^P^]:\
-	:ue=^P\s\200:\
+	:ue=^P\040\200:\
 	:up=^P\f:\
-	:us=^P\s^P:\
+	:us=^P\040^P:\
 	:ve=^Pb:\
 	:vs=^PB:\
 	:xr:\
@@ -224,7 +224,7 @@ cdc456:\
 	:cd=^X:\
 	:ce=^V:\
 	:cl=^Y^X:\
-	:cm=\E1%+\s%+\s:\
+	:cm=\E1%+\040%+\040:\
 	:co#80:\
 	:cr=\r:\
 	:dl=\EJ:\
@@ -241,7 +241,7 @@ Cc:\
 	:bl=^G:\
 	:bs:\
 	:cl=^Y^X:\
-	:cm=\E1%+\s%+\s:\
+	:cm=\E1%+\040%+\040:\
 	:co#80:\
 	:cr=\r:\
 	:do=\n:\
@@ -255,7 +255,7 @@ dm1520:\
 	:cd=^K:\
 	:ce=^]:\
 	:cl=\f:\
-	:cm=^^%r%+\s%+\s:\
+	:cm=^^%r%+\040%+\040:\
 	:co#80:\
 	:cr=\r:\
 	:do=\n:\
@@ -267,7 +267,7 @@ dm1520:\
 	:ku=^_:\
 	:le=\b:\
 	:li#24:\
-	:ma=^\\s^_^P^YH:\
+	:ma=^\\040^_^P^YH:\
 	:nd=^\:\
 	:nl=\n:\
 	:pt:\
@@ -283,7 +283,7 @@ dm2500:\
 	:bl=^G:\
 	:bs:\
 	:ce=^W:\
-	:cl=^^^^^?:\
+	:cl=^^^^\177:\
 	:cm=\f%r%n%.%.:\
 	:co#80:\
 	:dc=10*^P\b^X^]:\
@@ -314,7 +314,7 @@ dm3025:\
 	:cd=2\EJ:\
 	:ce=\EK:\
 	:cl=2\EM:\
-	:cm=\EY%r%+\s%+\s:\
+	:cm=\EY%r%+\040%+\040:\
 	:co#80:\
 	:cr=\r:\
 	:dc=6\b:\
@@ -344,7 +344,7 @@ dm3025:\
 	:cd=2\EJ:\
 	:ce=\EK:\
 	:cl=2\EM:\
-	:cm=\EY%r%+\s%+\s:\
+	:cm=\EY%r%+\040%+\040:\
 	:co#80:\
 	:cr=\r:\
 	:dc=6\EB:\
@@ -375,7 +375,7 @@ dm3025:\
 	:li#24:\
 	:nd=\EC:\
 	:nl=\n:\
-	:pc=^?:\
+	:pc=\177:\
 	:pt:\
 	:ta=\t:\
 	:ul:\
@@ -493,7 +493,7 @@ h1000:\
 	:ho=^K:\
 	:le=\b:\
 	:li#12:\
-	:nd=\s:\
+	:nd=\040:\
 	:nl=\n:
 # alias H1
 h1552:\
@@ -503,7 +503,7 @@ h1552:\
 	:cd=\EJ:\
 	:ce=\EK:\
 	:cl=\EH\EJ:\
-	:cm=\EY%+\s%+\s:\
+	:cm=\EY%+\040%+\040:\
 	:co#80:\
 	:cr=\r:\
 	:dl=\EO:\
@@ -535,7 +535,7 @@ h1552rv:\
 	:cd=\EJ:\
 	:ce=\EK:\
 	:cl=\EH\EJ:\
-	:cm=\EY%+\s%+\s:\
+	:cm=\EY%+\040%+\040:\
 	:co#80:\
 	:cr=\r:\
 	:dl=\EO:\
@@ -570,7 +570,7 @@ h1420:\
 	:cd=\E^X:\
 	:ce=\E^O:\
 	:cl=\E^\:\
-	:cm=\E^Q%r%.%+\s:\
+	:cm=\E^Q%r%.%+\040:\
 	:co#80:\
 	:cr=\r:\
 	:dl=\E^S:\
@@ -660,7 +660,7 @@ h2000:\
 	:li#27:\
 	:nc:\
 	:nl=\n:\
-	:pc=^?:
+	:pc=\177:
 # alias H7
 esprit:\
 	:al=40\E^Z:\
@@ -668,7 +668,7 @@ esprit:\
 	:cd=5\E^X:\
 	:ce=\E^O:\
 	:cl=\E^\:\
-	:cm=\E^Q%r%>^^\s%+`%+`:\
+	:cm=\E^Q%r%>^^\040%+`%+`:\
 	:co#80:\
 	:dl=40\E^S:\
 	:do=\E^K:\
@@ -686,7 +686,7 @@ esprit-am:\
 	:cd=5\E^X:\
 	:ce=\E^O:\
 	:cl=\E^\:\
-	:cm=\E^Q%r%>^^\s%+`%+`:\
+	:cm=\E^Q%r%>^^\040%+`%+`:\
 	:co#80:\
 	:dl=40\E^S:\
 	:do=\E^K:\
@@ -707,7 +707,7 @@ esprit-am:\
 	:cm=^C%r%.%.:\
 	:co#80:\
 	:cr=\r:\
-	:dc=^?:\
+	:dc=\177:\
 	:dl=\EV:\
 	:dm=\EQ:\
 	:do=\n:\
@@ -753,7 +753,7 @@ intext:\
 	:cd=5.5*^VJ:\
 	:ce=^Kp^R:\
 	:cl=132\f:\
-	:cm=^O%+\s%+\s:\
+	:cm=^O%+\040%+\040:\
 	:co#80:\
 	:cr=\r:\
 	:dc=5.5*^R:\
@@ -780,11 +780,11 @@ intext:\
 	:ku=^\:\
 	:le=^_:\
 	:li#24:\
-	:ma=^K^P^R\f\f\s:\
+	:ma=^K^P^R\f\f\040:\
 	:nd=^^:\
 	:nl=\n:\
 	:pt:\
-	:se=^V#\s:\
+	:se=^V#\040:\
 	:sg#1:\
 	:so=^V$,:\
 	:ta=\t:\
@@ -797,7 +797,7 @@ ibm:\
 	:cd=\EJ:\
 	:ce=\EI:\
 	:cl=\EK:\
-	:cm=\EY%+\s%+\s:\
+	:cm=\EY%+\040%+\040:\
 	:co#80:\
 	:cr=\r:\
 	:ct=\EH:\
@@ -829,7 +829,7 @@ abm80:\
 	:cd=\E^X:\
 	:ce=\E^O:\
 	:cl=\E^\:\
-	:cm=\E^Q%r%+\s%+\s:\
+	:cm=\E^Q%r%+\040%+\040:\
 	:co#80:\
 	:cr=\r:\
 	:dl=\E^S:\
@@ -1125,7 +1125,7 @@ vc404:\
 	:cd=40^W:\
 	:ce=20^V:\
 	:cl=40^X:\
-	:cm=^P%+\s%+\s:\
+	:cm=^P%+\040%+\040:\
 	:co#80:\
 	:cr=\r:\
 	:do=\n:\
@@ -1136,7 +1136,7 @@ vc404:\
 	:ku=^Z:\
 	:le=\b:\
 	:li#24:\
-	:ma=^Z^P^U\s:\
+	:ma=^Z^P^U\040:\
 	:nd=^U:\
 	:nl=\n:\
 	:up=^Z:
@@ -1148,7 +1148,7 @@ vc404-s:\
 	:cd=40^W:\
 	:ce=20^V:\
 	:cl=40^X:\
-	:cm=^P%+\s%+\s:\
+	:cm=^P%+\040%+\040:\
 	:co#80:\
 	:cr=\r:\
 	:do=\n:\
@@ -1159,7 +1159,7 @@ vc404-s:\
 	:ku=^Z:\
 	:le=\b:\
 	:li#24:\
-	:ma=^Z^P^U\s:\
+	:ma=^Z^P^U\040:\
 	:nd=^U:\
 	:nl=\n:\
 	:se=^O:\
@@ -1173,7 +1173,7 @@ vc404-na:\
 	:cd=40^W:\
 	:ce=20^V:\
 	:cl=40^X:\
-	:cm=^P%+\s%+\s:\
+	:cm=^P%+\040%+\040:\
 	:co#80:\
 	:cr=\r:\
 	:do=\n:\
@@ -1239,7 +1239,7 @@ falco:\
 	:cd=\EY:\
 	:ce=\ET\EG0\b:\
 	:cl=\E*:\
-	:cm=\E=%+\s%+\s:\
+	:cm=\E=%+\040%+\040:\
 	:co#80:\
 	:cr=\r:\
 	:dc=\EW:\
@@ -1274,7 +1274,7 @@ falco-p:\
 	:cd=\EY:\
 	:ce=\ET\EG0\b\Eg0:\
 	:cl=\E*:\
-	:cm=\E=%+\s%+\s:\
+	:cm=\E=%+\040%+\040:\
 	:co#80:\
 	:da:\
 	:db:\
@@ -1367,7 +1367,7 @@ soroc:\
 	:cd=\EY:\
 	:ce=\ET:\
 	:cl=2\E*:\
-	:cm=\E=%+\s%+\s:\
+	:cm=\E=%+\040%+\040:\
 	:co#80:\
 	:cr=\r:\
 	:do=\n:\
@@ -1378,7 +1378,7 @@ soroc:\
 	:ku=^K:\
 	:le=\b:\
 	:li#24:\
-	:ma=^K^P^R\f\f\s:\
+	:ma=^K^P^R\f\f\040:\
 	:nd=\f:\
 	:nl=\n:\
 	:up=^K:
@@ -1408,7 +1408,7 @@ tec500:\
 	:bl=^G:\
 	:bs:\
 	:cl=20^Z:\
-	:cm=\E=%+\s%+\s:\
+	:cm=\E=%+\040%+\040:\
 	:co#80:\
 	:cr=\r:\
 	:do=\n:\
@@ -1432,7 +1432,7 @@ ML:\
 	:ho=^^:\
 	:le=\b:\
 	:li#24:\
-	:ma=^K^P^_\s:\
+	:ma=^K^P^_\040:\
 	:nd=^_:\
 	:nl=\n:\
 	:up=^K:
@@ -1460,7 +1460,7 @@ ampex:\
 	:cd=\Ey:\
 	:ce=\Et:\
 	:cl=75\E*:\
-	:cm=\E=%+\s%+\s:\
+	:cm=\E=%+\040%+\040:\
 	:co#80:\
 	:cr=\r:\
 	:ct=\E3:\
@@ -1685,16 +1685,16 @@ MX:\
 	:us=\E[4m:\
 	:vb=\E[?5h\200\200\200\200\200\200\200\200\200\200\200\200\200\200\200\200\200\200\200\200\200\200\200\200\E[?5l:
 blit:\
-	:AL=\EF%+\s:\
-	:DC=\Ee%+\s:\
-	:DL=\EE%+\s:\
-	:IC=\Ef%+\s:\
+	:AL=\EF%+\040:\
+	:DC=\Ee%+\040:\
+	:DL=\EE%+\040:\
+	:IC=\Ef%+\040:\
 	:al=\EF!:\
 	:am:\
 	:bl=^G:\
 	:ce=\EK:\
 	:cl=\f:\
-	:cm=\EY%r%+\s%+\s:\
+	:cm=\EY%r%+\040%+\040:\
 	:co#87:\
 	:cr=\r:\
 	:dc=\Ee!:\
@@ -1719,17 +1719,17 @@ blit:\
 # alias blit-pb
 # alias MY
 cbblit:\
-	:AL=\EF%+\s:\
-	:DC=\Ee%+\s:\
-	:DL=\EE%+\s:\
-	:IC=\Ef%+\s:\
+	:AL=\EF%+\040:\
+	:DC=\Ee%+\040:\
+	:DL=\EE%+\040:\
+	:IC=\Ef%+\040:\
 	:al=\EF!:\
 	:am:\
 	:bl=^G:\
 	:cd=\EJ:\
 	:ce=\EK:\
 	:cl=\f:\
-	:cm=\EY%r%+\s%+\s:\
+	:cm=\EY%r%+\040%+\040:\
 	:co#88:\
 	:cr=\r:\
 	:dc=\Ee!:\
@@ -1759,15 +1759,15 @@ cbblit:\
 	:vb=\E^G:
 # alias MZ
 oblit:\
-	:AL=\Ef%+\s:\
-	:DL=\Ee%+\s:\
+	:AL=\Ef%+\040:\
+	:DL=\Ee%+\040:\
 	:al=\EF:\
 	:am:\
 	:bl=^G:\
 	:cd=\EJ:\
 	:ce=\EK:\
 	:cl=\f:\
-	:cm=\EY%r%+\s%+\s:\
+	:cm=\EY%r%+\040%+\040:\
 	:co#88:\
 	:cr=\r:\
 	:da:\
@@ -1789,15 +1789,15 @@ oblit:\
 # alias ojerq
 # alias Ma
 daleblit:\
-	:AL=\Ef%+\s:\
-	:DL=\Ee%+\s:\
+	:AL=\Ef%+\040:\
+	:DL=\Ee%+\040:\
 	:al=\EF:\
 	:am:\
 	:bl=^G:\
 	:cd=\EJ:\
 	:ce=\EK:\
 	:cl=\f:\
-	:cm=\EY%r%+\s%+\s:\
+	:cm=\EY%r%+\040%+\040:\
 	:co#88:\
 	:cr=\r:\
 	:dc=\EO:\
@@ -1854,13 +1854,13 @@ f100:\
 	:bw:\
 	:cd=\EY:\
 	:ce=\ET:\
-	:ch=\E]%+\s:\
+	:ch=\E]%+\040:\
 	:cl=^Z:\
-	:cm=\E=%+\s%+\s:\
+	:cm=\E=%+\040%+\040:\
 	:co#80:\
 	:cr=\r:\
 	:ct=\E3:\
-	:cv=\E[%+\s:\
+	:cv=\E[%+\040:\
 	:dc=\EW:\
 	:dl=\ER:\
 	:do=\n:\
@@ -1919,13 +1919,13 @@ f100-rv:\
 	:bw:\
 	:cd=\EY:\
 	:ce=\ET:\
-	:ch=\E]%+\s:\
+	:ch=\E]%+\040:\
 	:cl=^Z:\
-	:cm=\E=%+\s%+\s:\
+	:cm=\E=%+\040%+\040:\
 	:co#80:\
 	:cr=\r:\
 	:ct=\E3:\
-	:cv=\E[%+\s:\
+	:cv=\E[%+\040:\
 	:dc=\EW:\
 	:dl=\ER:\
 	:do=\n:\
@@ -1984,13 +1984,13 @@ f100-v:\
 	:bw:\
 	:cd=\EY:\
 	:ce=\ET:\
-	:ch=\E]%+\s:\
+	:ch=\E]%+\040:\
 	:cl=^Z:\
-	:cm=\E=%+\s%+\s:\
+	:cm=\E=%+\040%+\040:\
 	:co#80:\
 	:cr=\r:\
 	:ct=\E3:\
-	:cv=\E[%+\s:\
+	:cv=\E[%+\040:\
 	:dc=\EW:\
 	:dl=11.5*\ER:\
 	:do=\n:\
@@ -2049,13 +2049,13 @@ f100-v-rv:\
 	:bw:\
 	:cd=\EY:\
 	:ce=\ET:\
-	:ch=\E]%+\s:\
+	:ch=\E]%+\040:\
 	:cl=^Z:\
-	:cm=\E=%+\s%+\s:\
+	:cm=\E=%+\040%+\040:\
 	:co#80:\
 	:cr=\r:\
 	:ct=\E3:\
-	:cv=\E[%+\s:\
+	:cv=\E[%+\040:\
 	:dc=\EW:\
 	:dl=11.5*\ER:\
 	:do=\n:\
@@ -2114,13 +2114,13 @@ f100-e:\
 	:bw:\
 	:cd=\EY:\
 	:ce=\ET:\
-	:ch=\E]%+\s:\
+	:ch=\E]%+\040:\
 	:cl=^Z:\
-	:cm=\E=%+\s%+\s:\
+	:cm=\E=%+\040%+\040:\
 	:co#80:\
 	:cr=\r:\
 	:ct=\E3:\
-	:cv=\E[%+\s:\
+	:cv=\E[%+\040:\
 	:dc=\EW:\
 	:dl=11.5*\ER:\
 	:do=\n:\
@@ -2180,13 +2180,13 @@ f100-e-rv:\
 	:bw:\
 	:cd=\EY:\
 	:ce=\ET:\
-	:ch=\E]%+\s:\
+	:ch=\E]%+\040:\
 	:cl=^Z:\
-	:cm=\E=%+\s%+\s:\
+	:cm=\E=%+\040%+\040:\
 	:co#80:\
 	:cr=\r:\
 	:ct=\E3:\
-	:cv=\E[%+\s:\
+	:cv=\E[%+\040:\
 	:dc=\EW:\
 	:dl=11.5*\ER:\
 	:do=\n:\
@@ -2282,7 +2282,7 @@ Ml:\
 	:ku=^W:\
 	:le=\b:\
 	:li#16:\
-	:ma=^A\b^S\s^W^P^Z^N:\
+	:ma=^A\b^S\040^W^P^Z^N:\
 	:nd=^S:\
 	:nl=\n:\
 	:up=^W:
@@ -2293,7 +2293,7 @@ xl83:\
 	:cd=62^P:\
 	:ce=3^O:\
 	:cl=62\f:\
-	:cm=^W%+\s%+\s:\
+	:cm=^W%+\040%+\040:\
 	:co#80:\
 	:cr=\r:\
 	:do=\n:\
@@ -2358,7 +2358,7 @@ pty:\
 	:cd=\EL:\
 	:ce=\EK:\
 	:cl=\EJ:\
-	:cm=\EG%+\s%+\s:\
+	:cm=\EG%+\040%+\040:\
 	:co#80:\
 	:cr=\r:\
 	:dl=\EN:\
@@ -2443,7 +2443,7 @@ terak:\
 	:cd=^K:\
 	:ce=^]:\
 	:cl=\f:\
-	:cm=^^%r%+\s%+\s:\
+	:cm=^^%r%+\040%+\040:\
 	:co#80:\
 	:cr=\r:\
 	:do=\n:\
@@ -2455,7 +2455,7 @@ terak:\
 	:ku=^_:\
 	:le=\b:\
 	:li#24:\
-	:ma=^\\s^_^P^YH:\
+	:ma=^\\040^_^P^YH:\
 	:nd=^\:\
 	:nl=\n:\
 	:pt:\
@@ -2535,7 +2535,7 @@ it2:\
 	:ce=\EK:\
 	:ch=^P%B%.:\
 	:cl=\f:\
-	:cm=^N%+\s%+\s:\
+	:cm=^N%+\040%+\040:\
 	:co#80:\
 	:cr=\r:\
 	:cv=^K%.:\
@@ -2563,7 +2563,7 @@ delta:\
 	:ho=^NQ:\
 	:le=\b:\
 	:li#27:\
-	:ma=^K\n^Z^P^Y\s:\
+	:ma=^K\n^Z^P^Y\040:\
 	:nc:\
 	:nd=^Y:\
 	:nl=\n:\
@@ -2580,7 +2580,7 @@ mdl110:\
 	:cd=145^NA^W:\
 	:ce=145^N@^V:\
 	:cl=70^X:\
-	:cm=^P%+\s%+\s:\
+	:cm=^P%+\040%+\040:\
 	:co#80:\
 	:cr=\r:\
 	:dc=3.5^NA^^:\
@@ -2611,7 +2611,7 @@ zen30:\
 	:cd=\EY:\
 	:ce=1.0*\ET:\
 	:cl=\E*:\
-	:cm=\E=%+\s%+\s:\
+	:cm=\E=%+\040%+\040:\
 	:co#80:\
 	:cr=\r:\
 	:dc=\EW:\
@@ -2622,7 +2622,7 @@ zen30:\
 	:im=\Eq:\
 	:le=\b:\
 	:li#24:\
-	:ma=\f\s^R\f^K^P:\
+	:ma=\f\040^R\f^K^P:\
 	:mi:\
 	:nd=\f:\
 	:nl=\n:\
@@ -2652,7 +2652,7 @@ aa:\
 	:ku=^N:\
 	:le=\b:\
 	:li#40:\
-	:ma=^_\s^N^P:\
+	:ma=^_\040^N^P:\
 	:nd=^_:\
 	:nl=\n:\
 	:pt:\
@@ -5575,7 +5575,7 @@ vi200:\
 	:cd=\Ey:\
 	:ce=4*\Ex:\
 	:cl=\Ev:\
-	:cm=\EY%+\s%+\s:\
+	:cm=\EY%+\040%+\040:\
 	:co#80:\
 	:cr=\r:\
 	:dc=4*\EO:\
@@ -5583,13 +5583,13 @@ vi200:\
 	:do=\n:\
 	:ei=:\
 	:ho=\EH:\
-	:ic=\Ei\s\b\Ej:\
+	:ic=\Ei\040\b\Ej:\
 	:im=:\
 	:is=\E3\Eb\Ej\E\\\El\EG\Ed\Ek:\
 	:k0=\EP:\
 	:k1=\EQ:\
 	:k2=\ER:\
-	:k3=\E\s:\
+	:k3=\E\040:\
 	:k4=\E!:\
 	:k5=\E":\
 	:k6=\E#:\
@@ -5620,7 +5620,7 @@ vi200-rv-ic:\
 	:cd=\Ey:\
 	:ce=4*\Ex:\
 	:cl=\Ev:\
-	:cm=\EY%+\s%+\s:\
+	:cm=\EY%+\040%+\040:\
 	:co#80:\
 	:cr=\r:\
 	:dc=4*\EO:\
@@ -5633,7 +5633,7 @@ vi200-rv-ic:\
 	:k0=\EP:\
 	:k1=\EQ:\
 	:k2=\ER:\
-	:k3=\E\s:\
+	:k3=\E\040:\
 	:k4=\E!:\
 	:k5=\E":\
 	:k6=\E#:\
@@ -5663,7 +5663,7 @@ vi200-f:\
 	:cd=\Ey:\
 	:ce=4*\Ex:\
 	:cl=\Ev:\
-	:cm=\EY%+\s%+\s:\
+	:cm=\EY%+\040%+\040:\
 	:co#80:\
 	:cr=\r:\
 	:dc=4*\EO:\
@@ -5671,7 +5671,7 @@ vi200-f:\
 	:do=\n:\
 	:ei=:\
 	:ho=\EH:\
-	:ic=\Ei\s\b\Ej:\
+	:ic=\Ei\040\b\Ej:\
 	:im=:\
 	:is=\E3\Eb\Ej\E\\\El\EG\Ed\Ek:\
 	:k0=\E?p:\
@@ -5711,7 +5711,7 @@ vi200-rv:\
 	:cd=\Ey:\
 	:ce=4*\Ex:\
 	:cl=\Ev:\
-	:cm=\EY%+\s%+\s:\
+	:cm=\EY%+\040%+\040:\
 	:co#80:\
 	:cr=\r:\
 	:dc=4*\EO:\
@@ -5719,13 +5719,13 @@ vi200-rv:\
 	:do=\n:\
 	:ei=:\
 	:ho=\EH:\
-	:ic=\Ei\s\b\Ej:\
+	:ic=\Ei\040\b\Ej:\
 	:im=:\
 	:is=\E3\Eb\Ej\E\\\El\EG\Ed\Ek:\
 	:k0=\EP:\
 	:k1=\EQ:\
 	:k2=\ER:\
-	:k3=\E\s:\
+	:k3=\E\040:\
 	:k4=\E!:\
 	:k5=\E":\
 	:k6=\E#:\
@@ -5755,7 +5755,7 @@ vi200-ic:\
 	:cd=\Ey:\
 	:ce=4*\Ex:\
 	:cl=\Ev:\
-	:cm=\EY%+\s%+\s:\
+	:cm=\EY%+\040%+\040:\
 	:co#80:\
 	:cr=\r:\
 	:dc=4*\EO:\
@@ -5768,7 +5768,7 @@ vi200-ic:\
 	:k0=\EP:\
 	:k1=\EQ:\
 	:k2=\ER:\
-	:k3=\E\s:\
+	:k3=\E\040:\
 	:k4=\E!:\
 	:k5=\E":\
 	:k6=\E#:\
@@ -5877,7 +5877,7 @@ tek4023:\
 	:bl=^G:\
 	:bs:\
 	:cl=4\E\f:\
-	:cm=^\%r%+\s%+\s:\
+	:cm=^\%r%+\040%+\040:\
 	:co#80:\
 	:cr=\r:\
 	:do=\n:\
@@ -5893,18 +5893,18 @@ tek4023:\
 # alias tex
 # alias X4
 4025:\
-	:AL=^_up\r^_ili\s%d\r:\
+	:AL=^_up\r^_ili\040%d\r:\
 	:CC=^_:\
-	:DL=^_dli\s%d\r^F:\
-	:DO=^_dow\s%d\r:\
-	:LE=^_lef\s%d\r:\
-	:RI=^_rig\s%d\r:\
-	:UP=^_up\s%d\r:\
+	:DL=^_dli\040%d\r^F:\
+	:DO=^_dow\040%d\r:\
+	:LE=^_lef\040%d\r:\
+	:RI=^_rig\040%d\r:\
+	:UP=^_up\040%d\r:\
 	:al=^_up\r^_ili\r:\
 	:am:\
 	:bl=^G:\
 	:bs:\
-	:cd=^_dli\s50\r:\
+	:cd=^_dli\04050\r:\
 	:cl=^_era\r\n\n:\
 	:co#80:\
 	:cr=\r:\
@@ -5915,9 +5915,9 @@ tek4023:\
 	:do=^F\n:\
 	:ei=^F^_dow\r^K:\
 	:im=^_ich\r:\
-	:is=!com\s31\r\n^_sto\s9\s17\s25\s33\s41\s49\s57\s65\s73\r:\
-	:ke=^_lea\sp2\r^_lea\sp4\r^_lea\sp6\r^_lea\sp8\r^_lea\sp5\r^_lea\sf5\r:\
-	:ks=^_lea\sp4\s/h/\r^_lea\sp8\s/k/\r^_lea\sp6\s/\s/\r^_lea\sp2\s/j/\r^_lea\sf5\s/H/\r^_lea\sp5\s/H/\r:\
+	:is=!com\04031\r\n^_sto\0409\04017\04025\04033\04041\04049\04057\04065\04073\r:\
+	:ke=^_lea\040p2\r^_lea\040p4\r^_lea\040p6\r^_lea\040p8\r^_lea\040p5\r^_lea\040f5\r:\
+	:ks=^_lea\040p4\040/h/\r^_lea\040p8\040/k/\r^_lea\040p6\040/\040/\r^_lea\040p2\040/j/\r^_lea\040f5\040/H/\r^_lea\040p5\040/H/\r:\
 	:le=\b:\
 	:li#34:\
 	:nd=^_rig\r:\
@@ -5935,18 +5935,18 @@ tek4023:\
 # alias 4027cu
 # alias X5
 4025-17:\
-	:AL=^_up\r^_ili\s%d\r:\
+	:AL=^_up\r^_ili\040%d\r:\
 	:CC=^_:\
-	:DL=^_dli\s%d\r^F:\
-	:DO=^_dow\s%d\r:\
-	:LE=^_lef\s%d\r:\
-	:RI=^_rig\s%d\r:\
-	:UP=^_up\s%d\r:\
+	:DL=^_dli\040%d\r^F:\
+	:DO=^_dow\040%d\r:\
+	:LE=^_lef\040%d\r:\
+	:RI=^_rig\040%d\r:\
+	:UP=^_up\040%d\r:\
 	:al=^_up\r^_ili\r:\
 	:am:\
 	:bl=^G:\
 	:bs:\
-	:cd=^_dli\s50\r:\
+	:cd=^_dli\04050\r:\
 	:cl=^_era\r\n\n:\
 	:co#80:\
 	:cr=\r:\
@@ -5957,9 +5957,9 @@ tek4023:\
 	:do=^F\n:\
 	:ei=^F^_dow\r^K:\
 	:im=^_ich\r:\
-	:is=!com\s31\r\n^_sto\s9\s17\s25\s33\s41\s49\s57\s65\s73\r:\
-	:ke=^_lea\sp2\r^_lea\sp4\r^_lea\sp6\r^_lea\sp8\r^_lea\sp5\r^_lea\sf5\r:\
-	:ks=^_lea\sp4\s/h/\r^_lea\sp8\s/k/\r^_lea\sp6\s/\s/\r^_lea\sp2\s/j/\r^_lea\sf5\s/H/\r^_lea\sp5\s/H/\r:\
+	:is=!com\04031\r\n^_sto\0409\04017\04025\04033\04041\04049\04057\04065\04073\r:\
+	:ke=^_lea\040p2\r^_lea\040p4\r^_lea\040p6\r^_lea\040p8\r^_lea\040p5\r^_lea\040f5\r:\
+	:ks=^_lea\040p4\040/h/\r^_lea\040p8\040/k/\r^_lea\040p6\040/\040/\r^_lea\040p2\040/j/\r^_lea\040f5\040/H/\r^_lea\040p5\040/H/\r:\
 	:le=\b:\
 	:li#17:\
 	:nd=^_rig\r:\
@@ -5971,18 +5971,18 @@ tek4023:\
 # alias 4027-17
 # alias X7
 4025-17ws:\
-	:AL=^_up\r^_ili\s%d\r:\
+	:AL=^_up\r^_ili\040%d\r:\
 	:CC=^_:\
-	:DL=^_dli\s%d\r^F:\
-	:DO=^_dow\s%d\r:\
-	:LE=^_lef\s%d\r:\
-	:RI=^_rig\s%d\r:\
-	:UP=^_up\s%d\r:\
+	:DL=^_dli\040%d\r^F:\
+	:DO=^_dow\040%d\r:\
+	:LE=^_lef\040%d\r:\
+	:RI=^_rig\040%d\r:\
+	:UP=^_up\040%d\r:\
 	:al=^_up\r^_ili\r:\
 	:am:\
 	:bl=^G:\
 	:bs:\
-	:cd=^_dli\s50\r:\
+	:cd=^_dli\04050\r:\
 	:cl=^_era\r\n\n:\
 	:co#80:\
 	:cr=\r:\
@@ -5993,36 +5993,36 @@ tek4023:\
 	:do=^F\n:\
 	:ei=^F^_dow\r^K:\
 	:im=^_ich\r:\
-	:is=!com\s31\r\n^_sto\s9,17,25,33,41,49,57,65,73\r^_wor\s17\r^_mon\s17\r:\
-	:ke=^_lea\sp2\r^_lea\sp4\r^_lea\sp6\r^_lea\sp8\r^_lea\sp5\r^_lea\sf5\r:\
-	:ks=^_lea\sp4\s/h/\r^_lea\sp8\s/k/\r^_lea\sp6\s/\s/\r^_lea\sp2\s/j/\r^_lea\sf5\s/H/\r^_lea\sp5\s/H/\r:\
+	:is=!com\04031\r\n^_sto\0409,17,25,33,41,49,57,65,73\r^_wor\04017\r^_mon\04017\r:\
+	:ke=^_lea\040p2\r^_lea\040p4\r^_lea\040p6\r^_lea\040p8\r^_lea\040p5\r^_lea\040f5\r:\
+	:ks=^_lea\040p4\040/h/\r^_lea\040p8\040/k/\r^_lea\040p6\040/\040/\r^_lea\040p2\040/j/\r^_lea\040f5\040/H/\r^_lea\040p5\040/H/\r:\
 	:le=\b:\
 	:li#17:\
 	:nd=^_rig\r:\
 	:nl=^F\n:\
 	:pt:\
-	:se=^_att\ss\r:\
+	:se=^_att\040s\r:\
 	:sf=^F\n:\
-	:so=^_att\se\r:\
+	:so=^_att\040e\r:\
 	:ta=\t:\
-	:te=^_mon\sh\r:\
-	:ti=^_wor\sh\r:\
+	:te=^_mon\040h\r:\
+	:ti=^_wor\040h\r:\
 	:up=^K:
 # alias 4027-17ws
 # alias X8
 4025ex:\
-	:AL=^_up\r^_ili\s%d\r:\
+	:AL=^_up\r^_ili\040%d\r:\
 	:CC=^_:\
-	:DL=^_dli\s%d\r^F:\
-	:DO=^_dow\s%d\r:\
-	:LE=^_lef\s%d\r:\
-	:RI=^_rig\s%d\r:\
-	:UP=^_up\s%d\r:\
+	:DL=^_dli\040%d\r^F:\
+	:DO=^_dow\040%d\r:\
+	:LE=^_lef\040%d\r:\
+	:RI=^_rig\040%d\r:\
+	:UP=^_up\040%d\r:\
 	:al=^_up\r^_ili\r:\
 	:am:\
 	:bl=^G:\
 	:bs:\
-	:cd=^_dli\s50\r:\
+	:cd=^_dli\04050\r:\
 	:cl=^_era\r\n\n:\
 	:co#80:\
 	:cr=\r:\
@@ -6033,9 +6033,9 @@ tek4023:\
 	:do=^F\n:\
 	:ei=^F^_dow\r^K:\
 	:im=^_ich\r:\
-	:is=^_com\s33\r\n!sto\s9,17,25,33,41,49,57,65,73\r:\
-	:ke=^_lea\sp2\r^_lea\sp4\r^_lea\sp6\r^_lea\sp8\r^_lea\sp5\r^_lea\sf5\r:\
-	:ks=^_lea\sp4\s/h/\r^_lea\sp8\s/k/\r^_lea\sp6\s/\s/\r^_lea\sp2\s/j/\r^_lea\sf5\s/H/\r^_lea\sp5\s/H/\r:\
+	:is=^_com\04033\r\n!sto\0409,17,25,33,41,49,57,65,73\r:\
+	:ke=^_lea\040p2\r^_lea\040p4\r^_lea\040p6\r^_lea\040p8\r^_lea\040p5\r^_lea\040f5\r:\
+	:ks=^_lea\040p4\040/h/\r^_lea\040p8\040/k/\r^_lea\040p6\040/\040/\r^_lea\040p2\040/j/\r^_lea\040f5\040/H/\r^_lea\040p5\040/H/\r:\
 	:le=\b:\
 	:li#34:\
 	:nd=^_rig\r:\
@@ -6043,8 +6043,8 @@ tek4023:\
 	:pt:\
 	:sf=^F\n:\
 	:ta=\t:\
-	:te=^_com\s33\r:\
-	:ti=!com\s31\r:\
+	:te=^_com\04033\r:\
+	:ti=!com\04031\r:\
 	:up=^K:
 # alias 4027ex
 # alias X9
@@ -6057,15 +6057,15 @@ tek4023:\
 	:co#80:\
 	:cr=\r:\
 	:do=^F\n:\
-	:is=!com\s31\r\n^_sto\s9\s17\s25\s33\s41\s49\s57\s65\s73\r:\
+	:is=!com\04031\r\n^_sto\0409\04017\04025\04033\04041\04049\04057\04065\04073\r:\
 	:le=\b:\
 	:li#33:\
 	:nd=^_rig;:\
 	:nl=^F\n:\
 	:pt:\
 	:ta=\t:\
-	:te=^_wor\s0:\
-	:ti=^_wor\s33h:\
+	:te=^_wor\0400:\
+	:ti=^_wor\04033h:\
 	:up=^K:
 # alias Xr
 4112:\
@@ -6117,7 +6117,7 @@ regent:\
 	:cl=\f:\
 	:co#80:\
 	:do=\n:\
-	:ho=\EY\s\s:\
+	:ho=\EY\040\040:\
 	:li#24:\
 	:ll=^A:\
 	:nd=^F:\
@@ -6129,10 +6129,10 @@ regent100:\
 	:bl=^G:\
 	:bs:\
 	:cl=\f:\
-	:cm=^K%+\s%B^P%.:\
+	:cm=^K%+\040%B^P%.:\
 	:co#80:\
 	:do=\n:\
-	:ho=\EY\s\s:\
+	:ho=\EY\040\040:\
 	:k0=^B1\r:\
 	:k1=^B2\r:\
 	:k2=^B3\r:\
@@ -6168,10 +6168,10 @@ regent20:\
 	:cd=\Ek:\
 	:ce=\EK:\
 	:cl=\f:\
-	:cm=\EY%+\s%+\s:\
+	:cm=\EY%+\040%+\040:\
 	:co#80:\
 	:do=\n:\
-	:ho=\EY\s\s:\
+	:ho=\EY\040\040:\
 	:li#24:\
 	:ll=^A:\
 	:nd=^F:\
@@ -6185,10 +6185,10 @@ regent25:\
 	:cd=\Ek:\
 	:ce=\EK:\
 	:cl=\f:\
-	:cm=\EY%+\s%+\s:\
+	:cm=\EY%+\040%+\040:\
 	:co#80:\
 	:do=\n:\
-	:ho=\EY\s\s:\
+	:ho=\EY\040\040:\
 	:kd=\n:\
 	:kh=^A:\
 	:kl=^U:\
@@ -6208,11 +6208,11 @@ regent40:\
 	:cd=\Ek:\
 	:ce=\EK:\
 	:cl=\f:\
-	:cm=\EY%+\s%+\s:\
+	:cm=\EY%+\040%+\040:\
 	:co#80:\
 	:dl=2*\El:\
 	:do=\n:\
-	:ho=\EY\s\s:\
+	:ho=\EY\040\040:\
 	:k0=^B1\r:\
 	:k1=^B2\r:\
 	:k2=^B3\r:\
@@ -6254,11 +6254,11 @@ regent40+:\
 	:cd=\Ek:\
 	:ce=\EK:\
 	:cl=\f:\
-	:cm=\EY%+\s%+\s:\
+	:cm=\EY%+\040%+\040:\
 	:co#80:\
 	:dl=2*\El:\
 	:do=\n:\
-	:ho=\EY\s\s:\
+	:ho=\EY\040\040:\
 	:is=\EB:\
 	:k0=^B1\r:\
 	:k1=^B2\r:\
@@ -6301,13 +6301,13 @@ regent60:\
 	:cd=\Ek:\
 	:ce=\EK:\
 	:cl=\f:\
-	:cm=\EY%+\s%+\s:\
+	:cm=\EY%+\040%+\040:\
 	:co#80:\
 	:dc=\EE:\
 	:dl=2*\El:\
 	:do=\n:\
 	:ei=\EF:\
-	:ho=\EY\s\s:\
+	:ho=\EY\040\040:\
 	:im=\EF:\
 	:is=\EV\EB:\
 	:k0=^B1\r:\
@@ -6353,13 +6353,13 @@ regent60na:\
 	:cd=\Ek:\
 	:ce=\EK:\
 	:cl=\f:\
-	:cm=\EY%+\s%+\s:\
+	:cm=\EY%+\040%+\040:\
 	:co#80:\
 	:dc=\EE:\
 	:dl=2*\El:\
 	:do=\n:\
 	:ei=\EF:\
-	:ho=\EY\s\s:\
+	:ho=\EY\040\040:\
 	:im=\EF:\
 	:is=\EV\EB:\
 	:k0=^B1\r:\
@@ -6430,11 +6430,11 @@ viewpt60:\
 	:cd=\Ek:\
 	:ce=\EK:\
 	:cl=\f:\
-	:cm=\EY%+\s%+\s:\
+	:cm=\EY%+\040%+\040:\
 	:co#80:\
 	:dl=2*\El:\
 	:do=\n:\
-	:ho=\EY\s\s:\
+	:ho=\EY\040\040:\
 	:k0=^B1\r:\
 	:k1=^B2\r:\
 	:k2=^B3\r:\
@@ -6476,7 +6476,7 @@ viewpoint:\
 	:cd=\Ek:\
 	:ce=\EK:\
 	:cl=\f:\
-	:cm=\EY%+\s%+\s:\
+	:cm=\EY%+\040%+\040:\
 	:co#80:\
 	:cr=\r:\
 	:do=\n:\
@@ -6566,8 +6566,8 @@ bh3m:\
 	:nd=\f:\
 	:nl=\n:\
 	:pt:\
-	:se=\s^_:\
-	:so=^]\s:\
+	:se=\040^_:\
+	:so=^]\040:\
 	:ta=\t:\
 	:up=^K:
 # alias bh
@@ -6627,7 +6627,7 @@ microb:\
 	:cd=\EJ:\
 	:ce=\EK:\
 	:cl=\EE:\
-	:cm=\EF%+\s%+\s:\
+	:cm=\EF%+\040%+\040:\
 	:co#80:\
 	:cr=\r:\
 	:do=\n:\
@@ -6650,8 +6650,8 @@ microb:\
 	:nd=\EC:\
 	:nl=\n:\
 	:pt:\
-	:se=\Ed@\s:\
-	:so=\s\EdP:\
+	:se=\Ed@\040:\
+	:so=\040\EdP:\
 	:ta=\t:\
 	:ue=\Ed@:\
 	:up=\EA:\
@@ -6714,21 +6714,21 @@ c0:\
 	:cd=\E^C:\
 	:ce=\E^S:\
 	:cl=\E?\E^E:\
-	:cm=\Ea%+\s%+\s:\
+	:cm=\Ea%+\040%+\040:\
 	:co#80:\
 	:db:\
 	:dc=\E^Q:\
 	:dl=\E^B:\
 	:do=\n:\
-	:ds=\E\s;^?:\
+	:ds=\E\040;\177:\
 	:ei=\E\200:\
 	:eo:\
 	:es:\
-	:fs=\E\sz\s:\
+	:fs=\E\040z\040:\
 	:hs:\
-	:i2=\EU\E\sz"\Ev^A^?\s!p\E\s;"\E\sz\s\Ev\s\s^A^?p\Ep\n:\
+	:i2=\EU\E\040z"\Ev^A\177\040!p\E\040;"\E\040z\040\Ev\040\040^A\177p\Ep\n:\
 	:im=\E^P:\
-	:is=\EU\E\sf\Ef\E7\E5\E8\El\ENH\EK\E\200\Eo&\200\Eo'\E\E!\E^G!\E\bA@\s:\
+	:is=\EU\E\040f\Ef\E7\E5\E8\El\ENH\EK\E\200\Eo&\200\Eo'\E\E!\E^G!\E\bA@\040:\
 	:k1=\E5:\
 	:k2=\E6:\
 	:k3=\E7:\
@@ -6754,9 +6754,9 @@ c0:\
 	:pt:\
 	:se=\Ed:\
 	:so=\ED:\
-	:te=\Ev\s\s^A^?p\Ep\r\n:\
-	:ti=\EU\Ev\s\s8p\Ep\r:\
-	:ts=\E\sz"\E?\E^C\Ea\s%+\s:\
+	:te=\Ev\040\040^A\177p\Ep\r\n:\
+	:ti=\EU\Ev\040\0408p\Ep\r:\
+	:ts=\E\040z"\E?\E^C\Ea\040%+\040:\
 	:ue=\Eg:\
 	:ul:\
 	:up=\E;:\
@@ -6773,21 +6773,21 @@ c1:\
 	:cd=\E^C:\
 	:ce=\E^S:\
 	:cl=\E?\E^E:\
-	:cm=\Ea%+\s%+\s:\
+	:cm=\Ea%+\040%+\040:\
 	:co#80:\
 	:db:\
 	:dc=\E^Q:\
 	:dl=\E^B:\
 	:do=\n:\
-	:ds=\E\s;^?:\
+	:ds=\E\040;\177:\
 	:ei=\E\200:\
 	:eo:\
 	:es:\
-	:fs=\E\sz\s:\
+	:fs=\E\040z\040:\
 	:hs:\
-	:i2=\EU\E\sz"\Ev^?\s!p\E\s;"\E\sz\s\Ev\s\s^?p\Ep\n:\
+	:i2=\EU\E\040z"\Ev\177\040!p\E\040;"\E\040z\040\Ev\040\040\177p\Ep\n:\
 	:im=\E^P:\
-	:is=\EU\E\sf\Ef\E7\E5\E8\El\ENH\EK\E\200\Eo&\200\Eo'\E\E!\E^G!\E\bA@\s:\
+	:is=\EU\E\040f\Ef\E7\E5\E8\El\ENH\EK\E\200\Eo&\200\Eo'\E\E!\E^G!\E\bA@\040:\
 	:k1=\E5:\
 	:k2=\E6:\
 	:k3=\E7:\
@@ -6813,9 +6813,9 @@ c1:\
 	:pt:\
 	:se=\Ed:\
 	:so=\ED:\
-	:te=\Ev\s\s^?p\Ep\r\n:\
-	:ti=\EU\Ev\s\s8p\Ep\r:\
-	:ts=\E\sz"\E?\E^C\Ea\s%+\s:\
+	:te=\Ev\040\040\177p\Ep\r\n:\
+	:ti=\EU\Ev\040\0408p\Ep\r:\
+	:ts=\E\040z"\E?\E^C\Ea\040%+\040:\
 	:ue=\Eg:\
 	:ul:\
 	:up=\E;:\
@@ -6832,21 +6832,21 @@ c108:\
 	:cd=\E^C:\
 	:ce=\E^S:\
 	:cl=\E?\E^E:\
-	:cm=\Ea%+\s%+\s:\
+	:cm=\Ea%+\040%+\040:\
 	:co#80:\
 	:db:\
 	:dc=\E^Q:\
 	:dl=\E^B:\
 	:do=\n:\
-	:ds=\E\s;^?:\
+	:ds=\E\040;\177:\
 	:ei=\E\200:\
 	:eo:\
 	:es:\
-	:fs=\E\sz\s:\
+	:fs=\E\040z\040:\
 	:hs:\
-	:i2=\EU\E\sz"\Ev^A^?\s!p\E\s;"\E\sz\s\Ev\s\s^A^?p\Ep\n:\
+	:i2=\EU\E\040z"\Ev^A\177\040!p\E\040;"\E\040z\040\Ev\040\040^A\177p\Ep\n:\
 	:im=\E^P:\
-	:is=\EU\E\sF\Ef\E7\E5\E8\El\ENH\EK\E\200\Eo&\200\Eo'\E\E!\E^G!\E\bA@\s:\
+	:is=\EU\E\040F\Ef\E7\E5\E8\El\ENH\EK\E\200\Eo&\200\Eo'\E\E!\E^G!\E\bA@\040:\
 	:k1=\E5:\
 	:k2=\E6:\
 	:k3=\E7:\
@@ -6872,9 +6872,9 @@ c108:\
 	:pt:\
 	:se=\Ed:\
 	:so=\ED:\
-	:te=\Ev\s\s^A^?p\Ep\r\n:\
-	:ti=\EU\Ev\s\s8p\Ep\r:\
-	:ts=\E\sz"\E?\E^C\Ea\s%+\s:\
+	:te=\Ev\040\040^A\177p\Ep\r\n:\
+	:ti=\EU\Ev\040\0408p\Ep\r:\
+	:ts=\E\040z"\E?\E^C\Ea\040%+\040:\
 	:ue=\Eg:\
 	:ul:\
 	:up=\E;:\
@@ -6894,21 +6894,21 @@ c108-4p:\
 	:cd=\E^C:\
 	:ce=\E^S:\
 	:cl=\E?\E^E:\
-	:cm=\Ea%+\s%+\s:\
+	:cm=\Ea%+\040%+\040:\
 	:co#80:\
 	:db:\
 	:dc=\E^Q:\
 	:dl=\E^B:\
 	:do=\n:\
-	:ds=\E\s;^?:\
+	:ds=\E\040;\177:\
 	:ei=\E\200:\
 	:eo:\
 	:es:\
-	:fs=\E\sz\s:\
+	:fs=\E\040z\040:\
 	:hs:\
-	:i2=\EU\E\sz"\Ev^?\s!p\E\s;"\E\sz\s\Ev\s\s^?p\Ep\n:\
+	:i2=\EU\E\040z"\Ev\177\040!p\E\040;"\E\040z\040\Ev\040\040\177p\Ep\n:\
 	:im=\E^P:\
-	:is=\EU\E\sF\Ef\E7\E5\E8\El\ENH\EK\E\200\Eo&\200\Eo'\E\E!\E^G!\E\bA@\s:\
+	:is=\EU\E\040F\Ef\E7\E5\E8\El\ENH\EK\E\200\Eo&\200\Eo'\E\E!\E^G!\E\bA@\040:\
 	:k1=\E5:\
 	:k2=\E6:\
 	:k3=\E7:\
@@ -6934,9 +6934,9 @@ c108-4p:\
 	:pt:\
 	:se=\Ed:\
 	:so=\ED:\
-	:te=\Ev\s\s^?p\Ep\r\n:\
-	:ti=\EU\Ev\s\s8p\Ep\r:\
-	:ts=\E\sz"\E?\E^C\Ea\s%+\s:\
+	:te=\Ev\040\040\177p\Ep\r\n:\
+	:ti=\EU\Ev\040\0408p\Ep\r:\
+	:ts=\E\040z"\E?\E^C\Ea\040%+\040:\
 	:ue=\Eg:\
 	:ul:\
 	:up=\E;:\
@@ -6955,21 +6955,21 @@ c108-rv-8p:\
 	:cd=\E^C:\
 	:ce=\E^S:\
 	:cl=\E?\E^E:\
-	:cm=\Ea%+\s%+\s:\
+	:cm=\Ea%+\040%+\040:\
 	:co#80:\
 	:db:\
 	:dc=\E^Q:\
 	:dl=\E^B:\
 	:do=\n:\
-	:ds=\E\s;^?:\
+	:ds=\E\040;\177:\
 	:ei=\E\200:\
 	:eo:\
 	:es:\
-	:fs=\Ee\E\sz\s:\
+	:fs=\Ee\E\040z\040:\
 	:hs:\
-	:i2=\EU\E\sz"\Ev^A^?\s!p\E\s;"\E\sz\s\Ev\s\s^A^?p\Ep\n:\
+	:i2=\EU\E\040z"\Ev^A\177\040!p\E\040;"\E\040z\040\Ev\040\040^A\177p\Ep\n:\
 	:im=\E^P:\
-	:is=\EU\E\sF\Ef\E7\E5\E8\El\ENH\Ek\E\200\Eo&\200\Eo'\E\E!\E^G!\E\bA@\s:\
+	:is=\EU\E\040F\Ef\E7\E5\E8\El\ENH\Ek\E\200\Eo&\200\Eo'\E\E!\E^G!\E\bA@\040:\
 	:k1=\E5:\
 	:k2=\E6:\
 	:k3=\E7:\
@@ -6995,9 +6995,9 @@ c108-rv-8p:\
 	:pt:\
 	:se=\Ed:\
 	:so=\ED:\
-	:te=\Ev\s\s^A^?p\Ep\r\n:\
-	:ti=\EU\Ev\s\s8p\Ep\r:\
-	:ts=\E\sz"\E?\E^C\EE\Ea\s%+\s:\
+	:te=\Ev\040\040^A\177p\Ep\r\n:\
+	:ti=\EU\Ev\040\0408p\Ep\r:\
+	:ts=\E\040z"\E?\E^C\EE\Ea\040%+\040:\
 	:ue=\Eg:\
 	:ul:\
 	:up=\E;:\
@@ -7016,21 +7016,21 @@ c108-rv-4p:\
 	:cd=\E^C:\
 	:ce=\E^S:\
 	:cl=\E?\E^E:\
-	:cm=\Ea%+\s%+\s:\
+	:cm=\Ea%+\040%+\040:\
 	:co#80:\
 	:db:\
 	:dc=\E^Q:\
 	:dl=\E^B:\
 	:do=\n:\
-	:ds=\E\s;^?:\
+	:ds=\E\040;\177:\
 	:ei=\E\200:\
 	:eo:\
 	:es:\
-	:fs=\Ee\E\sz\s:\
+	:fs=\Ee\E\040z\040:\
 	:hs:\
-	:i2=\EU\E\sz"\Ev^?\s!p\E\s;"\E\sz\s\Ev\s\s^?p\Ep\n:\
+	:i2=\EU\E\040z"\Ev\177\040!p\E\040;"\E\040z\040\Ev\040\040\177p\Ep\n:\
 	:im=\E^P:\
-	:is=\EU\E\sF\Ef\E7\E5\E8\El\ENH\Ek\E\200\Eo&\200\Eo'\E\E!\E^G!\E\bA@\s:\
+	:is=\EU\E\040F\Ef\E7\E5\E8\El\ENH\Ek\E\200\Eo&\200\Eo'\E\E!\E^G!\E\bA@\040:\
 	:k1=\E5:\
 	:k2=\E6:\
 	:k3=\E7:\
@@ -7056,9 +7056,9 @@ c108-rv-4p:\
 	:pt:\
 	:se=\Ed:\
 	:so=\ED:\
-	:te=\Ev\s\s^?p\Ep\r\n:\
-	:ti=\EU\Ev\s\s8p\Ep\r:\
-	:ts=\E\sz"\E?\E^C\EE\Ea\s%+\s:\
+	:te=\Ev\040\040\177p\Ep\r\n:\
+	:ti=\EU\Ev\040\0408p\Ep\r:\
+	:ts=\E\040z"\E?\E^C\EE\Ea\040%+\040:\
 	:ue=\Eg:\
 	:ul:\
 	:up=\E;:\
@@ -7077,21 +7077,21 @@ c108-na:\
 	:cd=\E^C:\
 	:ce=\E^S:\
 	:cl=\E?\E^E:\
-	:cm=\Ea%+\s%+\s:\
+	:cm=\Ea%+\040%+\040:\
 	:co#80:\
 	:db:\
 	:dc=\E^Q:\
 	:dl=\E^B:\
 	:do=\n:\
-	:ds=\E\s;^?:\
+	:ds=\E\040;\177:\
 	:ei=\E\200:\
 	:eo:\
 	:es:\
-	:fs=\E\sz\s:\
+	:fs=\E\040z\040:\
 	:hs:\
-	:i2=\EU\E\sz"\Ev^A^?\s!p\E\s;"\E\sz\s\Ev\s\s^A^?p\Ep\n:\
+	:i2=\EU\E\040z"\Ev^A\177\040!p\E\040;"\E\040z\040\Ev\040\040^A\177p\Ep\n:\
 	:im=\E^P:\
-	:is=\EU\E\sF\Ef\E7\E5\E8\El\ENH\EK\E\200\Eo&\200\Eo'\E\E!\E^G!\E\bA@\s:\
+	:is=\EU\E\040F\Ef\E7\E5\E8\El\ENH\EK\E\200\Eo&\200\Eo'\E\E!\E^G!\E\bA@\040:\
 	:k1=\E5:\
 	:k2=\E6:\
 	:k3=\E7:\
@@ -7118,9 +7118,9 @@ c108-na:\
 	:pt:\
 	:se=\Ed:\
 	:so=\ED:\
-	:te=\Ev\s\s^A^?p\Ep\r\n:\
-	:ti=\EU\Ev\s\s8p\Ep\r:\
-	:ts=\E\sz"\E?\E^C\Ea\s%+\s:\
+	:te=\Ev\040\040^A\177p\Ep\r\n:\
+	:ti=\EU\Ev\040\0408p\Ep\r:\
+	:ts=\E\040z"\E?\E^C\Ea\040%+\040:\
 	:ue=\Eg:\
 	:ul:\
 	:up=\E;:\
@@ -7148,15 +7148,15 @@ c108-w:\
 	:dc=\E^Q:\
 	:dl=\E^B:\
 	:do=\n:\
-	:ds=\E\s;^?:\
+	:ds=\E\040;\177:\
 	:ei=\E\200:\
 	:eo:\
 	:es:\
-	:fs=\E\sz\s:\
+	:fs=\E\040z\040:\
 	:hs:\
-	:i2=\EU\E\sz"\Ev^A^?\s!p\E\s;"\E\sz\s\Ev\s\s^A^?p\Ep\n:\
+	:i2=\EU\E\040z"\Ev^A\177\040!p\E\040;"\E\040z\040\Ev\040\040^A\177p\Ep\n:\
 	:im=\E^P:\
-	:is=\EU\E\sF\Ef\E7\E5\E8\El\ENH\EK\E\200\Eo&\200\Eo'\E\E"\E^G!\E\bA@\s:\
+	:is=\EU\E\040F\Ef\E7\E5\E8\El\ENH\EK\E\200\Eo&\200\Eo'\E\E"\E^G!\E\bA@\040:\
 	:k1=\E5:\
 	:k2=\E6:\
 	:k3=\E7:\
@@ -7181,9 +7181,9 @@ c108-w:\
 	:nd=\E=:\
 	:se=\Ed:\
 	:so=\ED:\
-	:te=\Ev\s\s^A0^AD\Ep\r\n:\
-	:ti=\EU\Ev\s\s8^AD\Ep\r:\
-	:ts=\E\sz"\E?\E^C\Ea\s%+\s:\
+	:te=\Ev\040\040^A0^AD\Ep\r\n:\
+	:ti=\EU\Ev\040\0408^AD\Ep\r:\
+	:ts=\E\040z"\E?\E^C\Ea\040%+\040:\
 	:ue=\Eg:\
 	:ul:\
 	:up=\E;:\
@@ -7448,7 +7448,7 @@ c100:\
 	:cd=16*\E^C:\
 	:ce=16\E^U:\
 	:cl=2*\f:\
-	:cm=\Ea%+\s%+\s:\
+	:cm=\Ea%+\040%+\040:\
 	:co#80:\
 	:cr=\r:\
 	:dC#9:\
@@ -7460,7 +7460,7 @@ c100:\
 	:eo:\
 	:im=\E^P:\
 	:ip=16*:\
-	:is=\EU\Ef\E7\E5\E8\El\ENH\EK\E\200\Eo&\200\Eo'\E\E^G!\E\bA@\s:\
+	:is=\EU\Ef\E7\E5\E8\El\ENH\EK\E\200\Eo&\200\Eo'\E\E^G!\E\bA@\040:\
 	:k1=\E5:\
 	:k2=\E6:\
 	:k3=\E7:\
@@ -7488,8 +7488,8 @@ c100:\
 	:se=\Ed\Ee:\
 	:so=\EE\ED:\
 	:ta=\t:\
-	:te=\Ev\s\s\s\s\200\200\200\200\200\200\Ep\r\n:\
-	:ti=\EU\Ev\s\s8p\Ep\r:\
+	:te=\Ev\040\040\040\040\200\200\200\200\200\200\Ep\r\n:\
+	:ti=\EU\Ev\040\0408p\Ep\r:\
 	:ue=\Eg:\
 	:ul:\
 	:up=\E;:\
@@ -7510,7 +7510,7 @@ c100-rv-pp:\
 	:cd=16*\E^C:\
 	:ce=16\E^U:\
 	:cl=2*\f:\
-	:cm=\Ea%+\s%+\s:\
+	:cm=\Ea%+\040%+\040:\
 	:co#80:\
 	:cr=\r:\
 	:dC#9:\
@@ -7522,7 +7522,7 @@ c100-rv-pp:\
 	:eo:\
 	:im=\E^P:\
 	:ip=16*:\
-	:is=\EU\Ef\E7\E5\E8\El\ENH\Ek\E\200\Eo&\200\Eo!\200\EQ"\EY(^W\Eo'\E\E^G!\E\bA@\s:\
+	:is=\EU\Ef\E7\E5\E8\El\ENH\Ek\E\200\Eo&\200\Eo!\200\EQ"\EY(^W\Eo'\E\E^G!\E\bA@\040:\
 	:k1=\E5:\
 	:k2=\E6:\
 	:k3=\E7:\
@@ -7550,8 +7550,8 @@ c100-rv-pp:\
 	:se=\Ee:\
 	:so=\EE:\
 	:ta=\t:\
-	:te=\Ev\s\s\s\s\200\200\200\200\200\200\Ep\r\n:\
-	:ti=\EU\Ev\s\s8p\Ep\r:\
+	:te=\Ev\040\040\040\040\200\200\200\200\200\200\Ep\r\n:\
+	:ti=\EU\Ev\040\0408p\Ep\r:\
 	:ue=\Eg:\
 	:ul:\
 	:up=\E;:\
@@ -7571,7 +7571,7 @@ c100-rv-na:\
 	:cd=16*\E^C:\
 	:ce=16\E^U:\
 	:cl=2*\f:\
-	:cm=\Ea%+\s%+\s:\
+	:cm=\Ea%+\040%+\040:\
 	:co#80:\
 	:cr=\r:\
 	:dC#9:\
@@ -7583,7 +7583,7 @@ c100-rv-na:\
 	:eo:\
 	:im=\E^P:\
 	:ip=16*:\
-	:is=\EU\Ef\E7\E5\E8\El\ENH\Ek\E\200\Eo&\200\Eo'\E\E^G!\E\bA@\s:\
+	:is=\EU\Ef\E7\E5\E8\El\ENH\Ek\E\200\Eo&\200\Eo'\E\E^G!\E\bA@\040:\
 	:k1=\E5:\
 	:k2=\E6:\
 	:k3=\E7:\
@@ -7609,8 +7609,8 @@ c100-rv-na:\
 	:se=\Ee:\
 	:so=\EE:\
 	:ta=\t:\
-	:te=\Ev\s\s\s\s\200\200\200\200\200\200\Ep\r\n:\
-	:ti=\EU\Ev\s\s8p\Ep\r:\
+	:te=\Ev\040\040\040\040\200\200\200\200\200\200\Ep\r\n:\
+	:ti=\EU\Ev\040\0408p\Ep\r:\
 	:ue=\Eg:\
 	:ul:\
 	:up=\E;:\
@@ -7630,7 +7630,7 @@ c100-rv:\
 	:cd=16*\E^C:\
 	:ce=16\E^U:\
 	:cl=2*\f:\
-	:cm=\Ea%+\s%+\s:\
+	:cm=\Ea%+\040%+\040:\
 	:co#80:\
 	:cr=\r:\
 	:dC#9:\
@@ -7642,7 +7642,7 @@ c100-rv:\
 	:eo:\
 	:im=\E^P:\
 	:ip=16*:\
-	:is=\EU\Ef\E7\E5\E8\El\ENH\Ek\E\200\Eo&\200\Eo'\E\E^G!\E\bA@\s:\
+	:is=\EU\Ef\E7\E5\E8\El\ENH\Ek\E\200\Eo&\200\Eo'\E\E^G!\E\bA@\040:\
 	:k1=\E5:\
 	:k2=\E6:\
 	:k3=\E7:\
@@ -7670,8 +7670,8 @@ c100-rv:\
 	:se=\Ee:\
 	:so=\EE:\
 	:ta=\t:\
-	:te=\Ev\s\s\s\s\200\200\200\200\200\200\Ep\r\n:\
-	:ti=\EU\Ev\s\s8p\Ep\r:\
+	:te=\Ev\040\040\040\040\200\200\200\200\200\200\Ep\r\n:\
+	:ti=\EU\Ev\040\0408p\Ep\r:\
 	:ue=\Eg:\
 	:ul:\
 	:up=\E;:\
@@ -7692,7 +7692,7 @@ c100-s:\
 	:cd=16*\E^C:\
 	:ce=16\E^U:\
 	:cl=2*\f:\
-	:cm=\Ea%+\s%+\s:\
+	:cm=\Ea%+\040%+\040:\
 	:co#80:\
 	:cr=\r:\
 	:db:\
@@ -7703,7 +7703,7 @@ c100-s:\
 	:eo:\
 	:im=\E^P:\
 	:ip=16*:\
-	:is=\EU\Ef\E7\E5\E8\El\ENH\EK\E\200\Eo&\200\Eo'\E\E^G!\E\bA@\s:\
+	:is=\EU\Ef\E7\E5\E8\El\ENH\EK\E\200\Eo&\200\Eo'\E\E^G!\E\bA@\040:\
 	:k1=\E5:\
 	:k2=\E6:\
 	:k3=\E7:\
@@ -7731,8 +7731,8 @@ c100-s:\
 	:se=\Ed\Ee:\
 	:so=\EE\ED:\
 	:ta=\t:\
-	:te=\Ev\s\s\s\s\200\200\200\200\200\200\Ep\r\n:\
-	:ti=\EU\Ev\s\s8p\Ep\r:\
+	:te=\Ev\040\040\040\040\200\200\200\200\200\200\Ep\r\n:\
+	:ti=\EU\Ev\040\0408p\Ep\r:\
 	:ue=\Eg:\
 	:ul:\
 	:up=\E;:\
@@ -7751,7 +7751,7 @@ c100-rv-s:\
 	:cd=16*\E^C:\
 	:ce=16\E^U:\
 	:cl=2*\f:\
-	:cm=\Ea%+\s%+\s:\
+	:cm=\Ea%+\040%+\040:\
 	:co#80:\
 	:cr=\r:\
 	:db:\
@@ -7762,7 +7762,7 @@ c100-rv-s:\
 	:eo:\
 	:im=\E^P:\
 	:ip=16*:\
-	:is=\EU\Ef\E7\E5\E8\El\ENH\Ek\E\200\Eo&\200\Eo'\E\E^G!\E\bA@\s:\
+	:is=\EU\Ef\E7\E5\E8\El\ENH\Ek\E\200\Eo&\200\Eo'\E\E^G!\E\bA@\040:\
 	:k1=\E5:\
 	:k2=\E6:\
 	:k3=\E7:\
@@ -7790,8 +7790,8 @@ c100-rv-s:\
 	:se=\Ee:\
 	:so=\EE:\
 	:ta=\t:\
-	:te=\Ev\s\s\s\s\200\200\200\200\200\200\Ep\r\n:\
-	:ti=\EU\Ev\s\s8p\Ep\r:\
+	:te=\Ev\040\040\040\040\200\200\200\200\200\200\Ep\r\n:\
+	:ti=\EU\Ev\040\0408p\Ep\r:\
 	:ue=\Eg:\
 	:ul:\
 	:up=\E;:\
@@ -8167,7 +8167,7 @@ vt50h:\
 	:cd=\EJ:\
 	:ce=\EK:\
 	:cl=\EH\EJ:\
-	:cm=\EY%+\s%+\s:\
+	:cm=\EY%+\040%+\040:\
 	:co#80:\
 	:cr=\r:\
 	:do=\n:\
@@ -8432,7 +8432,7 @@ vt52:\
 	:cd=\EJ:\
 	:ce=\EK:\
 	:cl=\EH\EJ:\
-	:cm=\EY%+\s%+\s:\
+	:cm=\EY%+\040%+\040:\
 	:co#80:\
 	:cr=\r:\
 	:do=\n:\
@@ -9256,7 +9256,7 @@ i100:\
 	:cd=\EJ:\
 	:ce=\EK:\
 	:cl=\f:\
-	:cm=\Ef%r%+\s%+\s:\
+	:cm=\Ef%r%+\040%+\040:\
 	:co#80:\
 	:cr=\r:\
 	:dl=\EM:\
@@ -9393,7 +9393,7 @@ h19-bs:\
 	:cd=\EJ:\
 	:ce=\EK:\
 	:cl=\EE:\
-	:cm=\EY%+\s%+\s:\
+	:cm=\EY%+\040%+\040:\
 	:co#80:\
 	:cr=\r:\
 	:dc=\EN:\
@@ -9437,7 +9437,7 @@ h19-bs:\
 	:so=\Ep:\
 	:sr=\EI:\
 	:ta=\t:\
-	:ts=\Ej\Ex5\Ex1\EY8%+\s\Eo:\
+	:ts=\Ej\Ex5\Ex1\EY8%+\040\Eo:\
 	:up=\EA:\
 	:ve=\Ey4:\
 	:vs=\Ex4:
@@ -9453,7 +9453,7 @@ h19-us:\
 	:cd=\EJ:\
 	:ce=\EK:\
 	:cl=\EE:\
-	:cm=\EY%+\s%+\s:\
+	:cm=\EY%+\040%+\040:\
 	:co#80:\
 	:cr=\r:\
 	:dc=\EN:\
@@ -9497,7 +9497,7 @@ h19-us:\
 	:so=\Ep:\
 	:sr=\EI:\
 	:ta=\t:\
-	:ts=\Ej\Ex5\Ex1\EY8%+\s\Eo:\
+	:ts=\Ej\Ex5\Ex1\EY8%+\040\Eo:\
 	:up=\EA:
 # alias h19us
 # alias kU
@@ -9511,7 +9511,7 @@ h19:\
 	:cd=\EJ:\
 	:ce=\EK:\
 	:cl=\EE:\
-	:cm=\EY%+\s%+\s:\
+	:cm=\EY%+\040%+\040:\
 	:co#80:\
 	:cr=\r:\
 	:dc=\EN:\
@@ -9553,7 +9553,7 @@ h19:\
 	:so=\Ep:\
 	:sr=\EI:\
 	:ta=\t:\
-	:ts=\Ej\Ex5\Ex1\EY8%+\s\Eo:\
+	:ts=\Ej\Ex5\Ex1\EY8%+\040\Eo:\
 	:up=\EA:\
 	:ve=\Ey4:\
 	:vs=\Ex4:
@@ -9575,7 +9575,7 @@ h19-e:\
 	:cd=\EJ:\
 	:ce=\EK:\
 	:cl=\EE:\
-	:cm=\EY%+\s%+\s:\
+	:cm=\EY%+\040%+\040:\
 	:co#80:\
 	:cr=\r:\
 	:dc=\EN:\
@@ -9620,7 +9620,7 @@ h19-e:\
 	:so=\Ep:\
 	:sr=\EI:\
 	:ta=\t:\
-	:ts=\Ej\Ex5\Ex1\EY8%+\s\Eo:\
+	:ts=\Ej\Ex5\Ex1\EY8%+\040\Eo:\
 	:up=\EA:
 # alias h19e
 # alias ke
@@ -9634,7 +9634,7 @@ h19-u:\
 	:cd=\EJ:\
 	:ce=\EK:\
 	:cl=\EE:\
-	:cm=\EY%+\s%+\s:\
+	:cm=\EY%+\040%+\040:\
 	:co#80:\
 	:cr=\r:\
 	:dc=\EN:\
@@ -9676,7 +9676,7 @@ h19-u:\
 	:so=\Ep:\
 	:sr=\EI:\
 	:ta=\t:\
-	:ts=\Ej\Ex5\Ex1\EY8%+\s\Eo:\
+	:ts=\Ej\Ex5\Ex1\EY8%+\040\Eo:\
 	:up=\EA:
 # alias h19u
 # alias ku
@@ -9690,7 +9690,7 @@ h19-g:\
 	:cd=\EJ:\
 	:ce=\EK:\
 	:cl=\EE:\
-	:cm=\EY%+\s%+\s:\
+	:cm=\EY%+\040%+\040:\
 	:co#80:\
 	:cr=\r:\
 	:dc=\EN:\
@@ -9732,7 +9732,7 @@ h19-g:\
 	:so=\Ep:\
 	:sr=\EI:\
 	:ta=\t:\
-	:ts=\Ej\Ex5\Ex1\EY8%+\s\Eo:\
+	:ts=\Ej\Ex5\Ex1\EY8%+\040\Eo:\
 	:up=\EA:\
 	:ve=\Ex4:\
 	:vs=\Ex4:
@@ -9748,7 +9748,7 @@ kp:\
 	:cd=\EJ:\
 	:ce=\EK:\
 	:cl=\EE:\
-	:cm=\EY%+\s%+\s:\
+	:cm=\EY%+\040%+\040:\
 	:co#80:\
 	:cr=\r:\
 	:dc=\EN:\
@@ -9790,7 +9790,7 @@ kp:\
 	:so=\Ep:\
 	:sr=\EI:\
 	:ta=\t:\
-	:ts=\Ej\Ex5\Ex1\EY8%+\s\Eo:\
+	:ts=\Ej\Ex5\Ex1\EY8%+\040\Eo:\
 	:up=\EA:\
 	:ve=\Ey4:\
 	:vs=\Ex4:
@@ -9802,7 +9802,7 @@ adm31:\
 	:cd=\EY:\
 	:ce=\ET:\
 	:cl=\E*:\
-	:cm=\E=%+\s%+\s:\
+	:cm=\E=%+\040%+\040:\
 	:co#80:\
 	:cr=\r:\
 	:dc=\EW:\
@@ -9828,7 +9828,7 @@ adm31:\
 	:ku=^K:\
 	:le=\b:\
 	:li#24:\
-	:ma=j\nk^P^K^Pl\s^R\f\f\s:\
+	:ma=j\nk^P^K^Pl\040^R\f\f\040:\
 	:mi:\
 	:nd=\f:\
 	:nl=\n:\
@@ -9847,7 +9847,7 @@ adm2:\
 	:cd=\EY:\
 	:ce=\ET:\
 	:cl=\E;:\
-	:cm=\E=%+\s%+\s:\
+	:cm=\E=%+\040%+\040:\
 	:co#80:\
 	:cr=\r:\
 	:dc=\EW:\
@@ -9891,7 +9891,7 @@ adm42:\
 	:cd=\EY:\
 	:ce=\ET:\
 	:cl=\E;:\
-	:cm=\E=%+\s%+\s:\
+	:cm=\E=%+\040%+\040:\
 	:co#80:\
 	:cr=\r:\
 	:dc=\EW:\
@@ -9905,12 +9905,12 @@ adm42:\
 	:ma=^K^P:\
 	:nd=\f:\
 	:nl=\n:\
-	:pc=^?:\
+	:pc=\177:\
 	:se=\EG0:\
 	:so=\EG4:\
 	:ta=\t:\
 	:up=^K:\
-	:vs=\EC\E3\s\E3(:
+	:vs=\EC\E3\040\E3(:
 # alias 42
 # alias l4
 adm5:\
@@ -9920,7 +9920,7 @@ adm5:\
 	:cd=\EY:\
 	:ce=\ET:\
 	:cl=1^Z:\
-	:cm=\E=%+\s%+\s:\
+	:cm=\E=%+\040%+\040:\
 	:co#80:\
 	:cr=\r:\
 	:do=\n:\
@@ -9980,7 +9980,7 @@ adm3a:\
 	:bl=^G:\
 	:bs:\
 	:cl=1^Z:\
-	:cm=\E=%+\s%+\s:\
+	:cm=\E=%+\040%+\040:\
 	:co#80:\
 	:cr=\r:\
 	:do=\n:\
@@ -9998,7 +9998,7 @@ adm3a+:\
 	:bl=^G:\
 	:bs:\
 	:cl=1^Z:\
-	:cm=\E=%+\s%+\s:\
+	:cm=\E=%+\040%+\040:\
 	:co#80:\
 	:cr=\r:\
 	:do=\n:\
@@ -10019,7 +10019,7 @@ mime3a:\
 	:bl=^G:\
 	:bs:\
 	:cl=1^Z:\
-	:cm=\E=%+\s%+\s:\
+	:cm=\E=%+\040%+\040:\
 	:co#80:\
 	:cr=\r:\
 	:do=\n:\
@@ -10030,7 +10030,7 @@ mime3a:\
 	:ku=^Z:\
 	:le=\b:\
 	:li#24:\
-	:ma=^X\s^K\n^Z^P:\
+	:ma=^X\040^K\n^Z^P:\
 	:nd=\f:\
 	:nl=\n:\
 	:up=^K:
@@ -10115,7 +10115,7 @@ mime-fb:\
 	:cd=^_:\
 	:ce=^^:\
 	:cl=^]^C:\
-	:cm=^T%+^X%>\s0%+P:\
+	:cm=^T%+^X%>\0400%+P:\
 	:co#80:\
 	:cr=\r:\
 	:dl=80^W:\
@@ -10128,7 +10128,7 @@ mime-fb:\
 	:ku=^Z:\
 	:le=\b:\
 	:li#24:\
-	:ma=^X\s^K\n^Z^P:\
+	:ma=^X\040^K\n^Z^P:\
 	:nd=^X:\
 	:nl=\n:\
 	:pt:\
@@ -10148,7 +10148,7 @@ mime-hb:\
 	:cd=^_:\
 	:ce=^^:\
 	:cl=^]^C:\
-	:cm=^T%+^X%>\s0%+P:\
+	:cm=^T%+^X%>\0400%+P:\
 	:co#80:\
 	:cr=\r:\
 	:dl=80^W:\
@@ -10161,7 +10161,7 @@ mime-hb:\
 	:ku=^Z:\
 	:le=\b:\
 	:li#24:\
-	:ma=^X\s^K\n^Z^P:\
+	:ma=^X\040^K\n^Z^P:\
 	:nd=^X:\
 	:nl=\n:\
 	:pt:\
@@ -10181,7 +10181,7 @@ mime:\
 	:cd=^_:\
 	:ce=^^:\
 	:cl=^]^C:\
-	:cm=^T%+^X%>\s0%+P:\
+	:cm=^T%+^X%>\0400%+P:\
 	:co#80:\
 	:cr=\r:\
 	:dl=80^W:\
@@ -10194,7 +10194,7 @@ mime:\
 	:ku=^Z:\
 	:le=\b:\
 	:li#24:\
-	:ma=^X\s^K\n^Z^P:\
+	:ma=^X\040^K\n^Z^P:\
 	:nd=^X:\
 	:nl=\n:\
 	:pt:\
@@ -10216,7 +10216,7 @@ mime2a-s:\
 	:cd=20*\EJ:\
 	:ce=\EK:\
 	:cl=\EL:\
-	:cm=\E=%+\s%+\s:\
+	:cm=\E=%+\040%+\040:\
 	:co#80:\
 	:cr=\r:\
 	:dc=\ED:\
@@ -10249,7 +10249,7 @@ mime2a:\
 	:cd=20*\EQ:\
 	:ce=\EP:\
 	:cl=\EL:\
-	:cm=\EY%+\s%+\s:\
+	:cm=\EY%+\040%+\040:\
 	:co#80:\
 	:cr=\r:\
 	:dc=^N:\
@@ -10286,7 +10286,7 @@ pe550:\
 	:cd=6^N@^V:\
 	:ce=20\EI:\
 	:cl=20\EK:\
-	:cm=\EX%+\s\EY%+\s:\
+	:cm=\EX%+\040\EY%+\040:\
 	:co#80:\
 	:cr=\r:\
 	:do=\n:\
@@ -10307,7 +10307,7 @@ fox:\
 	:cd=5.5*\EJ:\
 	:ce=\EI:\
 	:cl=132\EH\EJ:\
-	:cm=\EX%+\s\EY%+\s:\
+	:cm=\EX%+\040\EY%+\040:\
 	:co#80:\
 	:cr=\r:\
 	:ct=\E3:\
@@ -10330,7 +10330,7 @@ owl:\
 	:cd=5.5*\EJ:\
 	:ce=5.5\EI:\
 	:cl=132\EH\EJ:\
-	:cm=\EX%+\s\EY%+\s:\
+	:cm=\EX%+\040\EY%+\040:\
 	:co#80:\
 	:cr=\r:\
 	:ct=\E3:\
@@ -10368,7 +10368,7 @@ bc:\
 	:bl=^G:\
 	:bs:\
 	:cl=^Z:\
-	:cm=\E=%+\s%+\s:\
+	:cm=\E=%+\040%+\040:\
 	:co#96:\
 	:cr=\r:\
 	:do=\n:\
@@ -10414,10 +10414,10 @@ carlock:\
 	:bs:\
 	:ce=^U:\
 	:cl=100^Z:\
-	:cm=\E=%+\s%+\s:\
+	:cm=\E=%+\040%+\040:\
 	:co#80:\
 	:cr=\r:\
-	:dc=^?:\
+	:dc=\177:\
 	:dl=^D:\
 	:dm=:\
 	:do=\n:\
@@ -10476,7 +10476,7 @@ netx:\
 	:ho=^D:\
 	:le=\b:\
 	:li#16:\
-	:ma=j\nk^Pl\s:\
+	:ma=j\nk^Pl\040:\
 	:nd=\E+@A:\
 	:nl=\n:\
 	:pc=\200:\
@@ -10506,7 +10506,7 @@ ubell:\
 	:bs:\
 	:ce=\Ed:\
 	:cl=^Z:\
-	:cm=\E=%+\s%+\s:\
+	:cm=\E=%+\040%+\040:\
 	:co#80:\
 	:cr=\r:\
 	:do=\n:\
@@ -10514,7 +10514,7 @@ ubell:\
 	:if=/usr/lib/tabset/ubell:\
 	:le=\b:\
 	:li#24:\
-	:ma=j\nk^P^K^Pl\s:\
+	:ma=j\nk^P^K^Pl\040:\
 	:nd=\f:\
 	:nl=\n:\
 	:pt:\
@@ -10549,7 +10549,7 @@ xitex:\
 	:ho=^D:\
 	:le=\b:\
 	:li#16:\
-	:ma=j\nk^Pl\s:\
+	:ma=j\nk^Pl\040:\
 	:nd=\E+@A:\
 	:nl=\n:\
 	:pc=\200:\
@@ -10692,7 +10692,7 @@ tvi912:\
 	:bs:\
 	:ce=\ET:\
 	:cl=^Z:\
-	:cm=\E=%+\s%+\s:\
+	:cm=\E=%+\040%+\040:\
 	:co#80:\
 	:cr=\r:\
 	:ct=\E3:\
@@ -10720,7 +10720,7 @@ tvi912:\
 	:ku=^K:\
 	:le=\b:\
 	:li#24:\
-	:ma=^K^P\f\s:\
+	:ma=^K^P\f\040:\
 	:nd=\f:\
 	:nl=\n:\
 	:pt:\
@@ -10744,7 +10744,7 @@ tvi912:\
 	:bs:\
 	:ce=\ET:\
 	:cl=^Z:\
-	:cm=\E=%+\s%+\s:\
+	:cm=\E=%+\040%+\040:\
 	:co#80:\
 	:cr=\r:\
 	:ct=\E3:\
@@ -10772,7 +10772,7 @@ tvi912:\
 	:ku=^K:\
 	:le=\b:\
 	:li#24:\
-	:ma=^K^P\f\s:\
+	:ma=^K^P\f\040:\
 	:nd=\f:\
 	:nl=\n:\
 	:pt:\
@@ -10797,7 +10797,7 @@ tvi912:\
 	:bs:\
 	:ce=\ET:\
 	:cl=^Z:\
-	:cm=\E=%+\s%+\s:\
+	:cm=\E=%+\040%+\040:\
 	:co#80:\
 	:cr=\r:\
 	:ct=\E3:\
@@ -10825,7 +10825,7 @@ tvi912:\
 	:ku=^K:\
 	:le=\b:\
 	:li#24:\
-	:ma=^K^P\f\s:\
+	:ma=^K^P\f\040:\
 	:nd=\f:\
 	:nl=\n:\
 	:pt:\
@@ -10849,7 +10849,7 @@ tvi912-2p:\
 	:bs:\
 	:ce=\ET:\
 	:cl=^Z:\
-	:cm=\E=%+\s%+\s:\
+	:cm=\E=%+\040%+\040:\
 	:co#80:\
 	:cr=\r:\
 	:ct=\E3:\
@@ -10877,7 +10877,7 @@ tvi912-2p:\
 	:ku=^K:\
 	:le=\b:\
 	:li#24:\
-	:ma=^K^P\f\s:\
+	:ma=^K^P\f\040:\
 	:nd=\f:\
 	:nl=\n:\
 	:pt:\
@@ -10886,8 +10886,8 @@ tvi912-2p:\
 	:so=\Ej:\
 	:st=\E1:\
 	:ta=\t:\
-	:te=\E-07\s:\
-	:ti=\E-17\s:\
+	:te=\E-07\040:\
+	:ti=\E-17\040:\
 	:ue=\Em:\
 	:ug#1:\
 	:up=^K:\
@@ -10906,7 +10906,7 @@ tvi950-ap:\
 	:cd=\Ey:\
 	:ce=\Et:\
 	:cl=\E*:\
-	:cm=\E=%+\s%+\s:\
+	:cm=\E=%+\040%+\040:\
 	:co#80:\
 	:cr=\r:\
 	:ct=\E3:\
@@ -10951,8 +10951,8 @@ tvi950-ap:\
 	:sr=\Ej:\
 	:st=\E1:\
 	:ta=\t:\
-	:te=\E-16\s:\
-	:ti=\E-06\s:\
+	:te=\E-16\040:\
+	:ti=\E-06\040:\
 	:ts=\Eg\Ef:\
 	:ue=\EG0:\
 	:ug#1:\
@@ -10970,7 +10970,7 @@ tvi950-b:\
 	:cd=\Ey:\
 	:ce=\Et:\
 	:cl=\E*:\
-	:cm=\E=%+\s%+\s:\
+	:cm=\E=%+\040%+\040:\
 	:co#80:\
 	:cr=\r:\
 	:ct=\E3:\
@@ -11031,7 +11031,7 @@ tvi950-ns:\
 	:cd=\Ey:\
 	:ce=\Et:\
 	:cl=\E*:\
-	:cm=\E=%+\s%+\s:\
+	:cm=\E=%+\040%+\040:\
 	:co#80:\
 	:cr=\r:\
 	:ct=\E3:\
@@ -11044,7 +11044,7 @@ tvi950-ns:\
 	:ho=^^:\
 	:hs:\
 	:im=\Eq:\
-	:is=\EDF\EC\Ed\EG0\Eg\Er\EO\E'\E(\E%\Ew\EX\Ee\s^O\t\El\E016\E004\Ex0\200\200\Ex1\200\200\Ex2\200\200\t\Ex3\200\200\Ex4\r\200\Ef\r:\
+	:is=\EDF\EC\Ed\EG0\Eg\Er\EO\E'\E(\E%\Ew\EX\Ee\040^O\t\El\E016\E004\Ex0\200\200\Ex1\200\200\Ex2\200\200\t\Ex3\200\200\Ex4\r\200\Ef\r:\
 	:k0=^A0\r:\
 	:k1=^A@\r:\
 	:k2=^AA\r:\
@@ -11088,7 +11088,7 @@ tvi925:\
 	:cd=\EY:\
 	:ce=\ET:\
 	:cl=^Z:\
-	:cm=\E=%+\s%+\s:\
+	:cm=\E=%+\040%+\040:\
 	:co#80:\
 	:dc=\EW:\
 	:dl=\ER:\
@@ -11119,7 +11119,7 @@ tvi925:\
 	:kr=\f:\
 	:ku=^K:\
 	:li#24:\
-	:ma=^V\n\f\s:\
+	:ma=^V\n\f\040:\
 	:nd=\f:\
 	:pt:\
 	:se=\EG0:\
@@ -11142,7 +11142,7 @@ tvi925:\
 	:cd=\EY:\
 	:ce=\ET:\
 	:cl=^Z:\
-	:cm=\E=%+\s%+\s:\
+	:cm=\E=%+\040%+\040:\
 	:co#80:\
 	:dc=\EW:\
 	:dl=\ER:\
@@ -11151,7 +11151,7 @@ tvi925:\
 	:ic=\EQ:\
 	:if=/usr/lib/tabset/std:\
 	:im=:\
-	:is=\El\s\s\s\s\s\s\s\s:\
+	:is=\El\040\040\040\040\040\040\040\040:\
 	:kb=\b:\
 	:kd=^V:\
 	:kh=^^:\
@@ -11184,7 +11184,7 @@ tvi950:\
 	:cd=\Ey:\
 	:ce=\Et:\
 	:cl=\E*:\
-	:cm=\E=%+\s%+\s:\
+	:cm=\E=%+\040%+\040:\
 	:co#80:\
 	:cr=\r:\
 	:ct=\E3:\
@@ -11197,7 +11197,7 @@ tvi950:\
 	:ho=^^:\
 	:hs:\
 	:im=\Eq:\
-	:is=\EDF\EC\Ed\EG0\Eg\Er\EO\E'\E(\E%\Ew\EX\Ee\s^O\t\El\E016\E004\Ex0\200\200\Ex1\200\200\Ex2\200\200\t\Ex3\200\200\Ex4\r\200\Ef\r:\
+	:is=\EDF\EC\Ed\EG0\Eg\Er\EO\E'\E(\E%\Ew\EX\Ee\040^O\t\El\E016\E004\Ex0\200\200\Ex1\200\200\Ex2\200\200\t\Ex3\200\200\Ex4\r\200\Ef\r:\
 	:k0=^A0\r:\
 	:k1=^A@\r:\
 	:k2=^AA\r:\
@@ -11247,7 +11247,7 @@ tvi950-2p:\
 	:cd=\Ey:\
 	:ce=\Et:\
 	:cl=\E*:\
-	:cm=\E=%+\s%+\s:\
+	:cm=\E=%+\040%+\040:\
 	:co#80:\
 	:cr=\r:\
 	:ct=\E3:\
@@ -11260,7 +11260,7 @@ tvi950-2p:\
 	:ho=^^:\
 	:hs:\
 	:im=\Eq:\
-	:is=\EDF\EC\Ed\EG0\Eg\Er\EO\E'\E(\E%\Ew\EX\Ee\s^O\t\Ek\E016\E004\Ex0\200\200\Ex1\200\200\Ex2\200\200\t\Ex3\200\200\Ex4\r\200\E\\2\E-07\s\t:\
+	:is=\EDF\EC\Ed\EG0\Eg\Er\EO\E'\E(\E%\Ew\EX\Ee\040^O\t\Ek\E016\E004\Ex0\200\200\Ex1\200\200\Ex2\200\200\t\Ex3\200\200\Ex4\r\200\E\\2\E-07\040\t:\
 	:k0=^A0\r:\
 	:k1=^A@\r:\
 	:k2=^AA\r:\
@@ -11294,8 +11294,8 @@ tvi950-2p:\
 	:sr=\Ej:\
 	:st=\E1:\
 	:ta=\t:\
-	:te=\E\\2\E-07\s:\
-	:ti=\E\\1\E-07\s:\
+	:te=\E\\2\E-07\040:\
+	:ti=\E\\1\E-07\040:\
 	:ts=\Eg\Ef:\
 	:ue=\EG0:\
 	:ug#1:\
@@ -11314,7 +11314,7 @@ tvi950-4p:\
 	:cd=\Ey:\
 	:ce=\Et:\
 	:cl=\E*:\
-	:cm=\E=%+\s%+\s:\
+	:cm=\E=%+\040%+\040:\
 	:co#80:\
 	:cr=\r:\
 	:ct=\E3:\
@@ -11327,7 +11327,7 @@ tvi950-4p:\
 	:ho=^^:\
 	:hs:\
 	:im=\Eq:\
-	:is=\EDF\EC\Ed\EG0\Eg\Er\EO\E'\E(\E%\Ew\EX\Ee\s^O\t\Ek\E016\E004\Ex0\200\200\Ex1\200\200\Ex2\200\200\t\Ex3\200\200\Ex4\r\200\E\\3\E-07\s\t:\
+	:is=\EDF\EC\Ed\EG0\Eg\Er\EO\E'\E(\E%\Ew\EX\Ee\040^O\t\Ek\E016\E004\Ex0\200\200\Ex1\200\200\Ex2\200\200\t\Ex3\200\200\Ex4\r\200\E\\3\E-07\040\t:\
 	:k0=^A0\r:\
 	:k1=^A@\r:\
 	:k2=^AA\r:\
@@ -11361,8 +11361,8 @@ tvi950-4p:\
 	:sr=\Ej:\
 	:st=\E1:\
 	:ta=\t:\
-	:te=\E\\3\E-07\s:\
-	:ti=\E\\1\E-07\s:\
+	:te=\E\\3\E-07\040:\
+	:ti=\E\\1\E-07\040:\
 	:ts=\Eg\Ef:\
 	:ue=\EG0:\
 	:ug#1:\
@@ -11381,7 +11381,7 @@ tvi950-rv:\
 	:cd=\Ey:\
 	:ce=\Et:\
 	:cl=\E*:\
-	:cm=\E=%+\s%+\s:\
+	:cm=\E=%+\040%+\040:\
 	:co#80:\
 	:cr=\r:\
 	:ct=\E3:\
@@ -11394,7 +11394,7 @@ tvi950-rv:\
 	:ho=^^:\
 	:hs:\
 	:im=\Eq:\
-	:is=\EDF\EC\Eb\EG0\Eg\Er\EO\E'\E(\E%\Ew\EX\Ee\s^O\t\El\E016\E004\Ex0\200\200\Ex1\200\200\Ex2\200\200\t\Ex3\200\200\Ex4\r\200:\
+	:is=\EDF\EC\Eb\EG0\Eg\Er\EO\E'\E(\E%\Ew\EX\Ee\040^O\t\El\E016\E004\Ex0\200\200\Ex1\200\200\Ex2\200\200\t\Ex3\200\200\Ex4\r\200:\
 	:k0=^A0\r:\
 	:k1=^A@\r:\
 	:k2=^AA\r:\
@@ -11444,7 +11444,7 @@ tvi950-rv-2p:\
 	:cd=\Ey:\
 	:ce=\Et:\
 	:cl=\E*:\
-	:cm=\E=%+\s%+\s:\
+	:cm=\E=%+\040%+\040:\
 	:co#80:\
 	:cr=\r:\
 	:ct=\E3:\
@@ -11457,7 +11457,7 @@ tvi950-rv-2p:\
 	:ho=^^:\
 	:hs:\
 	:im=\Eq:\
-	:is=\EDF\EC\Eb\EG0\Eg\Er\EO\E'\E(\E%\Ew\EX\Ee\s^O\t\Ek\E016\E004\Ex0\200\200\Ex1\200\200\Ex2\200\200\t\Ex3\200\200\Ex4\r\200\E\\2\E-07\s:\
+	:is=\EDF\EC\Eb\EG0\Eg\Er\EO\E'\E(\E%\Ew\EX\Ee\040^O\t\Ek\E016\E004\Ex0\200\200\Ex1\200\200\Ex2\200\200\t\Ex3\200\200\Ex4\r\200\E\\2\E-07\040:\
 	:k0=^A0\r:\
 	:k1=^A@\r:\
 	:k2=^AA\r:\
@@ -11491,8 +11491,8 @@ tvi950-rv-2p:\
 	:sr=\Ej:\
 	:st=\E1:\
 	:ta=\t:\
-	:te=\E\\2\E-07\s:\
-	:ti=\E\\1\E-07\s:\
+	:te=\E\\2\E-07\040:\
+	:ti=\E\\1\E-07\040:\
 	:ts=\Eg\Ef:\
 	:ue=\EG0:\
 	:ug#1:\
@@ -11511,7 +11511,7 @@ tvi950-rv-4p:\
 	:cd=\Ey:\
 	:ce=\Et:\
 	:cl=\E*:\
-	:cm=\E=%+\s%+\s:\
+	:cm=\E=%+\040%+\040:\
 	:co#80:\
 	:cr=\r:\
 	:ct=\E3:\
@@ -11524,7 +11524,7 @@ tvi950-rv-4p:\
 	:ho=^^:\
 	:hs:\
 	:im=\Eq:\
-	:is=\EDF\EC\Eb\EG0\Er\EO\E'\E(\E%\Ew\EX\Ee\s^O\t\Ek\E016\E004\Ex0\200\200\Ex1\200\200\Ex2\200\200\t\Ex3\200\200\Ex4\r\200\E\\3\E-07\s:\
+	:is=\EDF\EC\Eb\EG0\Er\EO\E'\E(\E%\Ew\EX\Ee\040^O\t\Ek\E016\E004\Ex0\200\200\Ex1\200\200\Ex2\200\200\t\Ex3\200\200\Ex4\r\200\E\\3\E-07\040:\
 	:k0=^A0\r:\
 	:k1=^A@\r:\
 	:k2=^AA\r:\
@@ -11558,8 +11558,8 @@ tvi950-rv-4p:\
 	:sr=\Ej:\
 	:st=\E1:\
 	:ta=\t:\
-	:te=\E\\3\E-07\s:\
-	:ti=\E\\1\E-07\s:\
+	:te=\E\\3\E-07\040:\
+	:ti=\E\\1\E-07\040:\
 	:ts=\Eg\Ef:\
 	:ue=\EG0:\
 	:ug#1:\
@@ -11587,14 +11587,14 @@ t3800:\
 	:cd=\EJ:\
 	:ce=\EK:\
 	:cl=\f:\
-	:cm=\EY%+\s%+\s:\
+	:cm=\EY%+\040%+\040:\
 	:co#80:\
 	:cr=\r:\
 	:do=\n:\
 	:ho=\EH:\
 	:le=\b:\
 	:li#24:\
-	:ll=\EY7\s:\
+	:ll=\EY7\040:\
 	:nd=\EC:\
 	:nl=\n:\
 	:pt:\
@@ -11609,7 +11609,7 @@ t1061:\
 	:cd=1\EJ:\
 	:ce=\EK:\
 	:cl=1\f:\
-	:cm=\EY%+\s%+\s:\
+	:cm=\EY%+\040%+\040:\
 	:co#80:\
 	:cr=\r:\
 	:ct=\EG:\
@@ -11637,7 +11637,7 @@ t1061:\
 	:pt:\
 	:se=\ER@:\
 	:sg#2:\
-	:so=\s\ERD:\
+	:so=\040\ERD:\
 	:st=\EF:\
 	:ta=\t:\
 	:ue=\ER@:\
@@ -11653,7 +11653,7 @@ t10:\
 	:cd=\EJ:\
 	:ce=\EK:\
 	:cl=30\Ej:\
-	:cm=\EY%+\s%+\s:\
+	:cm=\EY%+\040%+\040:\
 	:co#80:\
 	:dc=\EQ:\
 	:dl=\EM:\
@@ -11683,7 +11683,7 @@ t1061f:\
 	:cd=1\EJ:\
 	:ce=\EK:\
 	:cl=1\f:\
-	:cm=\EY%+\s%+\s:\
+	:cm=\EY%+\040%+\040:\
 	:co#80:\
 	:cr=\r:\
 	:ct=\EG:\
@@ -11710,7 +11710,7 @@ t1061f:\
 	:pt:\
 	:se=\ER@:\
 	:sg#2:\
-	:so=\s\ERD:\
+	:so=\040\ERD:\
 	:st=\EF:\
 	:ta=\t:\
 	:ue=\ER@:\
@@ -11813,7 +11813,7 @@ v50:\
 	:cd=\Ek:\
 	:ce=\EK:\
 	:cl=^Z:\
-	:cm=\E=%+\s%+\s:\
+	:cm=\E=%+\040%+\040:\
 	:co#80:\
 	:dl=\EM:\
 	:do=\n:\
@@ -11839,7 +11839,7 @@ trs2:\
 	:cd=^B:\
 	:ce=^A:\
 	:cl=\f:\
-	:cm=\EY%+\s%+\s:\
+	:cm=\EY%+\040%+\040:\
 	:co#80:\
 	:dl=^K:\
 	:do=^_:\
