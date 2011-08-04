@@ -18,7 +18,7 @@
 .\" ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR *
 .\" IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.                *
 .\"*****************************************************************************
-.\" $Id: tctest.1,v 1.1 2011/07/24 18:38:44 tom Exp $
+.\" $Id: tctest.1,v 1.3 2011/08/04 10:55:56 tom Exp $
 .TH TCTEST 1
 .SH NAME
 \fBtctest\fP \- termcap library checker
@@ -54,37 +54,49 @@ The reason for listing it in this way is to provide easy comparison.
 .PP
 These are the options:
 .TP
-\fB-a\fP
+\fB\-a\fP
 show capabilities for all names in termcap file.
 This overrides the \fB\-b\fP option.
 .TP
-\fB-b\fP
+\fB\-b\fP
 use brute-force to find all capabilities, e.g., for the names given on
 the command-line.
 If the \fB\-b\fP option is not specified,
 \fBtctest\fP uses the names from a built-in table of termcap names
 chosen to correspond to terminfo capability names.
 .TP
-\fB-e\fP
+\fB\-e\fP
 use $TERMCAP variable if it exists.
 If this option is not set,
 \fBtctest\fP unsets the \fBTERMCAP\fP environment variable.
 .TP
-\fB-f NAME\fP
+\fB\-f NAME\fP
 use this termcap file.
 \fBtctest\fP sets the \fBTERMCAP\fP environment variable to the
 file's absolute path.
 .TP
-\fB-l\fP
+\fB\-l\fP
 list names and aliases in termcap file.
 .TP
-\fB-v\fP
+\fB\-o NAME\fP
+redirect output (the reformatted input) to this file.
+By default that goes to the standard output.
+.TP
+\fB\-s\fP
+show a summary report.
+.TP
+\fB\-v\fP
 verbose (prints names to stderr to track tgetent calls).
 This is useful in conjunction with \fB\-a\fP,
 e.g., to help pinpoint places where \fBtgetent\fP reports
 that a terminal entry is too large.
+Repeat the option to get more detail.
 .TP
-\fB-V\fP
+\fB\-w\fP
+check the result from \fBtgetent\fP and \fBtgetstr\fP,
+printing warnings to the standard error.
+.TP
+\fB\-V\fP
 print the program version and exit
 .SH SEE ALSO
 .PP
