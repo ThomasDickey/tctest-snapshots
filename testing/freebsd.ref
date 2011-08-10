@@ -102,9 +102,6 @@ agile:\
 # alias x1700-lm
 # alias diablo-lm
 # alias xerox-lm
-# alias \
-
-# (alias differs)
 dtc:\
 	:al=^P^Z:\
 	:am:\
@@ -10613,8 +10610,6 @@ tek4025a:\
 	:nd=^]rig;:\
 	:rs=!com\04029^]del\0400^]rss\040t^]buf^]buf\040n^]cle^]dis^]dup^]ech\040r^]eol:
 # alias 4025a
-^]era g^]for n^]pad 203^]pad 209^]sno n^]sto 9 17 25 33 41 49 57 65 73\
-:\
 4025-17:\
 	:AL=^_up\r^_ili\040%d\r:\
 	:CC=^_:\

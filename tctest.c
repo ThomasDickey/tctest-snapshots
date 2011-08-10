@@ -22,7 +22,7 @@
 /*
  * Author: Thomas E. Dickey
  *
- * $Id: tctest.c,v 1.33 2011/08/04 10:53:53 tom Exp $
+ * $Id: tctest.c,v 1.44 2011/08/09 23:35:25 tom Exp $
  *
  * A simple test-program for the termcap interface.
  *
@@ -56,21 +56,23 @@ extern char *_nc_infotocap(const char *, const char *, int const);
 #include <termcap.h>
 #endif
 
+#ifndef NCURSES_CONST
+#define NCURSES_CONST		/* nothing */
+#endif
+
 #ifndef HAVE_TERMCAP_H
 /* only the newer implementations provide prototypes */
-extern int tgetflag(char *);
-extern int tgetnum(char *);
-extern int tgetent(char *, char *);
-extern int tputs(char *, int, int (*)(int));
-extern char *tgetstr(char *, char **);
+extern int tgetflag(NCURSES_CONST char *);
+extern int tgetnum(NCURSES_CONST char *);
+extern int tgetent(NCURSES_CONST char *, char *);
+extern int tputs(NCURSES_CONST char *, int, int (*)(int));
+extern char *tgetstr(NCURSES_CONST char *, char **);
 #endif
 
 extern void _nc_leaks_tic(void);
 extern void _nc_freeall(void);
 
-#ifndef NCURSES_CONST
-#define NCURSES_CONST		/* nothing */
-#endif
+#define MAXBUF 4096
 
 #define FCOLS 2
 #define FNULL(type) "%s %-*s cancelled ", #type, FCOLS
@@ -91,7 +93,10 @@ static int v_opt = 0;
 static int w_opt = 0;
 
 /* "-s" report */
+static unsigned largest_entry;
 static unsigned total_entries;
+static unsigned total_failure;
+static unsigned total_warning;
 static unsigned total_tgetent;
 static unsigned total_wasted0;
 static unsigned total_aliases;
@@ -136,7 +141,7 @@ set_termcap_file(const char *fname)
     const char *format = "TERMCAP=%s";
     const char *prefix = "";
     char *value;
-    char buffer[1024];
+    char buffer[MAXBUF];
 
     /* the $TERMCAP variable must be an absolute pathname */
     if (*fname != '/') {
@@ -266,16 +271,20 @@ count_wasted0(char *buffer)
 static void
 count_tgetent(char *buffer)
 {
+    total_entries++;
+
     if (buffer != 0 && *buffer != '\0') {
 	unsigned wasted = count_wasted0(buffer);
-	unsigned length = strlen(buffer);
+	unsigned length = (unsigned) strlen(buffer);
 
-	total_entries++;
-	total_tgetent += strlen(buffer);
+	if (largest_entry < length)
+	    largest_entry = length;
+
+	total_tgetent += (unsigned) strlen(buffer);
 	total_wasted0 += wasted;
 	total_aliases += count_aliases(buffer);
-	total_toobig0 += (length > 1023);
-	total_toobig1 += ((length - wasted) > 1023);
+	total_toobig0 += (unsigned) (length > 1023);
+	total_toobig1 += (unsigned) ((length - wasted) > 1023);
     }
 }
 
@@ -286,7 +295,7 @@ count_tgetent(char *buffer)
  * A value of 1 in the table means do both pad and % translations.
  */
 static int
-uses_params(char *capname)
+uses_params(const char *capname)
 {
 #define DATA(name, value) { name, value }
     static const struct {
@@ -398,10 +407,10 @@ uses_params(char *capname)
 }
 
 static void
-check_tgoto(char *capname, char *buffer)
+check_tgoto(const char *capname, const char *buffer)
 {
     if (buffer != 0 && *buffer != '\0') {
-	char *p;
+	const char *p;
 	int done = 0;
 	for (p = buffer; !done && (*p != '\0'); ++p) {
 	    if (*p == '\\') {
@@ -409,9 +418,11 @@ check_tgoto(char *capname, char *buffer)
 		    break;
 		}
 	    } else if (*p == '%') {
-		char *mark = p;
+		const char *mark = p;
 		if (*++p == '\0' || *p == ':') {
-		    fprintf(report, "%s - trailing %%\n", capname);
+		    ++total_warning;
+		    if (w_opt)
+			fprintf(report, "%s - trailing %%\n", capname);
 		    break;
 		} else {
 		    int need = 0;
@@ -433,8 +444,10 @@ check_tgoto(char *capname, char *buffer)
 			need = 2;
 			break;
 		    default:
-			fprintf(report, "%s - unrecognized escape %s\n",
-				capname, mark);
+			++total_warning;
+			if (w_opt)
+			    fprintf(report, "%s - unrecognized escape %s\n",
+				    capname, mark);
 			done = 1;
 			break;
 		    }
@@ -464,13 +477,14 @@ setcatch(void (*function) (int))
  * will dump core rather than return an error.
  */
 static int
-load_safely(char *buffer, char *name)
+safe_tgetent(char *buffer, char *name)
 {
     int result;
 
     setcatch(catcher);
     if (setjmp(my_jumper) != 0) {
 	result = 0;
+	total_failure++;
     } else {
 	result = 0;
 	buffer[0] = '\0';
@@ -483,14 +497,14 @@ load_safely(char *buffer, char *name)
 }
 
 static int
-loadit(char *buffer, char *name)
+call_tgetent(char *buffer, char *name)
 {
     int result;
 
     if (v_opt)
 	fprintf(report, "loading %s\n", name);
 
-    result = load_safely(buffer, name);
+    result = safe_tgetent(buffer, name);
 
     if (result && s_opt) {
 	count_tgetent(buffer);
@@ -501,20 +515,40 @@ loadit(char *buffer, char *name)
     return result;
 }
 
+/*
+ * If a termcap is too large, some implementations (particularly Solaris)
+ * will dump core rather than return an error.
+ */
+static char *
+safe_tgetstr(NCURSES_CONST char *cap, char **areap)
+{
+    char *result;
+
+    setcatch(catcher);
+    if (setjmp(my_jumper) != 0) {
+	result = 0;
+	total_failure++;
+    } else {
+	result = tgetstr(cap, areap);
+    }
+    setcatch(SIG_DFL);
+    return result;
+}
+
 static char *
 dumpit(const char *cap, char **areap)
 {
     NCURSES_CONST char *capname = (NCURSES_CONST char *) cap;
     char *result = 0;
-    char buffer[1024], *append = 0;
+    char buffer[MAXBUF], *append = 0;
     char *str;
     int num;
 
-    if ((str = tgetstr(capname, areap)) != 0) {
+    if ((str = safe_tgetstr(capname, areap)) != 0) {
 	int params = uses_params(capname);
 	char *cpy = 0;
 #ifdef USE_LIBTIC
-	char mybuf[4096];
+	char mybuf[MAXBUF];
 	char *p, *q;
 	/* _nc_infotocap() expects backslashes to be escaped */
 	for (p = mybuf, q = str; *q != 0; ++q) {
@@ -533,16 +567,18 @@ dumpit(const char *cap, char **areap)
 	    }
 	    str = cpy;
 	} else if (params) {
-	    if (w_opt)
+	    if (w_opt) {
+		++total_warning;
 		fprintf(report, "cannot translate %s=%s\n", capname, mybuf);
+	    }
 	    params = 0;
 	}
 #endif
 	if (str == (char *) -1) {
 	    sprintf(buffer, "\t:%s@:", capname);
 	} else {
-	    if (params > 0 && w_opt)
-		check_tgoto(capname, buffer);
+	    if (params > 0)
+		check_tgoto(capname, str);
 	    sprintf(buffer, "\t:%s=", capname);
 	    append = buffer + strlen(buffer);
 	    while (*str != 0) {
@@ -572,6 +608,7 @@ dumpit(const char *cap, char **areap)
 		    } else {
 			strcpy(append, "^");
 			if (w_opt) {
+			    ++total_warning;
 			    if (!isalpha(UCH(*str))) {
 				if (*str == '@') {
 				    fprintf(report, "unexpected escape ^@\n");
@@ -597,10 +634,10 @@ dumpit(const char *cap, char **areap)
 			 * needed, and the majority of original examples do
 			 * not use the octal values.
 			 */
-			if (!strncmp(str, "136", 3)) {
+			if (!strncmp(str, "136", (size_t) 3)) {
 			    strcpy(append, "\\^");
 			    str += 3;
-			} else if (!strncmp(str, "134", 3)) {
+			} else if (!strncmp(str, "134", (size_t) 3)) {
 			    strcpy(append, "\\\\");
 			    str += 3;
 			} else {
@@ -644,7 +681,7 @@ report_one_size(char *buffer, int count, char *area, int length)
 	 */
 	if (*buffer != '\0') {
 	    unsigned wasted = count_wasted0(buffer);
-	    unsigned buflen = strlen(buffer);
+	    unsigned buflen = (unsigned) strlen(buffer);
 
 	    fprintf(report, "\t%4d bytes total (%.1f%%)\n",
 		    buflen, PCT(buflen, 1023));
@@ -687,13 +724,13 @@ report_one_size(char *buffer, int count, char *area, int length)
 static char **
 brute_force(char *name)
 {
-    char buffer[4096];
-    char *vector[1024];
-    char area[4096], *ap = area;
+    char buffer[MAXBUF];
+    char *vector[MAXBUF];
+    char area[MAXBUF], *ap = area;
     int count = 0;
 
     area[0] = '\0';
-    if (loadit(buffer, name)) {
+    if (call_tgetent(buffer, name)) {
 	char cap[3];
 	int c1, c2;
 
@@ -714,7 +751,7 @@ brute_force(char *name)
 	}
     }
     vector[count] = 0;
-    report_one_size(buffer, count, area, ap - area);
+    report_one_size(buffer, count, area, (int) (ap - area));
     return make_list(vector);
 }
 
@@ -777,13 +814,13 @@ conventional(char *name)
 	"us", "ut", "vb", "ve", "vi", "vs", "vt", "wi", "ws", "xb", "xl",
 	"xn", "xo", "xr", "xs", "xt", "xx",
     };
-    char buffer[4096];
-    char area[4096], *ap = area;
-    char *vector[1024];
+    char buffer[MAXBUF];
+    char area[MAXBUF], *ap = area;
+    char *vector[MAXBUF];
     int count = 0;
 
     area[0] = '\0';
-    if (loadit(buffer, name)) {
+    if (call_tgetent(buffer, name)) {
 	size_t n;
 	for (n = 0; n < sizeof(tbl) / sizeof(tbl[0]); ++n) {
 	    char *value = dumpit(tbl[n], &ap);
@@ -793,7 +830,7 @@ conventional(char *name)
 	}
     }
     vector[count] = 0;
-    report_one_size(buffer, count, area, ap - area);
+    report_one_size(buffer, count, area, (int) (ap - area));
     return make_list(vector);
 }
 
@@ -860,22 +897,115 @@ dump_entry(char *name, int *in_file, int *in_data, char ***last)
     *in_data = 0;
 }
 
+/* the BSD termcaps contain a couple of instances where there is a dangling
+ * escape before the next entry.  Detect that case (ncurses does).
+ */
+static int
+is_beginning(char *buffer)
+{
+    int result = 0;
+    if (isCapName(UCH(*buffer))) {
+	int marker = 0;
+	int ch;
+
+	while ((ch = *buffer++) != '\0') {
+	    if (isCapName(ch)) {
+		++result;
+	    } else if (ch == '|') {
+		++result;
+		marker = 1;
+	    } else if (ch == ':') {
+		if (result < 2)
+		    result = 0;
+		break;
+	    } else if (!marker) {
+		break;
+	    }
+	}
+    }
+    return result;
+}
+
+static int
+get_entry(FILE *fp, char *buffer, size_t length)
+{
+    static char current[MAXBUF];
+    int result = 0;
+    int escaped = 0;
+    int reused = (*current != '\0');
+
+    *buffer = '\0';
+
+    if (!feof(fp)) {
+	size_t have;
+	size_t skip = 0;
+
+	while (reused || (fgets(current, (int) sizeof(current), fp) != 0)) {
+	    reused = 0;
+	    if (*current == '#') {
+		*current = '\0';
+		continue;
+	    }
+	    have = strlen(current);
+	    if (escaped) {
+		for (skip = 0;
+		     (current[skip] == '\t') || (current[skip] == ' ');
+		     ++skip) {
+		    ;
+		}
+	    }
+
+	    if (have > 0) {
+		if (current[have - 1] == '\n') {
+		    current[--have] = '\0';
+		}
+	    }
+
+	    if (escaped && !reused && is_beginning(current)) {
+		/* will reuse 'current' on the next call */
+		break;
+	    }
+
+	    if (have > 1
+		&& current[have - 1] == '\\') {
+		current[--have] = '\0';
+		escaped = 1;
+	    } else if (have == 0) {
+		continue;
+	    } else {
+		escaped = 0;
+	    }
+
+	    if (strlen(buffer) + strlen(current + skip) + 2 < length)
+		strcat(buffer, current + skip);
+	    result++;
+	    *current = '\0';
+
+	    if (!escaped)
+		break;
+	}
+    } else if (*current) {
+	strcpy(buffer, current);
+	*current = '\0';
+    }
+
+    return result;
+}
+
 static void
 dump_all(int contents)
 {
-    char buffer[1024];
+    char buffer[MAXBUF];
     FILE *fp = open_termcap_file();
     char **last = 0;
     int in_file = 1;
 
-    while (fgets(buffer, sizeof(buffer), fp) != 0) {
+    while (get_entry(fp, buffer, sizeof(buffer)) != 0) {
 	int in_data = 1;
 	char *next = buffer;
 	char *later = 0;
 	char *value;
 
-	if (*buffer == '#' || isspace(UCH(*buffer)))
-	    continue;
 	while ((value = strtok(next, "|")) != 0 && strchr(value, ':') == 0) {
 	    if (contents) {
 		if ((value == buffer) && (strlen(value) == 2)) {
@@ -954,6 +1084,7 @@ main(int argc, char *argv[])
 	    output = fopen(optarg, "w");
 	    if (output == 0)
 		failed(optarg);
+	    report = stdout;
 	    break;
 	case 's':
 	    s_opt = 1;
@@ -981,6 +1112,18 @@ main(int argc, char *argv[])
 #endif
 #ifdef HAVE_LIBNCURSES
     use_extended_names(1);
+#endif
+
+    /*
+     * (n)curses may use $CC to modify data; suppress that.
+     */
+#ifdef HAVE_UNSETENV
+    unsetenv("CC");
+#else
+    if (getenv("CC") != 0 && *getenv("CC") != '\0') {
+	static char no_cc[] = "CC=";
+	putenv(no_cc);
+    }
 #endif
 
     /*
@@ -1020,9 +1163,12 @@ main(int argc, char *argv[])
 	    fprintf(report, "%6u total names+aliases\n", total_aliases);
 	    fprintf(report, "%6u total size\n", total_tgetent);
 	    fprintf(report, "%6u total waste\n", total_wasted0);
+	    fprintf(report, "%6u largest size\n", largest_entry);
 	    fprintf(report, "%6u average size\n", total_tgetent / total_entries);
 	    fprintf(report, "%6u total too large\n", total_toobig0);
 	    fprintf(report, "%6u total too large w/o waste\n", total_toobig1);
+	    fprintf(report, "%6u library failures\n", total_failure);
+	    fprintf(report, "%6u tctest warnings\n", total_warning);
 	}
 	fflush(report);
     }

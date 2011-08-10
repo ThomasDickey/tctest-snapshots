@@ -1,5 +1,5 @@
 dnl Process this file with autoconf to produce a configure script.
-AC_REVISION($Revision: 1.5 $)
+AC_REVISION($Revision: 1.8 $)
 AC_PREREQ(2.13.20030927)
 rm -f config.cache
 
@@ -51,13 +51,17 @@ AC_ARG_WITH(ncurses,
 	[  --with-ncurses          use ncurses-libraries],
 	[cf_cv_screen=ncurses],[
 
+AC_ARG_WITH(curses,
+	[  --with-curses           use curses-libraries rather than termcap],
+	[cf_cv_screen=curses],[
+
 AC_ARG_WITH(curses-colr,
 	[  --with-curses-colr      compile/link with HPUX 10.x color-curses],
 	[cf_cv_screen=curses_colr],[
 
 AC_ARG_WITH(curses-5lib,
 	[  --with-curses-5lib      compile/link with SunOS 5lib curses],
-	[cf_cv_screen=curses_5lib])])])])
+	[cf_cv_screen=curses_5lib])])])])])
 
 AC_MSG_RESULT($cf_cv_screen)
 
@@ -75,11 +79,14 @@ ncursesw)
 	CF_NCURSES_CONFIG(ncursesw)
 	;;
 *)
-	AC_CHECK_LIB(termcap, tgetent,
-		[CF_ADD_LIBS(-ltermcap)
-		 cf_cv_termlib=terminfo],
-		[CF_TERMCAP_LIBS
-		 CF_FUNC_TGETENT])
+	AC_CHECK_LIB(otermcap, tgetent,
+		[CF_ADD_LIBS(-lotermcap)
+		 cf_cv_termlib=termcap],
+		[AC_CHECK_LIB(termcap, tgetent,
+			[CF_ADD_LIBS(-ltermcap)
+			 cf_cv_termlib=termcap],
+			[CF_TERMCAP_LIBS
+			 CF_FUNC_TGETENT])])
 	;;
 esac
 
@@ -98,7 +105,7 @@ else
 	cf_cv_termlib=none
 fi
 
-AC_HAVE_FUNCS($cf_tc_funcs _nc_infotocap use_env _nc_leaks_tic _nc_freeall)
+AC_HAVE_FUNCS($cf_tc_funcs _nc_infotocap unsetenv use_env _nc_leaks_tic _nc_freeall)
 
 CF_LARGEFILE
 

@@ -1,4 +1,4 @@
-# $Id: makefile.in,v 1.5 2011/07/27 21:15:06 tom Exp $
+# $Id: makefile.in,v 1.6 2011/08/09 09:54:54 tom Exp $
 
 SHELL		= /bin/sh
 
@@ -81,6 +81,10 @@ $(PROGRAM): $(OBJ)
 
 check: $(PROGRAM)
 	cd testing && ./run_test.sh
+check-cap: $(PROGRAM)
+	cd testing && ./run_test.sh -c
+check-tic: $(PROGRAM)
+	cd testing && ./run_test.sh -t
 
 NAME_OF_ACTUAL = $(ACTUAL)$x
 PATH_OF_ACTUAL = $(BINDIR)/$(ACTUAL)$x
