@@ -1,3 +1,86 @@
+2011-08-10  Thomas E. Dickey  <dickey@invisible-island.net>
+
+	* tctest.1: add -c, -n and -r options
+
+	* testing/run_test.sh:
+	use -n and -r options to show timing of tgetent calls
+
+	* tctest.c: add -c, -n and -r options
+
+2011-08-09  Thomas E. Dickey  <dickey@invisible-island.net>
+
+	* package/debian/changelog, package/tctest.spec, VERSION: bump
+
+	* configure: regen
+
+	* aclocal.m4: add check for otermcap (OpenBSD)
+	modify CF_XOPEN_SOURCE for NetBSD to add _NETBSD_SOURCE.
+
+	* configure.in: add check for otermcap (OpenBSD)
+
+	* configure: regen
+
+	* configure.in:
+	add --with-curses option, for NetBSD termcap-emulation in curses library.
+
+	* tctest.c: gcc warnings for 64-bits
+
+	* tctest.c: add largest-size to summary report
+
+	* testing/run_test.sh: reduce the ".err" to a reminder
+
+	* makefile.in: add check-cap and check-tic rules
+
+	* tctest.c: fixes/improvements for the dangling "\" check.
+
+	* testing/freebsd.ref: regen
+
+	* testing/run_test.sh:
+	improve redirection of stderr to separate output from 'time' (stderr on
+	some BSDs) from the program's output.
+
+2011-08-08  Thomas E. Dickey  <dickey@invisible-island.net>
+
+	* testing/bsd43.ref: regen
+
+	* tctest.c:
+	provide for entries which have continuation markers in odd places
+
+	* tctest.c: gcc-warnings for 64-bits
+
+	* testing/run_test.sh:
+	redirect error messages from the terminal database compilers - want numbers only
+
+	* testing/run_test.sh: improve the cleanup of temporary files
+
+	* testing/run_test.sh:
+	modify to allow "-t" option to tell the script to use tic to first create
+	a database, which can be used with the termcap library
+
+	* testing/run_test.sh:
+	modify to test with hashed-db using NetBSD termcap
+
+2011-08-05  Thomas E. Dickey  <dickey@invisible-island.net>
+
+	* configure: regen
+
+	* configure.in: add check for unsetenv()
+
+	* tctest.c: suppress curses' use of $CC
+
+	* tctest.c: correct parameter to check_tgoto()
+
+	* testing/run_test.sh: redirect library errors to a file, give counts
+
+	* tctest.1, tctest.c:
+	modify -o option so that reports go to stdout as well
+
+	* package/debian/changelog, package/tctest.spec, VERSION: bump
+
+	* tctest.c:
+	again, wrap tgetstr() to work around various BSD4.2 flavors which are defective.
+	show totals for library-failures and tctest-warnings in summary.
+
 2011-08-04  Thomas E. Dickey  <dickey@invisible-island.net>
 
 	* tctest.c: fix count for tgetent() calls for terminfo systems.
