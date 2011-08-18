@@ -18,7 +18,7 @@
 .\" ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR *
 .\" IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.                *
 .\"*****************************************************************************
-.\" $Id: tctest.1,v 1.4 2011/08/05 09:05:20 tom Exp $
+.\" $Id: tctest.1,v 1.5 2011/08/10 23:58:31 tom Exp $
 .TH TCTEST 1
 .SH NAME
 \fBtctest\fP \- termcap library checker
@@ -61,16 +61,19 @@ This overrides the \fB\-b\fP option.
 \fB\-b\fP
 use brute-force to find all capabilities, e.g., for the names given on
 the command-line.
-If the \fB\-b\fP option is not specified,
+.TP
+\fB\-c\fP
 \fBtctest\fP uses the names from a built-in table of termcap names
 chosen to correspond to terminfo capability names.
+This is the default;
+the \fB\-c\fP option is provided to cancel \fB\-b\fP.
 .TP
 \fB\-e\fP
 use $TERMCAP variable if it exists.
 If this option is not set,
 \fBtctest\fP unsets the \fBTERMCAP\fP environment variable.
 .TP
-\fB\-f NAME\fP
+\fB\-f\fP \fINAME\fP
 use this termcap file.
 \fBtctest\fP sets the \fBTERMCAP\fP environment variable to the
 file's absolute path.
@@ -78,13 +81,21 @@ file's absolute path.
 \fB\-l\fP
 list names and aliases in termcap file.
 .TP
-\fB\-o NAME\fP
+\fB\-n\fP
+do not query for the capability names.
+This option is used to allow timing "only" \fBtgetent\fP.
+.TP
+\fB\-o\fP \fINAME\fP
 redirect output (the reformatted input) to this file.
 By default that goes to the standard output.
 If this option is used, verbose and summary reports are written
 to the standard output instead of the standard error,
 to allow separating them from error messages that may be written
 by the termcap library.
+.TP
+\fB\-r\fP \fICOUNT\fP
+repeat the processing of the terminal database this many times.
+As in \fB\-n\fP, this is used to help measure timing for \fBtgetent\fP.
 .TP
 \fB\-s\fP
 show a summary report.

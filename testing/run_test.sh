@@ -1,16 +1,22 @@
 #!/bin/sh
-# $Id: run_test.sh,v 1.19 2011/08/09 10:49:01 tom Exp $
+# $Id: run_test.sh,v 1.23 2011/08/18 08:59:12 tom Exp $
 # vi:ts=4 sw=4
 # test-script for tctest
 
 PROG="${TCTEST:-../tctest}"
 
-PATH=/bin:/usr/bin:$PATH
-export PATH
-
 unset LINES
 unset COLUMNS
 unset TERMCAP
+
+case x`(infocmp |egrep '^#') 2>/dev/null` in
+*.db)
+	HASH=yes
+	;;
+*)
+	HASH=no
+	;;
+esac
 
 HERE=`pwd`
 TYPE=none
@@ -59,7 +65,10 @@ do
 		export TERMPATH
 		;;
 	tic)
-		mkdir $root
+		if test $HASH = no
+		then
+			mkdir $root
+		fi
 		TERMINFO=$HERE/$root
 		export TERMINFO
 		TERMINFO_DIR=$TERMINFO
@@ -69,16 +78,18 @@ do
 	esac
 
 	echo
+	echo "...tgetent*10"
+	time sh -c "$PROG -f $name -n -r 10 -s 2>$root.err"
+
+	echo
 	echo "...standard"
 	time sh -c "$PROG -f $name -a -o $root.std -s $OPTS 2>$root.err"
 	echo "** `egrep -v '^[#	]' $root.std |wc -l` entries, `egrep '^	' $root.std |wc -l` capabilities, `cat $root.err | wc -l` library warnings"
-	test -s $root.err && ls -l $root.err
 
 	echo
 	echo "...complete"
 	time sh -c "$PROG -b -f $name -a -o $root.all $OPTS 2>$root.err"
 	echo "** `egrep -v '^[#	]' $root.std |wc -l` entries, `egrep '^	' $root.std |wc -l` capabilities, `cat $root.err | wc -l` library warnings"
-	test -s $root.err && ls -l $root.err
 
 	echo
 	if test -f $root.ref
@@ -94,8 +105,10 @@ do
 		cp $root.all $root.ref
 		echo "...saved $root.ref"
 	fi
-	if ! cmp -s $root.std $root.ref
+	if cmp -s $root.std $root.ref
 	then
+		:
+	else
 		diff -u $root.ref $root.std |diffstat
 	fi
 	rm -rf $root.err $root.std *.db $root

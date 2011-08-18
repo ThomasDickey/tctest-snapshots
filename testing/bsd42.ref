@@ -1186,8 +1186,8 @@ vc404-na:\
 	:nl=\n:\
 	:up=^Z:
 # alias MA
-vc404-s-na:\
-# alias MB
+# name vc404-s-na (unknown)
+# alias MB (unknown)
 vc303a:\
 	:am:\
 	:bl=^G:\
@@ -2661,8 +2661,8 @@ aa:\
 # alias annarbor
 # alias 4080
 # alias N0
-aaa-29-np:\
-# alias N1
+# name aaa-29-np (unknown)
+# alias N1 (unknown)
 aaa-unk:\
 	:al=3\E[L:\
 	:am:\
@@ -5869,9 +5869,9 @@ tek4014-sm:\
 	:os:
 # alias 4014-sm
 # alias Xe
-tek4015-sm:\
-# alias 4015-sm
-# alias Xf
+# name tek4015-sm (unknown)
+# alias 4015-sm (unknown)
+# alias Xf (unknown)
 tek4023:\
 	:am:\
 	:bl=^G:\
@@ -7132,9 +7132,9 @@ c108-na:\
 # alias c108-na-8p
 # alias concept108-na-8p
 # alias c6
-c108-rv-na:\
-# alias c108-rv-na-8p
-# alias c7
+# name c108-rv-na (unknown)
+# alias c108-rv-na-8p (unknown)
+# alias c7 (unknown)
 c108-w:\
 	:al=\E^R:\
 	:am:\
@@ -10278,8 +10278,8 @@ mime2a:\
 	:us=\E4:
 # alias mime2a-v
 # alias mv
-mime-3ax:\
-# alias mx
+# name mime-3ax (unknown)
+# alias mx (unknown)
 pe550:\
 	:bl=^G:\
 	:bs:\
