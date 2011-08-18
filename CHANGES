@@ -1,3 +1,56 @@
+2011-08-18  Thomas E. Dickey  <dickey@invisible-island.net>
+
+	* VERSION, package/debian/changelog, package/tctest.spec: bump
+
+	* testing/run_test.sh: workaround for Solaris' sh
+
+2011-08-15  Thomas E. Dickey  <dickey@invisible-island.net>
+
+	* testing/escapes.ref, testing/bsd43.ref, testing/bsd42.ref: regen
+
+	* testing/escapes.tc:
+	add ^'s and \'s for punctuation, to exercise ^? and friends
+
+2011-08-13  Thomas E. Dickey  <dickey@invisible-island.net>
+
+	* tctest.c:
+	configure script changed so that USE_TERMINFO isn't set for FreeBSD builds
+
+	* testing/run_test.sh: fix in case infocmp is not available
+
+	* testing/run_test.sh:
+	check if infocmp uses a hashed-database.  If so, expect that ncurses is
+	configured to support this.
+
+	* tctest.c: add a null-pointer check in same_list()
+
+2011-08-12  Thomas E. Dickey  <dickey@invisible-island.net>
+
+	* tctest.c:
+	improve check for "unknown" status return from tgetent, showing "unknown"
+	in the comment for a name/alias.
+
+	* tctest.c:
+	check for NetBSD's "ZZ" entry, to get the resolved size of the entry
+
+	* testing/includes.ref: RCS_BASE
+
+2011-08-11  Thomas E. Dickey  <dickey@invisible-island.net>
+
+	* tctest.c: add counts for tc's before/after
+
+	* testing/includes.tc: RCS_BASE
+
+	* tctest.c:
+	consolidate the two instances of unsetenv() into one ifdef'd fallback.
+	add ifdef based on configure check for broken tgetent status.
+
+	* configure: regen
+
+	* aclocal.m4: add CF_BROKEN_TGETENT_STATUS
+
+	* configure.in: add check for broken tgetent status
+
 2011-08-10  Thomas E. Dickey  <dickey@invisible-island.net>
 
 	* tctest.1: add -c, -n and -r options

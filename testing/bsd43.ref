@@ -5241,7 +5241,7 @@ wsiris:\
 	:vs=\E;:
 # alias iris40
 # alias S1
-	:\
+# name 	 (unknown)
 aaa-unk:\
 	:al=3\E[L:\
 	:am:\

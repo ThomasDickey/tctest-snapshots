@@ -22,7 +22,7 @@
 /*
  * Author: Thomas E. Dickey
  *
- * $Id: tctest.c,v 1.44 2011/08/09 23:35:25 tom Exp $
+ * $Id: tctest.c,v 1.51 2011/08/13 23:31:31 tom Exp $
  *
  * A simple test-program for the termcap interface.
  *
@@ -43,7 +43,7 @@
 #include <signal.h>
 #include <setjmp.h>
 
-#if defined(USE_TERMINFO) && defined(HAVE__NC_INFOTOCAP)
+#if defined(HAVE__NC_INFOTOCAP)
 extern char *_nc_infotocap(const char *, const char *, int const);
 #define USE_LIBTIC 1
 #endif
@@ -69,6 +69,8 @@ extern int tputs(NCURSES_CONST char *, int, int (*)(int));
 extern char *tgetstr(NCURSES_CONST char *, char **);
 #endif
 
+static char *safe_tgetstr(NCURSES_CONST char *cap, char **);
+
 extern void _nc_leaks_tic(void);
 extern void _nc_freeall(void);
 
@@ -88,6 +90,7 @@ static int b_opt = 0;
 static int e_opt = 0;
 static char *f_opt = 0;
 static int l_opt = 0;
+static int r_opt = 0;
 static int s_opt = 0;
 static int v_opt = 0;
 static int w_opt = 0;
@@ -102,6 +105,10 @@ static unsigned total_wasted0;
 static unsigned total_aliases;
 static unsigned total_toobig0;
 static unsigned total_toobig1;
+static unsigned total_include0;
+static unsigned total_include1;
+static unsigned largest_include;
+static unsigned unknown_include;
 
 static FILE *output;
 static FILE *report;
@@ -112,6 +119,24 @@ failed(const char *msg)
     perror(msg);
     exit(EXIT_FAILURE);
 }
+
+#ifdef HAVE_UNSETENV
+#define my_unsetenv(name) unsetenv(name)
+#else
+static void
+my_unsetenv(const char *name)
+{
+    if (getenv(name) != 0 && *getenv(name) != '\0') {
+	char *no_value = malloc(strlen(name) + 2);
+	if (no_value != 0) {
+	    sprintf(no_value, "%s=", name);
+	    putenv(no_value);
+	} else {
+	    failed("unsetenv");
+	}
+    }
+}
+#endif
 
 static const char *
 find_termcap_file(void)
@@ -178,11 +203,13 @@ make_list(char **list)
 	for (n = 0; list[n] != 0; ++n) {
 	    ;
 	}
-	++n;
-	result = calloc(n, sizeof(char *));
-	if (result != 0) {
-	    for (n = 0; list[n] != 0; ++n) {
-		result[n] = list[n];
+	if (n) {
+	    ++n;
+	    result = calloc(n, sizeof(char *));
+	    if (result != 0) {
+		for (n = 0; list[n] != 0; ++n) {
+		    result[n] = list[n];
+		}
 	    }
 	}
     }
@@ -207,14 +234,18 @@ same_list(char **a, char **b)
     int result = 1;
     int n;
 
-    for (n = 0; a[n] != 0 && b[n] != 0; ++n) {
-	if (strcmp(a[n], b[n])) {
-	    result = 0;
-	    break;
-	}
-    }
-    if ((a[n] != 0) ^ (b[n] != 0)) {
+    if (a == 0 || b == 0) {
 	result = 0;
+    } else {
+	for (n = 0; a[n] != 0 && b[n] != 0; ++n) {
+	    if (strcmp(a[n], b[n])) {
+		result = 0;
+		break;
+	    }
+	}
+	if ((a[n] != 0) ^ (b[n] != 0)) {
+	    result = 0;
+	}
     }
     return result;
 }
@@ -235,6 +266,27 @@ count_aliases(char *buffer)
     if (p != buffer && *p == ':')
 	--result;
 
+    return result;
+}
+
+static unsigned
+count_includes(const char *buffer)
+{
+    unsigned result = 0;
+    const char *p = strchr(buffer, ':');
+    int ch;
+
+    if (p != 0) {
+	while ((ch = *p++) != '\0' && (*p != '\0')) {
+	    if (ch == '\\') {
+		++p;
+	    } else if (ch == ':') {
+		if (!strncmp(p, "tc=", (size_t) 3)) {
+		    ++result;
+		}
+	    }
+	}
+    }
     return result;
 }
 
@@ -271,11 +323,24 @@ count_wasted0(char *buffer)
 static void
 count_tgetent(char *buffer)
 {
+    char area[MAXBUF], *areap = area;
+    char *str;
+    unsigned wasted;
+    unsigned length;
+
     total_entries++;
 
     if (buffer != 0 && *buffer != '\0') {
-	unsigned wasted = count_wasted0(buffer);
-	unsigned length = (unsigned) strlen(buffer);
+	/* check for NetBSD extension */
+	if ((str = safe_tgetstr("ZZ", &areap)) != 0) {
+	    char *ptr;
+	    char ch;
+	    if (sscanf(str, "%p%c", &ptr, &ch) == 1) {
+		buffer = ptr;
+	    }
+	}
+	wasted = count_wasted0(buffer);
+	length = (unsigned) strlen(buffer);
 
 	if (largest_entry < length)
 	    largest_entry = length;
@@ -285,6 +350,7 @@ count_tgetent(char *buffer)
 	total_aliases += count_aliases(buffer);
 	total_toobig0 += (unsigned) (length > 1023);
 	total_toobig1 += (unsigned) ((length - wasted) > 1023);
+	unknown_include += count_includes(buffer);
     }
 }
 
@@ -480,17 +546,20 @@ static int
 safe_tgetent(char *buffer, char *name)
 {
     int result;
+    int code;
 
     setcatch(catcher);
     if (setjmp(my_jumper) != 0) {
 	result = 0;
 	total_failure++;
     } else {
-	result = 0;
 	buffer[0] = '\0';
-	if (tgetent(buffer, name) >= 0) {
-	    result = 1;
-	}
+	code = tgetent(buffer, name);
+#ifdef BROKEN_TGETENT_STATUS
+	result = (code == 0);
+#else
+	result = (code > 0);
+#endif
     }
     setcatch(SIG_DFL);
     return result;
@@ -839,10 +908,13 @@ dump_by_name(char *name)
 {
     char **result = 0;
 
-    if (b_opt) {
+    if (b_opt > 0) {
 	result = brute_force(name);
-    } else {
+    } else if (b_opt == 0) {
 	result = conventional(name);
+    } else {
+	char buffer[MAXBUF];
+	(void) call_tgetent(buffer, name);
     }
 
     return result;
@@ -864,7 +936,10 @@ dump_entry(char *name, int *in_file, int *in_data, char ***last)
 {
     char **list = dump_by_name(name);
 
-    fflush(report);
+    if (DumpIt || l_opt) {
+	fflush(report);
+    }
+
     if (*in_file) {
 	if (DumpIt)
 	    fprintf(output, "# vile:tcmode\n");
@@ -883,7 +958,9 @@ dump_entry(char *name, int *in_file, int *in_data, char ***last)
 	} else {
 	    if (DumpIt) {
 		fprintf(output, "# alias %s\n", name);
-		if (!same_list(list, *last)) {
+		if (list == 0) {
+		    fprintf(output, "# (alias unknown)\n");
+		} else if (!same_list(list, *last)) {
 		    fprintf(output, "# (alias differs)\n");
 		}
 	    } else if (l_opt) {
@@ -892,7 +969,7 @@ dump_entry(char *name, int *in_file, int *in_data, char ***last)
 	    free_list(list);
 	}
     } else if (DumpIt || l_opt) {
-	fprintf(output, "# %s %s\n", *in_data ? "name" : "alias", name);
+	fprintf(output, "# %s %s (unknown)\n", *in_data ? "name" : "alias", name);
     }
     *in_data = 0;
 }
@@ -1006,6 +1083,18 @@ dump_all(int contents)
 	char *later = 0;
 	char *value;
 
+	if (s_opt) {
+	    unsigned count = count_includes(buffer);
+	    if (count) {
+		total_include0++;
+		if (count > 1) {
+		    total_include1++;
+		    if (count > largest_include) {
+			largest_include = count;
+		    }
+		}
+	    }
+	}
 	while ((value = strtok(next, "|")) != 0 && strchr(value, ':') == 0) {
 	    if (contents) {
 		if ((value == buffer) && (strlen(value) == 2)) {
@@ -1037,10 +1126,13 @@ usage(void)
 	"Options:",
 	"  -a        show capabilities for all names in termcap file",
 	"  -b        use brute-force to find all capabilities",
+	"  -c        use conventional capabilities (default)",
 	"  -e        use $TERMCAP variable if it exists",
 	"  -f NAME   use this termcap file",
 	"  -l        list names and aliases in termcap file",
+	"  -n        do not lookup capabilities, only call tgetent",
 	"  -o NAME   write to this termcap-like file",
+	"  -r COUNT  repeat the tgetent, etc., process this many times",
 	"  -s        report summary statistics for each input file",
 	"  -v        verbose (prints names to stderr to track tgetent calls),",
 	"            repeat to get statistics and buffer content",
@@ -1063,13 +1155,16 @@ main(int argc, char *argv[])
 
     output = stdout;
     report = stderr;
-    while ((ch = getopt(argc, argv, "abef:lo:svwV")) != -1) {
+    while ((ch = getopt(argc, argv, "abcef:lno:r:svwV")) != -1) {
 	switch (ch) {
 	case 'a':
 	    a_opt = 1;
 	    break;
 	case 'b':
 	    b_opt = 1;
+	    break;
+	case 'c':
+	    b_opt = 0;
 	    break;
 	case 'e':
 	    e_opt = 1;
@@ -1080,11 +1175,17 @@ main(int argc, char *argv[])
 	case 'l':
 	    l_opt = 1;
 	    break;
+	case 'n':
+	    b_opt = -1;
+	    break;
 	case 'o':
 	    output = fopen(optarg, "w");
 	    if (output == 0)
 		failed(optarg);
 	    report = stdout;
+	    break;
+	case 'r':
+	    r_opt = atoi(optarg);
 	    break;
 	case 's':
 	    s_opt = 1;
@@ -1117,42 +1218,40 @@ main(int argc, char *argv[])
     /*
      * (n)curses may use $CC to modify data; suppress that.
      */
-#ifdef HAVE_UNSETENV
-    unsetenv("CC");
-#else
-    if (getenv("CC") != 0 && *getenv("CC") != '\0') {
-	static char no_cc[] = "CC=";
-	putenv(no_cc);
-    }
-#endif
+    my_unsetenv("CC");
 
     /*
      * Unless we are asking for the $TERMCAP variable, suppress it.
      */
     if (!e_opt) {
-	unsetenv("TERMCAP");
+	my_unsetenv("TERMCAP");
     }
 
-    if (f_opt) {
-	set_termcap_file(f_opt);
-    }
+    if (r_opt <= 0)
+	r_opt = 1;
 
-    if (a_opt || l_opt || s_opt) {
-	if (optind < argc) {
-	    fprintf(stderr,
-		    "The -a,-l,-s options conflict with explicit names\n");
-	    usage();
+    for (n = 0; n < r_opt; ++n) {
+	if (f_opt) {
+	    set_termcap_file(f_opt);
 	}
-	dump_all(a_opt || s_opt);
-    } else if (optind < argc) {
-	for (n = optind; n < argc; ++n) {
-	    dump_one(argv[n]);
+
+	if (a_opt || l_opt || s_opt) {
+	    if (optind < argc) {
+		fprintf(stderr,
+			"The -a,-l,-s options conflict with explicit names\n");
+		usage();
+	    }
+	    dump_all(a_opt || s_opt);
+	} else if (optind < argc) {
+	    for (n = optind; n < argc; ++n) {
+		dump_one(argv[n]);
+	    }
+	} else if ((name = getenv("TERM")) != 0) {
+	    dump_one(name);
+	} else {
+	    static char dumb[] = "dumb";
+	    dump_one(dumb);
 	}
-    } else if ((name = getenv("TERM")) != 0) {
-	dump_one(name);
-    } else {
-	static char dumb[] = "dumb";
-	dump_one(dumb);
     }
 
     if (s_opt) {
@@ -1164,9 +1263,12 @@ main(int argc, char *argv[])
 	    fprintf(report, "%6u total size\n", total_tgetent);
 	    fprintf(report, "%6u total waste\n", total_wasted0);
 	    fprintf(report, "%6u largest size\n", largest_entry);
-	    fprintf(report, "%6u average size\n", total_tgetent / total_entries);
 	    fprintf(report, "%6u total too large\n", total_toobig0);
 	    fprintf(report, "%6u total too large w/o waste\n", total_toobig1);
+	    fprintf(report, "%6u total using tc=\n", total_include0);
+	    fprintf(report, "%6u total using multiple tc='s\n", total_include1);
+	    fprintf(report, "%6u maximum number of tc='s\n", largest_include);
+	    fprintf(report, "%6u number of unresolved tc='s\n", unknown_include);
 	    fprintf(report, "%6u library failures\n", total_failure);
 	    fprintf(report, "%6u tctest warnings\n", total_warning);
 	}
