@@ -1,3 +1,61 @@
+2011-10-01  Thomas E. Dickey  <dickey@invisible-island.net>
+
+	* tctest.c: icc warnings
+
+	* makefile.in: remove a duplicate suffix rule
+
+	* makefile.in: add docs rule
+
+	* testing/entry-size2.gnu, testing/entry-size.gnu, testing/waste-size.gnu:
+	RCS_BASE
+
+	* testing/includes.ref: resync for a case where names cannot be found
+
+	* package/debian/changelog, package/tctest.spec, VERSION: bump
+
+	* tctest.1: document -1 and -g options
+
+	* tctest.c:
+	add "-1" option to get counts from a single call to tgetent() per entry.
+
+	* tctest.c:
+	provide a breakdown of names+aliases into v6-names, primary and aliases
+
+2011-09-30  Thomas E. Dickey  <dickey@invisible-island.net>
+
+	* testing/bsd44.ref, testing/3bsd.ref: RCS_BASE
+
+	* tctest.c:
+	if -g and -s are set, get counts for number of capabilities with subcategory
+	for obsolete and distinct/obsolete.
+
+	* tctest.c:
+	add a column to by-name.dat which tells whether the capability is standard
+	or obsolete with respect to BSD 4.3
+
+2011-09-29  Thomas E. Dickey  <dickey@invisible-island.net>
+
+	* tctest.c:
+	add -g option, to write data-files for plotting frequency of entries at
+	a given size, and for plotting frequencies of given capability names.
+
+	* tctest.c:
+	use explicit range rather than isgraph(), to avoid bias with systems such
+	as OpenBSD which use broken locale data.
+
+	* tctest.c: libtic isn't relevant here - only in configure script
+
+2011-09-26  Thomas E. Dickey  <dickey@invisible-island.net>
+
+	* testing/run_test.sh:
+	use ncurses tic -K option if available, to suppress extensions to escapes.
+
+2011-09-24  Thomas E. Dickey  <dickey@invisible-island.net>
+
+	* testing/run_test.sh:
+	omit ".db" from TERMCAP and TERMPATH values, needed for *BSD's.
+	use "time -p" for more consistent reporting of timing.
+
 2011-08-18  Thomas E. Dickey  <dickey@invisible-island.net>
 
 	* VERSION, package/debian/changelog, package/tctest.spec: bump

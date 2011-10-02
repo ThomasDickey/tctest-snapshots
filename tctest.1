@@ -18,7 +18,7 @@
 .\" ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR *
 .\" IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.                *
 .\"*****************************************************************************
-.\" $Id: tctest.1,v 1.5 2011/08/10 23:58:31 tom Exp $
+.\" $Id: tctest.1,v 1.6 2011/10/01 13:13:24 tom Exp $
 .TH TCTEST 1
 .SH NAME
 \fBtctest\fP \- termcap library checker
@@ -54,6 +54,11 @@ The reason for listing it in this way is to provide easy comparison.
 .PP
 These are the options:
 .TP
+\fB\-1\fP
+when processing a termcap file, e.g., with \fB\-a\fP,
+call \fBtgetent\fP only once per entry using the primary name.
+Use this for getting per-entry statistics versus the per-call statistics.
+.TP
 \fB\-a\fP
 show capabilities for all names in termcap file.
 This overrides the \fB\-b\fP option.
@@ -77,6 +82,39 @@ If this option is not set,
 use this termcap file.
 \fBtctest\fP sets the \fBTERMCAP\fP environment variable to the
 file's absolute path.
+.TP
+\fB\-g\fP
+writes two files (\fBby-name.dat\fP and \fBby-size.dat\fP) with
+statistics gathered while processing other options,
+e.g., \fB\-a\fP or \fB\-s\fP):
+.RS
+.TP
+by-name.dat columns
+.RS
+.TP 3
+1
+the 2-character capability name in double-quotes
+.TP 3
+2
+total number of times the capability was retrieved
+.TP 3
+3
+number denoting if the value is "standard" (1) or "obsolete" (3).
+.RE
+.TP
+by-size.dat columns
+.RS
+.TP 3
+1
+size of the buffer returned by \fBtgetent\fP
+.TP 3
+2
+total number of \fBtgetent\fP calls returning this size
+.TP 3
+3
+total wasted space (tabs, newlines) for \fBtgetent\fP calls returning this size
+.RE
+.RE
 .TP
 \fB\-l\fP
 list names and aliases in termcap file.

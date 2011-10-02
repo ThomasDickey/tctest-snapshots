@@ -1,6 +1,7 @@
-# $Id: makefile.in,v 1.6 2011/08/09 09:54:54 tom Exp $
+# $Id: makefile.in,v 1.8 2011/10/01 20:19:18 tom Exp $
 
 SHELL		= /bin/sh
+THIS		= tctest
 
 #### Start of system configuration section. ####
 
@@ -30,7 +31,7 @@ x		= @EXEEXT@
 o		= .@OBJEXT@
 
 transform	= @program_transform_name@
-TARGET		= tctest
+TARGET		= $(THIS)
 ACTUAL		= `echo $(TARGET)|sed '$(transform)'`
 
 PROGRAM		= $(TARGET)$x
@@ -56,15 +57,6 @@ BINDIR		= $(DESTDIR)$(bindir)
 MANDIR		= $(DESTDIR)$(mandir)
 
 INSTALL_DIRS    = $(BINDIR) $(MANDIR)
-
-.SUFFIXES: .c .i $o
-
-.c.i:
-	@RULE_CC@
-	@ECHO_CC@$(CPP) -C $(CPPFLAGS) $< >$@
-.c$o:
-	@RULE_CC@
-	@ECHO_CC@$(CC) -c $(CPPFLAGS) $(CFLAGS) $<
 
 OBJ =	tctest$o
 
@@ -101,7 +93,7 @@ install :: \
 
 install-man \
 install :: $(MANDIR)
-	$(INSTALL_DATA) $(srcdir)/tctest.1 $(MANDIR)/$(TARGET).$(manext)
+	$(INSTALL_DATA) $(srcdir)/$(THIS).1 $(MANDIR)/$(TARGET).$(manext)
 
 uninstall-bin \
 uninstall ::
@@ -142,3 +134,40 @@ $(OBJ):	config.h
 
 $(INSTALL_DIRS):
 	mkdir -p $@
+################################################################################
+.SUFFIXES : $o .i .html .$(manext) .cat .ps .pdf .txt
+
+.c$o:
+	@RULE_CC@
+	@ECHO_CC@$(CC) -c $(CPPFLAGS) $(CFLAGS) $<
+
+.c.i :
+	@RULE_CC@
+	@ECHO_CC@$(CPP) -C $(CPPFLAGS) $*.c >$@
+
+.$(manext).cat :
+	- nroff -man $(srcdir)/$(THIS).$(manext) >$@
+
+.$(manext).html :
+	GROFF_NO_SGR=stupid $(SHELL) -c "tbl $*.$(manext) | groff -Thtml -man" >$@
+
+.$(manext).ps :
+	$(SHELL) -c "tbl $*.$(manext) | groff -man" >$@
+
+.$(manext).txt :
+	GROFF_NO_SGR=stupid $(SHELL) -c "tbl $*.$(manext) | nroff -Tascii -man | col -bx" >$@
+
+.ps.pdf :
+	ps2pdf $*.ps
+################################################################################
+docs :: $(THIS).html \
+	$(THIS).pdf \
+	$(THIS).ps \
+	$(THIS).txt
+clean ::
+	$(RM) $(THIS).html $(THIS).pdf $(THIS).ps $(THIS).txt
+$(THIS).html : $(THIS).$(manext)
+$(THIS).pdf : $(THIS).ps
+$(THIS).ps : $(THIS).$(manext)
+$(THIS).txt : $(THIS).$(manext)
+################################################################################

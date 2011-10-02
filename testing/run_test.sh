@@ -1,9 +1,10 @@
 #!/bin/sh
-# $Id: run_test.sh,v 1.23 2011/08/18 08:59:12 tom Exp $
+# $Id: run_test.sh,v 1.25 2011/09/27 00:05:39 tom Exp $
 # vi:ts=4 sw=4
 # test-script for tctest
 
 PROG="${TCTEST:-../tctest}"
+TIME="time -p"
 
 unset LINES
 unset COLUMNS
@@ -58,8 +59,9 @@ do
 	case $TYPE in
 	cap)
 		ln -s $name $root
-		time sh -c "cap_mkdb -v $root 2>/dev/null"
-		TERMCAP=$HERE/$root.db
+		$TIME sh -c "cap_mkdb -v $root 2>/dev/null"
+		name=$root
+		TERMCAP=$HERE/$root
 		export TERMCAP
 		TERMPATH=$TERMCAP
 		export TERMPATH
@@ -69,26 +71,40 @@ do
 		then
 			mkdir $root
 		fi
+
 		TERMINFO=$HERE/$root
 		export TERMINFO
 		TERMINFO_DIR=$TERMINFO
 		export TERMINFO_DIRS
-		time sh -c "tic -NUTx $name 2>/dev/null"
+
+		DATE=`tic -V 2>/dev/null |fgrep ncurses|sed -e 's/^.*\.//'`
+		TICS=
+		if test -n "$DATE"
+		then
+			TICS=-NUTx
+			if expr "$DATE" \>= 20111001 >/dev/null
+			then
+				TICS="${TICS}K"
+			fi
+		else
+			echo "? this is not ncurses tic"
+		fi
+		$TIME sh -c "tic $TICS $name 2>/dev/null"
 		;;
 	esac
 
 	echo
 	echo "...tgetent*10"
-	time sh -c "$PROG -f $name -n -r 10 -s 2>$root.err"
+	$TIME sh -c "$PROG -f $name -n -r 10 -s 2>$root.err"
 
 	echo
 	echo "...standard"
-	time sh -c "$PROG -f $name -a -o $root.std -s $OPTS 2>$root.err"
+	$TIME sh -c "$PROG -f $name -a -o $root.std -s $OPTS 2>$root.err"
 	echo "** `egrep -v '^[#	]' $root.std |wc -l` entries, `egrep '^	' $root.std |wc -l` capabilities, `cat $root.err | wc -l` library warnings"
 
 	echo
 	echo "...complete"
-	time sh -c "$PROG -b -f $name -a -o $root.all $OPTS 2>$root.err"
+	$TIME sh -c "$PROG -b -f $name -a -o $root.all $OPTS 2>$root.err"
 	echo "** `egrep -v '^[#	]' $root.std |wc -l` entries, `egrep '^	' $root.std |wc -l` capabilities, `cat $root.err | wc -l` library warnings"
 
 	echo
