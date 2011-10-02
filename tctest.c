@@ -22,11 +22,10 @@
 /*
  * Author: Thomas E. Dickey
  *
- * $Id: tctest.c,v 1.51 2011/08/13 23:31:31 tom Exp $
+ * $Id: tctest.c,v 1.59 2011/10/01 20:54:32 tom Exp $
  *
  * A simple test-program for the termcap interface.
  *
- * TODO: if using ncurses, attempt to link with libtic to allow reformatting
  * TODO: option -E for setting $TERMCAP based on file's contents
  * TODO: option -L for listing size with tc's included (store file in memory).
  * TODO: option -e for testing the $TERMCAP variable
@@ -74,6 +73,8 @@ static char *safe_tgetstr(NCURSES_CONST char *cap, char **);
 extern void _nc_leaks_tic(void);
 extern void _nc_freeall(void);
 
+#define SIZEOF(tbl) (sizeof(tbl) / sizeof(tbl[0]))
+
 #define MAXBUF 4096
 
 #define FCOLS 2
@@ -81,28 +82,57 @@ extern void _nc_freeall(void);
 #define FNAME(type) "%s %-*s = ", #type, FCOLS
 
 #define DumpIt       (a_opt || !(l_opt || s_opt))
-#define isCapName(c) (isgraph(c) && strchr("^=:\\", c) == 0)
+#define isASCII(c)   ((c) > ' ' && (c) <= '~')
+#define isCapName(c) (isASCII(c) && strchr("^=:\\", c) == 0)
 #define UCH(c)       ((unsigned char)(c))
 
 /* options */
+static int opt_1 = 0;
 static int a_opt = 0;
 static int b_opt = 0;
 static int e_opt = 0;
 static char *f_opt = 0;
+static int g_opt = 0;
 static int l_opt = 0;
 static int r_opt = 0;
 static int s_opt = 0;
 static int v_opt = 0;
 static int w_opt = 0;
 
+/* "-g" */
+
+#define MOD_INDEX 96		/* index is numbered 1..95 */
+#define LEN_INDEX (MOD_INDEX * MOD_INDEX)
+
+typedef struct {
+    unsigned entries;
+    unsigned wasted0;
+} BUCKET;
+
+static unsigned char *chr2index;
+static unsigned char *index2chr;
+static BUCKET *by_name;
+static BUCKET *by_size;
+static unsigned char *by_type;	/* 0=unknown, 1=standard, 2=obsolete */
+
 /* "-s" report */
-static unsigned largest_entry;
+typedef struct {
+    unsigned all_name;		/* primary + v6_names + tc_alias */
+    unsigned v6_names;		/* 2-character name at beginning */
+    unsigned name_1st;		/* primary, one per entry */
+    unsigned tc_alias;		/* names in addition to primary */
+    unsigned tc_descr;		/* description is not really a name */
+} ALIASES;
+
+static ALIASES total_aliases;
+
 static unsigned total_entries;
+static unsigned largest_entry;
+static unsigned total_tgetent;
 static unsigned total_failure;
 static unsigned total_warning;
-static unsigned total_tgetent;
+static unsigned total_tc_size;
 static unsigned total_wasted0;
-static unsigned total_aliases;
 static unsigned total_toobig0;
 static unsigned total_toobig1;
 static unsigned total_include0;
@@ -113,11 +143,89 @@ static unsigned unknown_include;
 static FILE *output;
 static FILE *report;
 
+/*
+ * There are no standard termcap names.  The closest to a standard is the
+ * documentation for termcap names in the tables used to document terminfo
+ * capabilities, noting that many of those names are invented, having no
+ * historical use.  Notwithstanding that, termcap users have invented a history
+ * which makes these (in particular the set using ncurses' additions) as
+ * "standard".
+ */
+static const char *known_tcap[] =
+{
+    "!1", "!2", "!3", "#1", "#2", "#3", "#4", "%0", "%1", "%2",
+    "%3", "%4", "%5", "%6", "%7", "%8", "%9", "%a", "%b", "%c",
+    "%d", "%e", "%f", "%g", "%h", "%i", "%j", "&0", "&1", "&2",
+    "&3", "&4", "&5", "&6", "&7", "&8", "&9", "*0", "*1", "*2",
+    "*3", "*4", "*5", "*6", "*7", "*8", "*9", "5i", "@0", "@1",
+    "@2", "@3", "@4", "@5", "@6", "@7", "@8", "@9", "AB", "AF",
+    "AL", "BT", "CC", "CM", "CW", "Co", "DC", "DI", "DK", "DL",
+    "DO", "EP", "F1", "F2", "F3", "F4", "F5", "F6", "F7", "F8",
+    "F9", "FA", "FB", "FC", "FD", "FE", "FF", "FG", "FH", "FI",
+    "FJ", "FK", "FL", "FM", "FN", "FO", "FP", "FQ", "FR", "FS",
+    "FT", "FU", "FV", "FW", "FX", "FY", "FZ", "Fa", "Fb", "Fc",
+    "Fd", "Fe", "Ff", "Fg", "Fh", "Fi", "Fj", "Fk", "Fl", "Fm",
+    "Fn", "Fo", "Fp", "Fq", "Fr", "Gm", "HC", "HD", "HU", "IC",
+    "Ic", "Ip", "K1", "K2", "K3", "K4", "K5", "Km", "LC", "LE",
+    "LF", "LO", "Lf", "MC", "ML", "ML", "MR", "MT", "MW", "Mi",
+    "NC", "ND", "NL", "NP", "NR", "Nl", "OP", "PA", "PU", "QD",
+    "RA", "RC", "RF", "RI", "RQ", "RX", "S1", "S2", "S3", "S4",
+    "S5", "S6", "S7", "S8", "SA", "SC", "SF", "SR", "SX", "Sb",
+    "Sf", "TO", "UC", "UP", "WA", "WG", "XF", "XN", "Xh", "Xl",
+    "Xo", "Xr", "Xt", "Xv", "Xy", "YA", "YB", "YC", "YD", "YE",
+    "YF", "YG", "YZ", "Ya", "Yb", "Yc", "Yd", "Ye", "Yf", "Yg",
+    "Yh", "Yi", "Yj", "Yk", "Yl", "Ym", "Yn", "Yo", "Yp", "Yv",
+    "Yw", "Yx", "Yy", "Yz", "ZA", "ZB", "ZC", "ZD", "ZE", "ZF",
+    "ZG", "ZH", "ZI", "ZJ", "ZK", "ZL", "ZM", "ZN", "ZO", "ZP",
+    "ZQ", "ZR", "ZS", "ZT", "ZU", "ZV", "ZW", "ZX", "ZY", "ZZ",
+    "Za", "Zb", "Zc", "Zd", "Ze", "Zf", "Zg", "Zh", "Zi", "Zj",
+    "Zk", "Zl", "Zm", "Zn", "Zo", "Zp", "Zq", "Zr", "Zs", "Zt",
+    "Zu", "Zv", "Zw", "Zx", "Zy", "Zz", "ac", "ae", "al", "am",
+    "as", "bc", "bl", "bs", "bt", "bw", "cb", "cc", "cd", "ce",
+    "ch", "ci", "cl", "cm", "co", "cr", "cs", "ct", "cv", "dB",
+    "dC", "dF", "dN", "dT", "dV", "da", "db", "dc", "dl", "dm",
+    "do", "ds", "dv", "eA", "ec", "ed", "ei", "eo", "es", "ff",
+    "fh", "fs", "gn", "hc", "hd", "hl", "ho", "hs", "hu", "hz",
+    "i1", "i2", "i3", "iP", "ic", "if", "im", "in", "ip", "is",
+    "it", "k0", "k1", "k2", "k3", "k4", "k5", "k6", "k7", "k8",
+    "k9", "k;", "kA", "kB", "kC", "kD", "kE", "kF", "kH", "kI",
+    "kL", "kM", "kN", "kP", "kR", "kS", "kT", "ka", "kb", "kd",
+    "ke", "kh", "kl", "km", "kn", "ko", "kr", "ks", "kt", "ku",
+    "l0", "l1", "l2", "l3", "l4", "l5", "l6", "l7", "l8", "l9",
+    "la", "le", "lh", "li", "ll", "lm", "lw", "ma", "mb", "md",
+    "me", "mh", "mi", "mk", "ml", "mm", "mo", "mp", "mr", "ms",
+    "mu", "nc", "nd", "nl", "ns", "nw", "nx", "oc", "op", "os",
+    "pO", "pa", "pb", "pc", "pf", "pk", "pl", "pn", "po", "ps",
+    "pt", "px", "r1", "r2", "r3", "rP", "rc", "rf", "rp", "rs",
+    "s0", "s1", "s2", "s3", "sa", "sc", "se", "sf", "sg", "so",
+    "sp", "sr", "st", "ta", "tc", "te", "ti", "ts", "u0", "u1",
+    "u2", "u3", "u4", "u5", "u6", "u7", "u8", "u9", "uc", "ue",
+    "ug", "ul", "up", "us", "ut", "vb", "ve", "vi", "vs", "vt",
+    "wi", "ws", "xb", "xl", "xn", "xo", "xr", "xs", "xt", "xx",
+};
+
+/* These are marked obsolete in BSD 4.3 termcap manpage. */
+static const char *obsolete_tcap[] =
+{
+    "bc", "bs", "dB", "dC", "dF", "dN", "dT", "dV", "EP", "HD",
+    "kn", "ko", "LC", "ma", "ml", "mu", "nc", "NL", "nl", "ns",
+    "OP", "pt", "UC", "xr", "xx",
+};
+
 static void
 failed(const char *msg)
 {
     perror(msg);
     exit(EXIT_FAILURE);
+}
+
+static FILE *
+open_output(const char *name)
+{
+    FILE *fp = fopen(name, "w");
+    if (fp == 0)
+	failed(name);
+    return fp;
 }
 
 #ifdef HAVE_UNSETENV
@@ -250,23 +358,160 @@ same_list(char **a, char **b)
     return result;
 }
 
+static char *
+index2name(unsigned inx)
+{
+    static char result[3];
+
+    result[0] = index2chr[inx / MOD_INDEX];
+    result[1] = index2chr[inx % MOD_INDEX];
+
+    return (result[0] && result[1]) ? result : 0;
+}
+
 static unsigned
-count_aliases(char *buffer)
+name2index(const char *name)
+{
+    return ((chr2index[UCH(name[0])] * MOD_INDEX) + chr2index[UCH(name[1])]);
+}
+
+static void
+init_buckets(void)
+{
+    unsigned j, k;
+
+    chr2index = calloc(256, sizeof(*chr2index));
+    index2chr = calloc(256, sizeof(*index2chr));
+    by_name = calloc(LEN_INDEX, sizeof(*by_name));
+    by_size = calloc(MAXBUF, sizeof(*by_size));
+    by_type = calloc(LEN_INDEX, sizeof(*by_type));
+
+    /* make arrays to simplify converting between by_name-index and name */
+    for (j = k = 0; j < 256; ++j) {
+	if (isCapName(j)) {
+	    chr2index[j] = ++k;
+	}
+    }
+    for (j = 0, k = 1; j < 256; ++j) {
+	if (chr2index[j] == k) {
+	    index2chr[k++] = j;
+	}
+    }
+
+    /*
+     * make a cross-reference which we can use for counting standard versus
+     * obsolete capabilities.
+     */
+    for (j = 0; j < SIZEOF(known_tcap); ++j) {
+	by_type[name2index(known_tcap[j])] |= 1;
+    }
+    for (j = 0; j < SIZEOF(obsolete_tcap); ++j) {
+	by_type[name2index(obsolete_tcap[j])] |= 2;
+    }
+}
+
+static void
+dump_buckets(void)
+{
+    FILE *fp;
+    unsigned j;
+    unsigned counts_all_caps = 0;
+    unsigned counts_obs_caps = 0;
+    unsigned unique_all_caps = 0;
+    unsigned unique_obs_caps = 0;
+
+    fp = open_output("by-name.dat");
+    for (j = 0; j < LEN_INDEX; ++j) {
+	if (by_name[j].entries) {
+
+	    counts_all_caps += by_name[j].entries;
+	    if (by_type[j] & 2)
+		counts_obs_caps += by_name[j].entries;
+
+	    unique_all_caps++;
+	    if (by_type[j] & 2)
+		unique_obs_caps++;
+
+	    fprintf(fp, "\"%s\" %u %u\n",
+		    index2name(j),
+		    by_name[j].entries,
+		    (unsigned) by_type[j]);
+	}
+    }
+    fclose(fp);
+
+    if (s_opt) {
+	fprintf(report, "%6u caps used\n", counts_all_caps);
+	fprintf(report, "%6u obsolete caps used\n", counts_obs_caps);
+	fprintf(report, "%6u distinct caps\n", unique_all_caps);
+	fprintf(report, "%6u distinct obsolete caps\n", unique_obs_caps);
+	fflush(report);
+    }
+
+    fp = open_output("by-size.dat");
+    for (j = 0; j < MAXBUF; ++j) {
+	if (by_size[j].entries) {
+	    fprintf(fp, "%u %u %u\n", j, by_size[j].entries, by_size[j].wasted0);
+	}
+    }
+    fclose(fp);
+}
+
+static void
+add_aliases(ALIASES * target, ALIASES * source)
+{
+    target->all_name += source->all_name;
+    target->v6_names += source->v6_names;
+    target->name_1st += source->name_1st;
+    target->tc_alias += source->tc_alias;
+    target->tc_descr += source->tc_descr;
+}
+
+/*
+ * The first name in an entry is the primary name.  This should not be
+ * confused with the 2-character hash code used for version 6.
+ *
+ * In principle, termcap libraries "should" be able to call tgetent() using
+ * any of the header fields, including the description.  However, terminfo
+ * makes a special distinction for that; it is used only for description.
+ *
+ * Descriptions can contain blanks, names cannot.
+ */
+static void
+count_aliases(char *buffer, ALIASES * aliases)
 {
     unsigned result = 0;
     char *p, *q;
+    int non_name;
 
-    for (p = q = buffer; *p != '\0' && *p != ':'; ++p) {
-	if (*p == '|') {
-	    if ((p - q) > 1)
-		++result;
-	    q = p;
+    memset(aliases, 0, sizeof(*aliases));
+    aliases->name_1st = 1;
+
+    for (p = q = buffer, non_name = 0;; ++p) {
+	if (*p == '|' || *p == ':' || *p == '\0') {
+	    if (p > q) {
+		if (non_name) {
+		    aliases->tc_descr += 1;
+		} else {
+		    if ((q == buffer) && ((p - q) == 2)) {
+			aliases->v6_names = 1;
+		    } else {
+			if (result)
+			    aliases->tc_alias += 1;
+			++result;
+		    }
+		}
+	    }
+	    if (*p == ':' || *p == '\0')
+		break;
+	    q = (p + 1);
+	    non_name = 0;
+	} else if (isspace(UCH(*p))) {
+	    non_name = 1;
 	}
     }
-    if (p != buffer && *p == ':')
-	--result;
 
-    return result;
+    aliases->all_name = result + aliases->v6_names;
 }
 
 static unsigned
@@ -327,8 +572,9 @@ count_tgetent(char *buffer)
     char *str;
     unsigned wasted;
     unsigned length;
+    ALIASES aliases;
 
-    total_entries++;
+    total_tgetent++;
 
     if (buffer != 0 && *buffer != '\0') {
 	/* check for NetBSD extension */
@@ -345,12 +591,14 @@ count_tgetent(char *buffer)
 	if (largest_entry < length)
 	    largest_entry = length;
 
-	total_tgetent += (unsigned) strlen(buffer);
+	total_tc_size += (unsigned) strlen(buffer);
 	total_wasted0 += wasted;
-	total_aliases += count_aliases(buffer);
 	total_toobig0 += (unsigned) (length > 1023);
 	total_toobig1 += (unsigned) ((length - wasted) > 1023);
 	unknown_include += count_includes(buffer);
+
+	count_aliases(buffer, &aliases);
+	add_aliases(&total_aliases, &aliases);
     }
 }
 
@@ -462,7 +710,7 @@ uses_params(const char *capname)
     size_t n;
     int result = 0;
     /* FIXME bsearch */
-    for (n = 0; n < sizeof(table) / sizeof(table[0]); ++n) {
+    for (n = 0; n < SIZEOF(table); ++n) {
 	if (!strcmp(capname, table[n].name)) {
 	    result = table[n].value;
 	    break;
@@ -715,7 +963,7 @@ dumpit(const char *cap, char **areap)
 		    }
 		    break;
 		default:
-		    if (isgraph(UCH(ch)))
+		    if (isASCII(UCH(ch)))
 			sprintf(append, "%c", ch);
 		    else if (ch < 32)
 			sprintf(append, "^%c", ch + '@');
@@ -735,6 +983,11 @@ dumpit(const char *cap, char **areap)
 	sprintf(buffer, "\t:%s:", cap);
 	result = strdup(buffer);
     }
+
+    if (g_opt && result != 0) {
+	by_name[name2index(cap)].entries += 1;
+    }
+
     return result;
 }
 
@@ -743,19 +996,26 @@ dumpit(const char *cap, char **areap)
 static void
 report_one_size(char *buffer, int count, char *area, int length)
 {
-    if (v_opt > 1) {
-	/*
-	 * A terminfo library will not update the buffer, which would then
-	 * be empty.
-	 */
-	if (*buffer != '\0') {
-	    unsigned wasted = count_wasted0(buffer);
-	    unsigned buflen = (unsigned) strlen(buffer);
+    unsigned wasted = 0;
+    unsigned buflen = 0;
 
-	    fprintf(report, "\t%4d bytes total (%.1f%%)\n",
+    /*
+     * A terminfo library will not update the buffer, which would then be
+     * empty.
+     */
+    if (v_opt > 1 || g_opt) {
+	if (*buffer != '\0') {
+	    wasted = count_wasted0(buffer);
+	    buflen = (unsigned) strlen(buffer);
+	}
+    }
+
+    if (v_opt > 1) {
+	if (*buffer != '\0') {
+	    fprintf(report, "\t%4u bytes total (%.1f%%)\n",
 		    buflen, PCT(buflen, 1023));
 	    if (wasted) {
-		fprintf(report, "\t%4d wasted space (%.1f%%)\n",
+		fprintf(report, "\t%4u wasted space (%.1f%%)\n",
 			wasted, PCT(wasted, buflen));
 	    }
 	}
@@ -763,7 +1023,7 @@ report_one_size(char *buffer, int count, char *area, int length)
 	if (length) {
 	    int numstrings = 1;
 	    int n;
-	    int wasted = 0;
+	    int waste0 = 0;
 
 	    /*
 	     * termcap could, but does not, optimize wasted nulls for empty
@@ -774,19 +1034,28 @@ report_one_size(char *buffer, int count, char *area, int length)
 		if (area[n] == '\0') {
 		    ++numstrings;
 		    if (area[n + 1] == '\0') {
-			++wasted;
+			++waste0;
 		    }
 		}
 	    }
 	    fprintf(report, "\t%4d strings\n", numstrings);
 	    fprintf(report, "\t%4d bytes of strings\n", length);
-	    if (wasted) {
-		fprintf(report, "\t%4d wasted nulls\n", wasted);
+	    if (waste0) {
+		fprintf(report, "\t%4d wasted nulls\n", waste0);
 	    }
 	}
 	if ((v_opt > 2) && (*buffer != '\0')) {
 	    fprintf(report, "TERMCAP=%s\n", buffer);
 	}
+    }
+
+    if (g_opt) {
+	/*
+	 * Count the number of entries which have a given size.
+	 * Add corresponding count of number of wasted bytes.
+	 */
+	by_size[buflen].entries += 1;
+	by_size[buflen].wasted0 += wasted;
     }
 }
 
@@ -824,65 +1093,9 @@ brute_force(char *name)
     return make_list(vector);
 }
 
-/*
- * There are no standard termcap names.  The closest to a standard is the
- * documentation for termcap names in the tables used to document terminfo
- * capabilities, noting that many of those names are invented, having no
- * historical use.  Notwithstanding that, termcap users have invented a history
- * which makes these (in particular the set using ncurses' additions) as
- * "standard".
- */
 static char **
 conventional(char *name)
 {
-    static const char *tbl[] =
-    {
-	"!1", "!2", "!3", "#1", "#2", "#3", "#4", "%0", "%1", "%2", "%3",
-	"%4", "%5", "%6", "%7", "%8", "%9", "%a", "%b", "%c", "%d", "%e",
-	"%f", "%g", "%h", "%i", "%j", "&0", "&1", "&2", "&3", "&4", "&5",
-	"&6", "&7", "&8", "&9", "*0", "*1", "*2", "*3", "*4", "*5", "*6",
-	"*7", "*8", "*9", "5i", "@0", "@1", "@2", "@3", "@4", "@5", "@6",
-	"@7", "@8", "@9", "AB", "AF", "AL", "BT", "CC", "CM", "CW", "Co",
-	"DC", "DI", "DK", "DL", "DO", "EP", "F1", "F2", "F3", "F4", "F5",
-	"F6", "F7", "F8", "F9", "FA", "FB", "FC", "FD", "FE", "FF", "FG",
-	"FH", "FI", "FJ", "FK", "FL", "FM", "FN", "FO", "FP", "FQ", "FR",
-	"FS", "FT", "FU", "FV", "FW", "FX", "FY", "FZ", "Fa", "Fb", "Fc",
-	"Fd", "Fe", "Ff", "Fg", "Fh", "Fi", "Fj", "Fk", "Fl", "Fm", "Fn",
-	"Fo", "Fp", "Fq", "Fr", "Gm", "HC", "HD", "HU", "IC", "Ic", "Ip",
-	"K1", "K2", "K3", "K4", "K5", "Km", "LC", "LE", "LF", "LO", "Lf",
-	"MC", "ML", "ML", "MR", "MT", "MW", "Mi", "NC", "ND", "NL", "NP",
-	"NR", "Nl", "OP", "PA", "PU", "QD", "RA", "RC", "RF", "RI", "RQ",
-	"RX", "S1", "S2", "S3", "S4", "S5", "S6", "S7", "S8", "SA", "SC",
-	"SF", "SR", "SX", "Sb", "Sf", "TO", "UC", "UP", "WA", "WG", "XF",
-	"XN", "Xh", "Xl", "Xo", "Xr", "Xt", "Xv", "Xy", "YA", "YB", "YC",
-	"YD", "YE", "YF", "YG", "YZ", "Ya", "Yb", "Yc", "Yd", "Ye", "Yf",
-	"Yg", "Yh", "Yi", "Yj", "Yk", "Yl", "Ym", "Yn", "Yo", "Yp", "Yv",
-	"Yw", "Yx", "Yy", "Yz", "ZA", "ZB", "ZC", "ZD", "ZE", "ZF", "ZG",
-	"ZH", "ZI", "ZJ", "ZK", "ZL", "ZM", "ZN", "ZO", "ZP", "ZQ", "ZR",
-	"ZS", "ZT", "ZU", "ZV", "ZW", "ZX", "ZY", "ZZ", "Za", "Zb", "Zc",
-	"Zd", "Ze", "Zf", "Zg", "Zh", "Zi", "Zj", "Zk", "Zl", "Zm", "Zn",
-	"Zo", "Zp", "Zq", "Zr", "Zs", "Zt", "Zu", "Zv", "Zw", "Zx", "Zy",
-	"Zz", "ac", "ae", "al", "am", "as", "bc", "bl", "bs", "bt", "bw",
-	"cb", "cc", "cd", "ce", "ch", "ci", "cl", "cm", "co", "cr", "cs",
-	"ct", "cv", "dB", "dC", "dF", "dN", "dT", "dV", "da", "db", "dc",
-	"dl", "dm", "do", "ds", "dv", "eA", "ec", "ed", "ei", "eo", "es",
-	"ff", "fh", "fs", "gn", "hc", "hd", "hl", "ho", "hs", "hu", "hz",
-	"i1", "i2", "i3", "iP", "ic", "if", "im", "in", "ip", "is", "it",
-	"k0", "k1", "k2", "k3", "k4", "k5", "k6", "k7", "k8", "k9", "k;",
-	"kA", "kB", "kC", "kD", "kE", "kF", "kH", "kI", "kL", "kM", "kN",
-	"kP", "kR", "kS", "kT", "ka", "kb", "kd", "ke", "kh", "kl", "km",
-	"kn", "ko", "kr", "ks", "kt", "ku", "l0", "l1", "l2", "l3", "l4",
-	"l5", "l6", "l7", "l8", "l9", "la", "le", "lh", "li", "ll", "lm",
-	"lw", "ma", "mb", "md", "me", "mh", "mi", "mk", "ml", "mm", "mo",
-	"mp", "mr", "ms", "mu", "nc", "nd", "nl", "ns", "nw", "nx", "oc",
-	"op", "os", "pO", "pa", "pb", "pc", "pf", "pk", "pl", "pn", "po",
-	"ps", "pt", "px", "r1", "r2", "r3", "rP", "rc", "rf", "rp", "rs",
-	"s0", "s1", "s2", "s3", "sa", "sc", "se", "sf", "sg", "so", "sp",
-	"sr", "st", "ta", "tc", "te", "ti", "ts", "u0", "u1", "u2", "u3",
-	"u4", "u5", "u6", "u7", "u8", "u9", "uc", "ue", "ug", "ul", "up",
-	"us", "ut", "vb", "ve", "vi", "vs", "vt", "wi", "ws", "xb", "xl",
-	"xn", "xo", "xr", "xs", "xt", "xx",
-    };
     char buffer[MAXBUF];
     char area[MAXBUF], *ap = area;
     char *vector[MAXBUF];
@@ -891,8 +1104,8 @@ conventional(char *name)
     area[0] = '\0';
     if (call_tgetent(buffer, name)) {
 	size_t n;
-	for (n = 0; n < sizeof(tbl) / sizeof(tbl[0]); ++n) {
-	    char *value = dumpit(tbl[n], &ap);
+	for (n = 0; n < SIZEOF(known_tcap); ++n) {
+	    char *value = dumpit(known_tcap[n], &ap);
 	    if (value != 0) {
 		vector[count++] = value;
 	    }
@@ -1083,6 +1296,7 @@ dump_all(int contents)
 	char *later = 0;
 	char *value;
 
+	++total_entries;
 	if (s_opt) {
 	    unsigned count = count_includes(buffer);
 	    if (count) {
@@ -1101,6 +1315,10 @@ dump_all(int contents)
 		    later = value;
 		} else {
 		    dump_entry(value, &in_file, &in_data, &last);
+		    if (opt_1) {
+			later = 0;
+			break;
+		    }
 		}
 	    } else if (DumpIt || l_opt) {
 		fflush(report);
@@ -1124,11 +1342,13 @@ usage(void)
 	"Usage: tctest",
 	"",
 	"Options:",
+	"  -1        only call tgetent for the primary names in termcap file",
 	"  -a        show capabilities for all names in termcap file",
 	"  -b        use brute-force to find all capabilities",
 	"  -c        use conventional capabilities (default)",
 	"  -e        use $TERMCAP variable if it exists",
 	"  -f NAME   use this termcap file",
+	"  -g        write by-name.dat and by-size.dat datafiles for gnuplot",
 	"  -l        list names and aliases in termcap file",
 	"  -n        do not lookup capabilities, only call tgetent",
 	"  -o NAME   write to this termcap-like file",
@@ -1140,7 +1360,7 @@ usage(void)
 	"  -V        print the program version and exit"
     };
     size_t n;
-    for (n = 0; n < sizeof(tbl) / sizeof(tbl[0]); ++n) {
+    for (n = 0; n < SIZEOF(tbl); ++n) {
 	fprintf(stderr, "%s\n", tbl[n]);
     }
     exit(EXIT_FAILURE);
@@ -1155,8 +1375,11 @@ main(int argc, char *argv[])
 
     output = stdout;
     report = stderr;
-    while ((ch = getopt(argc, argv, "abcef:lno:r:svwV")) != -1) {
+    while ((ch = getopt(argc, argv, "1abcef:glno:r:svwV")) != -1) {
 	switch (ch) {
+	case '1':
+	    opt_1 = 1;
+	    break;
 	case 'a':
 	    a_opt = 1;
 	    break;
@@ -1171,6 +1394,9 @@ main(int argc, char *argv[])
 	    break;
 	case 'f':
 	    f_opt = optarg;
+	    break;
+	case 'g':
+	    g_opt = 1;
 	    break;
 	case 'l':
 	    l_opt = 1;
@@ -1230,6 +1456,9 @@ main(int argc, char *argv[])
     if (r_opt <= 0)
 	r_opt = 1;
 
+    if (g_opt)
+	init_buckets();
+
     for (n = 0; n < r_opt; ++n) {
 	if (f_opt) {
 	    set_termcap_file(f_opt);
@@ -1257,10 +1486,15 @@ main(int argc, char *argv[])
     if (s_opt) {
 	fflush(output);
 	fprintf(report, "FILE %s\n", find_termcap_file());
-	fprintf(report, "%6u calls to tgetent\n", total_entries);
-	if (total_entries) {
-	    fprintf(report, "%6u total names+aliases\n", total_aliases);
-	    fprintf(report, "%6u total size\n", total_tgetent);
+	fprintf(report, "%6u total termcap entries\n", total_entries);
+	fprintf(report, "%6u calls to tgetent\n", total_tgetent);
+	if (total_tgetent) {
+	    fprintf(report, "%6u total names+aliases\n", total_aliases.all_name);
+	    fprintf(report, "%6u (v6 names)\n", total_aliases.v6_names);
+	    fprintf(report, "%6u (primary names)\n", total_aliases.name_1st);
+	    fprintf(report, "%6u (aliases for primary names)\n", total_aliases.tc_alias);
+	    fprintf(report, "%6u non-name description fields\n", total_aliases.tc_descr);
+	    fprintf(report, "%6u total size\n", total_tc_size);
 	    fprintf(report, "%6u total waste\n", total_wasted0);
 	    fprintf(report, "%6u largest size\n", largest_entry);
 	    fprintf(report, "%6u total too large\n", total_toobig0);
@@ -1278,6 +1512,9 @@ main(int argc, char *argv[])
     if (output != stdout)
 	fclose(output);
 
+    if (g_opt) {
+	dump_buckets();
+    }
 #ifdef NO_LEAKS
 #ifdef HAVE__NC_LEAKS_TIC
     _nc_leaks_tic();
@@ -1285,6 +1522,12 @@ main(int argc, char *argv[])
 #ifdef HAVE__NC_FREEALL
     _nc_freeall();
 #endif
+    if (g_opt) {
+	free(chr2index);
+	free(index2chr);
+	free(by_name);
+	free(by_size);
+    }
 #endif /* NO_LEAKS */
 
     exit(EXIT_SUCCESS);

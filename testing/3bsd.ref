@@ -1,0 +1,1515 @@
+# vile:tcmode
+dumb:\
+	:co#80:\
+	:os:
+# alias un
+# alias su
+plugboard:\
+	:co#80:\
+	:os:
+# alias sp
+arpanet:\
+	:co#80:\
+	:os:
+# alias an
+# alias sa
+dialup:\
+	:co#80:\
+	:os:
+# alias sd
+bussiplexer:\
+	:co#80:\
+	:os:
+# alias sb
+adm3a:\
+	:am:\
+	:bs:\
+	:cl=^Z:\
+	:cm=\E=%+\040%+\040:\
+	:co#80:\
+	:ho=^^:\
+	:li#24:\
+	:ma=j\nk^P^K^Pl\040:\
+	:nd=\f:\
+	:up=^K:
+# alias 3a
+# alias la
+hp2621:\
+	:al=\EL:\
+	:am:\
+	:bs:\
+	:bt=\Ei:\
+	:cd=\EJ:\
+	:ce=\EK:\
+	:cl=\EH\EJ:\
+	:cm=\E&a%r%dc%dY:\
+	:co#80:\
+	:da:\
+	:db:\
+	:dc=2\EP:\
+	:dl=\EM:\
+	:ei=\ER:\
+	:if=/usr/lib/tabset/std:\
+	:im=\EQ:\
+	:ip=2:\
+	:is=\E&j@\r\E3\r:\
+	:k1=\Ep\r:\
+	:k2=\Eq\r:\
+	:k3=\Er\r:\
+	:k4=\Es\r:\
+	:k5=\Et\r:\
+	:k6=\Eu\r:\
+	:k7=\Ev\r:\
+	:k8=\Ew\r:\
+	:kd=\Ew\r:\
+	:ke=\E&j@:\
+	:kh=\Ep\r:\
+	:kl=\Eu\r:\
+	:kn#8:\
+	:kr=\Ev\r:\
+	:ks=\E&jB:\
+	:ku=\Et\r:\
+	:li#24:\
+	:ma=j\nk^P^K^Pl\040:\
+	:mi:\
+	:nd=\EC:\
+	:pt:\
+	:se=\E&d@:\
+	:so=\E&dB:\
+	:up=\EA:
+# alias hp2621a
+# alias hp2621p
+# alias 2621
+# alias 2621a
+# alias 2621p
+# alias h2
+c100rv:\
+	:DN#9:\
+	:al=3*\E^R:\
+	:am:\
+	:bs:\
+	:cd=16*\E^C:\
+	:ce=16\E^S:\
+	:cl=2*\f:\
+	:cm=\Ea%+\040%+\040:\
+	:co#80:\
+	:dC#9:\
+	:db:\
+	:dc=16\E^A:\
+	:dl=3*\E^B:\
+	:ei=\E\200:\
+	:eo:\
+	:im=\E^P:\
+	:in:\
+	:ip=16*:\
+	:is=\EU\Ef\E7\E5\E8\El\ENH\Ek\E\200\Eo&\200\Eo'\E:\
+	:k1=\E5:\
+	:k2=\E6:\
+	:k3=\E7:\
+	:kd=\E<:\
+	:ke=\Ex:\
+	:kh=\E?:\
+	:kl=\E>:\
+	:kr=\E=:\
+	:ks=\EX:\
+	:ku=\E;:\
+	:li#24:\
+	:mi:\
+	:nd=\E=:\
+	:ta=8\t:\
+	:ue=\Eg:\
+	:ul:\
+	:up=\E;:\
+	:us=\EG:\
+	:vb=\EK\200\200\200\200\200\200\200\200\200\200\200\200\200\200\Ek:\
+	:xn:
+# alias cr
+c100:\
+	:DN#9:\
+	:al=3*\E^R:\
+	:am:\
+	:bs:\
+	:cd=16*\E^C:\
+	:ce=16\E^S:\
+	:cl=2*\f:\
+	:cm=\Ea%+\040%+\040:\
+	:co#80:\
+	:dC#9:\
+	:db:\
+	:dc=16\E^A:\
+	:dl=3*\E^B:\
+	:ei=\E\200:\
+	:eo:\
+	:im=\E^P:\
+	:in:\
+	:ip=16*:\
+	:is=\EU\Ef\E7\E5\E8\El\ENH\EK\E\200\Eo&\200\Eo'\E:\
+	:k1=\E5:\
+	:k2=\E6:\
+	:k3=\E7:\
+	:kd=\E<:\
+	:ke=\Ex:\
+	:kh=\E?:\
+	:kl=\E>:\
+	:kr=\E=:\
+	:ks=\EX:\
+	:ku=\E;:\
+	:li#24:\
+	:mi:\
+	:nd=\E=:\
+	:ta=8\t:\
+	:ue=\Eg:\
+	:ul:\
+	:up=\E;:\
+	:us=\EG:\
+	:vb=\Ek\200\200\200\200\200\200\200\200\200\200\200\200\200\200\EK:\
+	:ve=\Ew:\
+	:vs=\EW:\
+	:xn:
+# alias concept
+# alias concept100
+# alias co
+mime:\
+	:al=80^A:\
+	:am:\
+	:bs:\
+	:cd=^_:\
+	:ce=^^:\
+	:cl=^]^C:\
+	:cm=^T%.%.:\
+	:co#80:\
+	:dl=80^W:\
+	:dn=^K:\
+	:ho=^]:\
+	:kd=^K:\
+	:kl=\b:\
+	:kr=^X:\
+	:ku=^Z:\
+	:li#24:\
+	:ma=^X\040^K\n^Z^Pj\nk^Pl\040:\
+	:nd=^X:\
+	:pt:\
+	:uc=^U:\
+	:up=^Z:
+# alias mime1
+# alias mime2
+# alias mimei
+# alias mimeii
+# alias mm
+h19:\
+	:al=\EL:\
+	:am:\
+	:bs:\
+	:cd=\EJ:\
+	:ce=\EK:\
+	:cl=\EE:\
+	:cm=\EY%+\040%+\040:\
+	:co#80:\
+	:dc=\EN:\
+	:dl=\EM:\
+	:dn=\EB:\
+	:ei=\EO:\
+	:ho=\EH:\
+	:im=\E@:\
+	:k1=\ES:\
+	:k2=\ET:\
+	:k3=\EU:\
+	:k4=\EV:\
+	:k5=\EW:\
+	:k6=\EP:\
+	:k7=\EQ:\
+	:k8=\ER:\
+	:kd=\EB:\
+	:kh=\EH:\
+	:kl=\ED:\
+	:kn#8:\
+	:kr=\EC:\
+	:ku=\EA:\
+	:l6=BLUE:\
+	:l7=RED:\
+	:l8=WHITE:\
+	:li#24:\
+	:mi:\
+	:nd=\EC:\
+	:pt:\
+	:se=\Eq:\
+	:so=\Ep:\
+	:up=\EA:\
+	:ve=\Ey4:\
+	:vs=\Ex4:
+# alias heath
+# alias heathkit
+# alias k1
+adm3:\
+	:am:\
+	:bs:\
+	:cl=^Z:\
+	:co#80:\
+	:li#24:\
+	:ma=j\nk^P^K^Pl\040:
+# alias 3
+# alias l3
+1620:\
+	:bs:\
+	:co#132:\
+	:ff=\f:\
+	:hc:\
+	:hd=\ED:\
+	:hu=\EU:\
+	:if=/usr/lib/tabset/std:\
+	:os:\
+	:pt:\
+	:up=\E\n:
+# alias 450
+# alias A6
+dtc300s:\
+	:bs:\
+	:co#132:\
+	:ff=\f:\
+	:hc:\
+	:hd=\Eh:\
+	:hu=\EH:\
+	:if=/usr/lib/tabset/std:\
+	:os:\
+	:pt:\
+	:up=^Z:
+# alias 300
+# alias 300s
+# alias gsi
+# alias dtc
+# alias Ad
+cdc456:\
+	:al=\EL:\
+	:am:\
+	:bs:\
+	:ca:\
+	:cd=^X:\
+	:ce=^V:\
+	:cl=^Y^X:\
+	:cm=\E1%+\040%+\040:\
+	:co#80:\
+	:dl=\EJ:\
+	:ho=^Y:\
+	:li#24:\
+	:nd=\f:\
+	:up=^Z:
+# alias Ca
+Cc:\
+	:am:\
+	:bs:\
+	:ca:\
+	:cl=^Y^X:\
+	:cm=\E1%+\040%+\040:\
+	:co#80:\
+	:li#24:
+dm1520:\
+	:am:\
+	:bs:\
+	:cd=^K:\
+	:ce=^]:\
+	:cl=\f:\
+	:cm=^^%r%+\040%.:\
+	:co#80:\
+	:ho=^Y:\
+	:kd=\n:\
+	:kh=^Y:\
+	:kl=\b:\
+	:kr=^\:\
+	:ku=^_:\
+	:li#24:\
+	:ma=^\\040^_^P^YH:\
+	:nd=^\:\
+	:up=^_:\
+	:xn:
+# alias 1520
+# alias D0
+dm1521:\
+	:am:\
+	:bs:\
+	:cd=^K:\
+	:ce=^]:\
+	:cl=\f:\
+	:cm=^^%r%+\040%.:\
+	:co#80:\
+	:ho=^Y:\
+	:kd=\n:\
+	:kh=^Y:\
+	:kl=\b:\
+	:kr=^\:\
+	:ku=^_:\
+	:li#24:\
+	:ma=^\\040^_^P^YH:\
+	:nd=^\:\
+	:pt:\
+	:up=^_:\
+	:xn:
+# alias 1521
+# alias D1
+dm2500:\
+	:al=15^P\n^X^]^X^]:\
+	:bs:\
+	:ce=^W:\
+	:cl=^^^^\177:\
+	:cm=\f%r%n%.%.:\
+	:co#80:\
+	:dc=10*\b:\
+	:dl=10*^P^Z^X^]:\
+	:dm=^P:\
+	:ed=^X^]:\
+	:ei=10\377\377^X^]:\
+	:ho=^B:\
+	:im=^P:\
+	:li#24:\
+	:nc:\
+	:nd=^\:\
+	:pc=\377:\
+	:se=^X^]:\
+	:so=^N:\
+	:up=^Z:
+# alias datamedia2500
+# alias 2500
+# alias D2
+dm3025:\
+	:al=130\EP\n\EQ:\
+	:bs:\
+	:cd=2\EJ:\
+	:ce=\EK:\
+	:cl=2\EM:\
+	:cm=\EY%r%+\040%+\040:\
+	:co#80:\
+	:dc=6\b:\
+	:dl=130\EP\EA\EQ:\
+	:dm=\EP:\
+	:ed=\EQ:\
+	:ei=\EQ:\
+	:ho=\EH:\
+	:im=\EP:\
+	:ip=6:\
+	:is=\EQ\EU\EV:\
+	:li#24:\
+	:nd=\EC:\
+	:pt:\
+	:se=\EO@:\
+	:so=\EOA:\
+	:up=\EA:
+# alias D3
+dm3045:\
+	:DC=6\b:\
+	:DM=\EP:\
+	:ED=\EP:\
+	:EI=\EP:\
+	:IC=6:\
+	:IM=\EP:\
+	:IP=6:\
+	:bs:\
+	:cd=2\EJ:\
+	:ce=\EK:\
+	:cl=2\EM:\
+	:cm=\EY%r%+\040%+\040:\
+	:co#80:\
+	:ho=\EH:\
+	:is=\EU\EV:\
+	:k0=\Ey\r:\
+	:k1=\EpR:\
+	:k2=\EqR:\
+	:k3=\Er\r:\
+	:k4=\Es\r:\
+	:k5=\Et\r:\
+	:k6=\Eu\r:\
+	:k7=\Ev\r:\
+	:k8=\Ew\r:\
+	:k9=\Ex\r:\
+	:li#24:\
+	:nd=\EC:\
+	:pc=\177:\
+	:pt:\
+	:ul:\
+	:up=\EA:
+# alias D4
+Gs:\
+	:bs:\
+	:co#132:\
+	:hc:\
+	:hd=\Eh:\
+	:hu=\EH:\
+	:it:\
+	:os:\
+	:pl:\
+	:pt:\
+	:up=^Z:
+h1500:\
+	:al=~^Z:\
+	:am:\
+	:bs:\
+	:cd=~^X:\
+	:ce=~^O:\
+	:cl=~^\:\
+	:cm=~^Q%r%.%.:\
+	:co#80:\
+	:dl=~^S:\
+	:do=~^K:\
+	:hz:\
+	:li#24:\
+	:nd=^P:\
+	:se=~^Y:\
+	:so=~^_:\
+	:up=~\f:
+# alias H5
+h1510:\
+	:al=\E^Z:\
+	:am:\
+	:bs:\
+	:cd=\E^X:\
+	:ce=\E^O:\
+	:cl=\E^\:\
+	:cm=\E^Q%r%.%.:\
+	:co#80:\
+	:dl=\E^S:\
+	:do=\E^K:\
+	:hz:\
+	:li#24:\
+	:ma=j\nk^P^K^Pl\040:\
+	:nd=^P:\
+	:se=\E^Y:\
+	:so=\E^_:\
+	:up=\E\f:
+# alias H6
+h2000:\
+	:al=6~^Z:\
+	:am:\
+	:bs:\
+	:cl=6~^\:\
+	:cm=~^Q%r%.%.:\
+	:co#74:\
+	:dl=6~^S:\
+	:ho=~^R:\
+	:li#27:\
+	:nc:\
+	:pc=\177:
+# alias H7
+8001:\
+	:al=\EU:\
+	:am:\
+	:bc=^Z:\
+	:cd=\EQ:\
+	:cl=3*\f:\
+	:cm=^C%r%.%.:\
+	:co#80:\
+	:dc=\177:\
+	:dl=\EV:\
+	:dm=\EQ:\
+	:ed=\EF:\
+	:ei=\EF:\
+	:ho=1\b:\
+	:im=\EQ:\
+	:li#40:\
+	:nd=1^Y:\
+	:pc=:\
+	:ta=8\t:\
+	:up=^\:
+# alias I8
+digilog:\
+	:bs:\
+	:ce=^X:\
+	:co#80:\
+	:ho=^N:\
+	:li#16:\
+	:nd=\t:\
+	:up=^O:
+# alias 333
+# alias L3
+datapoint:\
+	:am:\
+	:bs:\
+	:ce=^^:\
+	:cl=^]^_:\
+	:co#82:\
+	:ho=^]:\
+	:li#25:\
+	:nd=^X:\
+	:up=^Z:
+# alias dp3
+# alias dp
+# alias dp3360
+# alias PD
+33:\
+	:co#72:\
+	:hc:\
+	:os:
+# alias tty33
+# alias tty
+# alias T3
+43:\
+	:am:\
+	:bs:\
+	:co#132:\
+	:hc:\
+	:os:
+# alias tty43
+# alias T4
+37:\
+	:bs:\
+	:hc:\
+	:hd=\E9:\
+	:hu=\E8:\
+	:os:\
+	:up=\E7:
+# alias tty37
+# alias T7
+tek4014:\
+	:HC:\
+	:bs:\
+	:cl=1000\E\f:\
+	:co#120:\
+	:is=\E\072:\
+	:li#56:\
+	:ns:\
+	:os:
+# alias tek4013
+# alias 4014
+# alias 4013
+# alias tektronix 4013
+# alias X1
+annarbor:\
+	:am:\
+	:bs:\
+	:cl=\f^O^P:\
+	:cm=^O%r%b3%b4:\
+	:co#80:\
+	:ho=^K:\
+	:kd=\n:\
+	:kh=^K:\
+	:kl=\b:\
+	:kr=^_:\
+	:ku=^N:\
+	:li#40:\
+	:ma=^_\040^N^P:\
+	:nd=^_:\
+	:up=^N:
+# alias aa
+bh3m:\
+	:al=160^S:\
+	:am:\
+	:bs:\
+	:cd=^R:\
+	:ce=^P:\
+	:cl=^E^R:\
+	:co#80:\
+	:dl=300^Q:\
+	:ho=^E:\
+	:if=/usr/lib/tabset/beehive:\
+	:li#20:\
+	:ll=^E^K:\
+	:nd=\f:\
+	:pt:\
+	:se=\040^_:\
+	:so=^]\040:\
+	:up=^K:
+# alias bh
+c1004p:\
+	:DN#9:\
+	:al=3*\E^R:\
+	:am:\
+	:bs:\
+	:cd=16*\E^C:\
+	:ce=16\E^S:\
+	:cl=2*\f:\
+	:cm=\Ea%+\040%+\040:\
+	:co#80:\
+	:dC#9:\
+	:db:\
+	:dc=16\E^A:\
+	:dl=3*\E^B:\
+	:ei=\E\200:\
+	:eo:\
+	:im=\E^P:\
+	:in:\
+	:ip=16*:\
+	:is=\EU\Ef\E7\E5\E8\El\ENH\EK\E\200\Eo&\200\Eo'\E:\
+	:k1=\E5:\
+	:k2=\E6:\
+	:k3=\E7:\
+	:kd=\E<:\
+	:ke=\Ex:\
+	:kh=\E?:\
+	:kl=\E>:\
+	:kr=\E=:\
+	:ks=\EX:\
+	:ku=\E;:\
+	:li#24:\
+	:mi:\
+	:nd=\E=:\
+	:ta=8\t:\
+	:te=\Ev\040\040~p\Ep\r\n:\
+	:ti=\EU\Ev\040\0408p\Ep\r:\
+	:ue=\Eg:\
+	:ul:\
+	:up=\E;:\
+	:us=\EG:\
+	:vb=\Ek\200\200\200\200\200\200\200\200\200\200\200\200\200\200\EK:\
+	:xn:
+# alias c4
+c100rv4p:\
+	:DN#9:\
+	:al=3*\E^R:\
+	:am:\
+	:bs:\
+	:cd=16*\E^C:\
+	:ce=16\E^S:\
+	:cl=2*\f:\
+	:cm=\Ea%+\040%+\040:\
+	:co#80:\
+	:dC#9:\
+	:db:\
+	:dc=16\E^A:\
+	:dl=3*\E^B:\
+	:ei=\E\200:\
+	:eo:\
+	:im=\E^P:\
+	:in:\
+	:ip=16*:\
+	:is=\EU\Ef\E7\E5\E8\El\ENH\Ek\E\200\Eo&\200\Eo'\E:\
+	:k1=\E5:\
+	:k2=\E6:\
+	:k3=\E7:\
+	:kd=\E<:\
+	:ke=\Ex:\
+	:kh=\E?:\
+	:kl=\E>:\
+	:kr=\E=:\
+	:ks=\EX:\
+	:ku=\E;:\
+	:li#24:\
+	:mi:\
+	:nd=\E=:\
+	:ta=8\t:\
+	:te=\Ev\040\040~p\Ep\r\n:\
+	:ti=\EU\Ev\040\0408p\Ep\r:\
+	:ue=\Eg:\
+	:ul:\
+	:up=\E;:\
+	:us=\EG:\
+	:vb=\EK\200\200\200\200\200\200\200\200\200\200\200\200\200\200\Ek:\
+	:xn:
+# alias cR
+c100s:\
+	:DN#9:\
+	:al=3*\E^R:\
+	:am:\
+	:bs:\
+	:cd=16*\E^C:\
+	:ce=16\E^S:\
+	:cl=2*\f:\
+	:cm=\Ea%+\040%+\040:\
+	:co#80:\
+	:db:\
+	:dc=16\E^A:\
+	:dl=3*\E^B:\
+	:ei=\E\200:\
+	:eo:\
+	:im=\E^P:\
+	:in:\
+	:ip=16*:\
+	:is=\EU\Ef\E7\E5\E8\El\ENH\EK\E\200\Eo&\200\Eo'\E:\
+	:k1=\E5:\
+	:k2=\E6:\
+	:k3=\E7:\
+	:kd=\E<:\
+	:ke=\Ex:\
+	:kh=\E?:\
+	:kl=\E>:\
+	:kr=\E=:\
+	:ks=\EX:\
+	:ku=\E;:\
+	:li#24:\
+	:mi:\
+	:nd=\E=:\
+	:pt:\
+	:ta=8\t:\
+	:ue=\Eg:\
+	:ul:\
+	:up=\E;:\
+	:us=\EG:\
+	:vb=\Ek\200\EK:\
+	:ve=\Ew:\
+	:vs=\EW:\
+	:xn:
+# alias slowconcept
+# alias slowconcept100
+# alias cs
+c100rvs:\
+	:DN#9:\
+	:al=3*\E^R:\
+	:am:\
+	:bs:\
+	:cd=16*\E^C:\
+	:ce=16\E^S:\
+	:cl=2*\f:\
+	:cm=\Ea%+\040%+\040:\
+	:co#80:\
+	:dC#9:\
+	:db:\
+	:dc=16\E^A:\
+	:dl=3*\E^B:\
+	:ei=\E\200:\
+	:eo:\
+	:im=\E^P:\
+	:in:\
+	:ip=16*:\
+	:is=\EU\Ef\E7\E5\E8\El\ENH\Ek\E\200\Eo&\200\Eo'\E:\
+	:k1=\E5:\
+	:k2=\E6:\
+	:k3=\E7:\
+	:kd=\E<:\
+	:ke=\Ex:\
+	:kh=\E?:\
+	:kl=\E>:\
+	:kr=\E=:\
+	:ks=\EX:\
+	:ku=\E;:\
+	:li#24:\
+	:mi:\
+	:nd=\E=:\
+	:pt:\
+	:ta=8\t:\
+	:ue=\Eg:\
+	:ul:\
+	:up=\E;:\
+	:us=\EG:\
+	:vb=\EK\200\Ek:\
+	:xn:
+# alias cd
+gt42:\
+	:bs:\
+	:co#72:\
+	:li#40:\
+	:ns:\
+	:os:
+# alias d2
+gt40:\
+	:bs:\
+	:co#72:\
+	:li#30:\
+	:ns:\
+	:os:
+# alias d4
+vt50:\
+	:bs:\
+	:cd=\EJ:\
+	:ce=\EK:\
+	:cl=\EH\EJ:\
+	:co#80:\
+	:li#12:\
+	:nd=\EC:\
+	:pt:\
+	:up=\EA:
+# alias d5
+dw1:\
+	:bs:\
+	:co#72:\
+	:hc:\
+	:os:
+# alias dI
+vt50h:\
+	:bs:\
+	:cd=\EJ:\
+	:ce=\EK:\
+	:cl=\EH\EJ:\
+	:cm=\EY%+\040%+\040:\
+	:co#80:\
+	:li#12:\
+	:nd=\EC:\
+	:pt:\
+	:sr=\EI:\
+	:up=\EA:
+# alias dh
+vt52:\
+	:bs:\
+	:cd=\EJ:\
+	:ce=\EK:\
+	:cl=\EH\EJ:\
+	:cm=\EY%+\040%+\040:\
+	:co#80:\
+	:li#24:\
+	:lm=A^PB^NC\040D\b:\
+	:nd=\EC:\
+	:pt:\
+	:sr=\EI:\
+	:up=\EA:
+# alias dv
+dw2:\
+	:bs:\
+	:co#132:\
+	:hc:\
+	:os:
+# alias dw
+ep48:\
+	:am:\
+	:bs:\
+	:co#80:\
+	:hd=^\:\
+	:hu=^^:\
+	:os:
+# alias ep4080
+# alias e1
+ep40:\
+	:am:\
+	:bs:\
+	:co#136:\
+	:hd=^\:\
+	:hu=^^:\
+	:os:
+# alias ep4000
+# alias e2
+1200:\
+	:co#120:\
+	:hc:\
+	:os:
+# alias tn1200
+# alias g2
+300:\
+	:bs:\
+	:co#132:\
+	:ff=\f:\
+	:hc:\
+	:hd=\Eh:\
+	:hu=\EH:\
+	:if=/usr/lib/tabset/std:\
+	:os:\
+	:pt:\
+	:up=^Z:
+# alias tn300
+# (alias differs)
+# alias g3
+# (alias differs)
+hp:\
+	:al=\EL:\
+	:am:\
+	:bs:\
+	:cd=\EJ:\
+	:ce=\EK:\
+	:ch=\E&a%2C:\
+	:cl=\EH\EJ:\
+	:cm=6\E&a%r%2c%2Y:\
+	:co#80:\
+	:cv=\E&a%2Y:\
+	:da:\
+	:db:\
+	:dc=\EP:\
+	:dl=\EM:\
+	:ei=\ER:\
+	:gu:\
+	:if=/usr/lib/tabset/std:\
+	:im=\EQ:\
+	:kd=\EB:\
+	:kh=\EH:\
+	:kl=\EC:\
+	:kr=\ED:\
+	:ku=\EA:\
+	:li#24:\
+	:ma=j\nk^P^K^Pl\040:\
+	:mi:\
+	:nd=\EC:\
+	:pt:\
+	:se=\E&d@:\
+	:so=\E&dB:\
+	:up=\EA:
+# alias hp2645
+# alias 2645
+# alias 2640
+# alias 2640a
+# alias 2640b
+# alias h4
+hp2648:\
+	:al=\EL:\
+	:am:\
+	:bs:\
+	:cd=\EJ:\
+	:ce=\EK:\
+	:ch=\E&a%2C:\
+	:cl=\EH\EJ:\
+	:cm=20\E&a%r%2c%2Y:\
+	:co#80:\
+	:cv=\E&a%2Y:\
+	:dC#80:\
+	:da:\
+	:db:\
+	:dc=\EP:\
+	:dl=\EM:\
+	:ei=\ER:\
+	:gu:\
+	:if=/usr/lib/tabset/std:\
+	:im=\EQ:\
+	:is=\E3\Eg\r:\
+	:li#24:\
+	:ma=j\nk^P^K^Pl\040:\
+	:mi:\
+	:nd=\EC:\
+	:pt:\
+	:se=\E&d@:\
+	:so=\E&dB:\
+	:ue=\E&d@:\
+	:up=\EA:\
+	:us=\E&dD:
+# alias h8
+2621nl:\
+	:al=\EL:\
+	:am:\
+	:bs:\
+	:bt=\Ei:\
+	:cd=\EJ:\
+	:ce=\EK:\
+	:cl=\EH\EJ:\
+	:cm=\E&a%r%dc%dY:\
+	:co#80:\
+	:da:\
+	:db:\
+	:dc=2\EP:\
+	:dl=\EM:\
+	:ei=\ER:\
+	:if=/usr/lib/tabset/std:\
+	:im=\EQ:\
+	:ip=2:\
+	:is=\E&j@\r\E3\r:\
+	:k1=\Ep\r:\
+	:k2=\Eq\r:\
+	:k3=\Er\r:\
+	:k4=\Es\r:\
+	:k5=\Et\r:\
+	:k6=\Eu\r:\
+	:k7=\Ev\r:\
+	:k8=\Ew\r:\
+	:kd=\Ew\r:\
+	:kh=\Ep\r:\
+	:kl=\Eu\r:\
+	:kn#8:\
+	:kr=\Ev\r:\
+	:ku=\Et\r:\
+	:li#24:\
+	:ma=j\nk^P^K^Pl\040:\
+	:mi:\
+	:nd=\EC:\
+	:pt:\
+	:se=\E&d@:\
+	:so=\E&dB:\
+	:up=\EA:
+# alias hp2621nl
+# alias hn
+2621wl:\
+	:al=\EL:\
+	:am:\
+	:bs:\
+	:bt=\Ei:\
+	:cd=\EJ:\
+	:ce=\EK:\
+	:cl=\EH\EJ:\
+	:cm=\E&a%r%dc%dY:\
+	:co#80:\
+	:da:\
+	:db:\
+	:dc=2\EP:\
+	:dl=\EM:\
+	:ei=\ER:\
+	:if=/usr/lib/tabset/std:\
+	:im=\EQ:\
+	:ip=2:\
+	:is=\E&jA\r\E3\r:\
+	:k1=\Ep\r:\
+	:k2=\Eq\r:\
+	:k3=\Er\r:\
+	:k4=\Es\r:\
+	:k5=\Et\r:\
+	:k6=\Eu\r:\
+	:k7=\Ev\r:\
+	:k8=\Ew\r:\
+	:kd=\Ew\r:\
+	:ke=\E&jA:\
+	:kh=\Ep\r:\
+	:kl=\Eu\r:\
+	:kn#8:\
+	:kr=\Ev\r:\
+	:ks=\E&jB:\
+	:ku=\Et\r:\
+	:li#24:\
+	:ma=j\nk^P^K^Pl\040:\
+	:mi:\
+	:nd=\EC:\
+	:pt:\
+	:se=\E&d@:\
+	:so=\E&dB:\
+	:up=\EA:
+# alias hp2621wl
+# alias hw
+i100:\
+	:al=\EL:\
+	:am:\
+	:bs:\
+	:cd=\EJ:\
+	:cl=\f:\
+	:cm=\Ef%r%+\040%+\040:\
+	:co#80:\
+	:dl=\EM:\
+	:ho=\EH:\
+	:li#24:\
+	:nd=\EC:\
+	:up=\EA:\
+	:vb=\Eb\Ea:
+# alias i1
+i400:\
+	:al=\E[L:\
+	:am:\
+	:bs:\
+	:ce=\E[N:\
+	:cl=\E2J:\
+	:cm=%i\E%3;%3H:\
+	:co#80:\
+	:dc=\E4h\E[2Q\E[P\E[4l\E[0Q:\
+	:dl=\E[M:\
+	:ei=\E[4l\E[0Q:\
+	:if=/usr/lib/tabset/infoton_tabs:\
+	:im=\E[4h\E[2Q:\
+	:li#25:\
+	:nd=\EC:\
+	:up=\E[A:
+# alias 400
+# alias i4
+ia:\
+	:am:\
+	:bc=^Z:\
+	:cd=^K:\
+	:cl=\f:\
+	:cm=^_%+\377%+\377:\
+	:co#80:\
+	:ho=\b:\
+	:li#24:\
+	:ll=\b^\:\
+	:nd=^Y:\
+	:up=^\:
+ik:\
+	:am:\
+	:bc=^Z:\
+	:cd=^K:\
+	:cl=\f:\
+	:co#80:\
+	:li#24:\
+	:ll=\b^\:\
+	:nd=^Y:\
+	:up=^\:
+adm31:\
+	:al=\EE:\
+	:am:\
+	:bs:\
+	:ce=\ET:\
+	:cl=\E*:\
+	:cm=\E=%+\040%+\040:\
+	:co#80:\
+	:dc=\EW:\
+	:dl=\ER:\
+	:ei=\Er:\
+	:ho=^^:\
+	:im=\Eq:\
+	:is=\Eu\E0:\
+	:kl=\b:\
+	:kr=\f:\
+	:ku=^K:\
+	:li#24:\
+	:ma=j\nk^P^K^Pl\040^R\f\f\040:\
+	:mi:\
+	:nd=\f:\
+	:se=\EG0:\
+	:so=\EG4:\
+	:up=^K:
+# alias 31
+# alias l1
+adm42:\
+	:al=\EE:\
+	:am:\
+	:bs:\
+	:bt=\EI:\
+	:cd=\EY:\
+	:ce=\ET:\
+	:cl=\E;:\
+	:cm=\E=%+\040%+\040:\
+	:co#80:\
+	:dc=\EW:\
+	:dl=\ER:\
+	:ei=\Er:\
+	:im=\Eq:\
+	:ip=6*:\
+	:li#24:\
+	:nd=\E\f:\
+	:se=\EG0:\
+	:so=\EG4:\
+	:ta=\t:\
+	:up=^K:\
+	:vs=\EC\E3\040\E3(:
+# alias l4
+adm3b:\
+	:am:\
+	:bs:\
+	:cl=^Z:\
+	:co#80:\
+	:ho=^^:\
+	:li#24:\
+	:ll=\E=7\040:\
+	:nd=\f:\
+	:se=\040DONG:\
+	:so=DING\040:\
+	:up=^K:
+# alias 3b
+# alias lb
+mime3a:\
+	:bs:\
+	:cl=^Z:\
+	:cm=\E=%+\040%+\040:\
+	:co#80:\
+	:ho=^^:\
+	:kd=^K:\
+	:kl=\b:\
+	:kr=^X:\
+	:ku=^Z:\
+	:li#24:\
+	:ma=j\nk^Pl\040^X\040^K\n^Z^P:\
+	:nd=\f:\
+	:up=^K:
+# alias m3
+microterm:\
+	:am:\
+	:bs:\
+	:cd=^_:\
+	:ce=^^:\
+	:cl=\f:\
+	:cm=^T%.%.:\
+	:co#80:\
+	:li#24:\
+	:nd=^X:\
+	:up=^Z:
+# alias act4
+# alias m4
+microterm5:\
+	:SE=\EB:\
+	:SO=\EC:\
+	:am:\
+	:bs:\
+	:cd=^_:\
+	:ce=^^:\
+	:cl=\f:\
+	:cm=^T%.%.:\
+	:co#80:\
+	:dn=^K:\
+	:ho=^]:\
+	:kd=^K:\
+	:kl=\b:\
+	:kr=^X:\
+	:ku=^Z:\
+	:li#24:\
+	:ma=j\nk^Pl:\
+	:nd=^X:\
+	:uc=\EA:\
+	:up=^Z:
+# alias act5
+# alias m5
+mimehb:\
+	:al=80^A:\
+	:am:\
+	:bs:\
+	:cd=^_:\
+	:ce=^^:\
+	:cl=^]^C:\
+	:cm=^T%.%.:\
+	:co#80:\
+	:dl=80^W:\
+	:dn=^K:\
+	:ho=^]:\
+	:is=^Y:\
+	:kd=^K:\
+	:kl=\b:\
+	:kr=^X:\
+	:ku=^Z:\
+	:li#24:\
+	:ma=^X\040^K\n^Z^Pj\nk^Pl\040:\
+	:nd=^X:\
+	:pt:\
+	:se=^N:\
+	:so=^N:\
+	:uc=^U:\
+	:up=^Z:
+# alias mh
+mime3ax:\
+	:al=80^A:\
+	:bs:\
+	:cd=^_:\
+	:ce=^X:\
+	:cl=^Z:\
+	:cm=\E=%+\040%+\040:\
+	:co#80:\
+	:dl=80^W:\
+	:ho=^^:\
+	:kd=^K:\
+	:kl=\b:\
+	:kr=^X:\
+	:ku=^Z:\
+	:li#24:\
+	:ma=j\nk^Pl\040^X\040^K\n^Z^P:\
+	:nd=\f:\
+	:pt:\
+	:uc=^U:\
+	:up=^K:
+# alias mx
+compucolor:\
+	:am:\
+	:bc=^Z:\
+	:cl=\f:\
+	:cm=%r^C%.%.:\
+	:co#64:\
+	:ho=\b:\
+	:li#32:\
+	:nd=^Y:\
+	:pt:\
+	:up=^\:
+# alias oc
+fox:\
+	:am:\
+	:bs:\
+	:cd=\EJ:\
+	:ce=\Ei:\
+	:cl=\EK:\
+	:co#80:\
+	:ho=\EH:\
+	:if=/usr/lib/tabset/std:\
+	:li#24:\
+	:ll=\EH\EA:\
+	:nd=\EC:\
+	:up=\EA:\
+	:vb=^P^B^P^C:
+# alias pf
+owl:\
+	:al=5.5*\EL:\
+	:am:\
+	:bs:\
+	:cd=5.5*\ED:\
+	:ce=\EI:\
+	:cl=132\EH\EJ:\
+	:cm=\EX%+\040\EY%+\040:\
+	:co#80:\
+	:dc=5.5*\EO:\
+	:dl=5.5*\EM:\
+	:ei=:\
+	:ic=\EN:\
+	:if=/usr/lib/tabset/std:\
+	:im=:\
+	:in:\
+	:ip=5.5*:\
+	:li#24:\
+	:nd=\EC:\
+	:up=\EA:\
+	:vb=^P^B^P^C:
+# alias po
+qb:\
+	:co#80:\
+	:ho=^Q:\
+	:li#24:
+carlock:\
+	:al=^E:\
+	:am:\
+	:bs:\
+	:ce=^U:\
+	:cl=100^Z:\
+	:cm=\E=%+\040%+\040:\
+	:co#80:\
+	:dc=\177:\
+	:dl=^D:\
+	:dm=:\
+	:ed=:\
+	:ei=^T:\
+	:ho=^^:\
+	:im=^T:\
+	:li#24:\
+	:nd=\f:\
+	:se=^V:\
+	:so=^V:\
+	:up=^K:\
+	:vb=\EV\EV:
+# alias qc
+exidy:\
+	:al=^P\n^X:\
+	:bs:\
+	:ce=^W:\
+	:cl=^^:\
+	:cm=\f%r%n%.%.:\
+	:co#63:\
+	:dc=\b:\
+	:dl=^P^Z^X:\
+	:dm=^P:\
+	:ed=^X:\
+	:ei=^X:\
+	:ho=^B:\
+	:ic=^\:\
+	:im=^P:\
+	:li#30:\
+	:nd=^\:\
+	:pt:\
+	:se=^X:\
+	:so=^N:\
+	:up=^Z:
+# alias exidy2500
+# alias exidy sorcerer as dm2500
+# alias qe
+ubell:\
+	:am:\
+	:bs:\
+	:ce=\Ed:\
+	:cl=^Z:\
+	:cm=\E=%+\040%+\040:\
+	:co#80:\
+	:ho=^^:\
+	:if=/usr/staff/michael/term/startup:\
+	:li#24:\
+	:ma=j\nk^P^K^Pl\040:\
+	:nd=\f:\
+	:pt:\
+	:up=^K:
+# alias qu
+qw:\
+	:am:\
+	:bc=^Y:\
+	:ce=^_:\
+	:cl=^^:\
+	:co#80:\
+	:dn=^K:\
+	:ho=^]:\
+	:li#12:\
+	:nd=^X:\
+	:up=^Z:
+xitex:\
+	:bs:\
+	:cd=2000^F^E:\
+	:ce=1600^E:\
+	:cl=400\f:\
+	:cm=\E=%+@%+@:\
+	:co#64:\
+	:ho=^D:\
+	:li#16:\
+	:ma=j\nk^Pl\040:\
+	:nd=\E+@A:\
+	:pc=\200:\
+	:su=\E=@@^K:\
+	:up=^K:
+# alias qx
+ti:\
+	:bs:\
+	:co#80:\
+	:dC#162:\
+	:hc:\
+	:os:
+# alias ti700
+# alias ti733
+# alias 735
+# alias ti735
+# alias t3
+ti745:\
+	:bs:\
+	:co#80:\
+	:hc:\
+	:os:
+# alias 745
+# alias 743
+# alias t4
+tvi912:\
+	:al=33*\EE:\
+	:am:\
+	:bs:\
+	:ce=\ET:\
+	:cl=^Z:\
+	:cm=\E=%+\040%+\040:\
+	:co#80:\
+	:dc=\EW:\
+	:dl=33*\ER:\
+	:ei=:\
+	:ho=^^:\
+	:ic=\EQ:\
+	:im=:\
+	:k0=^A0\r:\
+	:k1=^A1\r:\
+	:k2=^A2\r:\
+	:k3=^A3\r:\
+	:k4=^A4\r:\
+	:k5=^A5\r:\
+	:k6=^A6\r:\
+	:k7=^A7\rk8=^A8\r:\
+	:k9=^A9\r:\
+	:kd=\n:\
+	:kl=\b:\
+	:kr=\f:\
+	:ku=^K:\
+	:li#24:\
+	:ma=j\nk^P^K^Pl\040\f\040:\
+	:nd=\f:\
+	:pt:\
+	:se=\Ek:\
+	:so=\Ej:\
+	:up=^K:\
+	:us=\El:
+# alias tvi920
+# alias tvisp
+# alias tvi
+# alias v9
+swtp:\
+	:al=^\^Y:\
+	:am:\
+	:bs:\
+	:cd=^V:\
+	:ce=^F:\
+	:cl=\f:\
+	:cm=^K%.%.:\
+	:co#82:\
+	:dc=^\\b:\
+	:dl=^Z:\
+	:ho=^P:\
+	:ic=^\^X:\
+	:li#16:\
+	:nd=\t:\
+	:se=^^^F:\
+	:so=^^^V:\
+	:up=^A:
+# alias wc
+x1720:\
+	:bs:\
+	:co#132:\
+	:ff=\f:\
+	:hc:\
+	:if=/usr/lib/tabset/xerox1720:\
+	:os:\
+	:pt:
+# alias x1
+teleray:\
+	:bs:\
+	:cl=\f:\
+	:co#80:\
+	:li#24:
+# alias y1
+t1061:\
+	:al=\EL:\
+	:am:\
+	:bs:\
+	:cd=\EJ:\
+	:ce=\EK:\
+	:cl=\Ej:\
+	:cm=\EY%+\040%+\040:\
+	:co#80:\
+	:dc=\EQ:\
+	:dl=\EM:\
+	:ei=:\
+	:ic=\EP:\
+	:if=/usr/lib/tabset/teleray:\
+	:im=:\
+	:li#24:\
+	:nd=\EC:\
+	:pt:\
+	:se=\ER@:\
+	:so=\040\ERD:\
+	:ue=\ER@:\
+	:up=\EA:\
+	:us=\ERH:\
+	:xt:
+# alias y6

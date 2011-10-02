@@ -9280,9 +9280,9 @@ xterm1:\
 	:vi=\E[?25l:\
 	:vs=\E[?12;25h:\
 	:xn:
-tvi803:\
-tvi910:\
-tvi910+:\
+# name tvi803 (unknown)
+# name tvi910 (unknown)
+# name tvi910+ (unknown)
 tvi912:\
 	:al=33*\EE:\
 	:am:\
@@ -10637,23 +10637,23 @@ tvi920b-mc:\
 	:u9=\E?:\
 	:up=^K:
 # alias tvi920c-mc
-tvi921:\
-tvi92B:\
-tvi92D:\
-tvi924:\
-tvi925:\
-tvi925-hi:\
-tvi950:\
-tvi950-2p:\
-tvi950-4p:\
-tvi950-rv:\
-tvi950-rv-2p:\
-tvi950-rv-4p:\
-tvi955:\
-tvi955-w:\
-# alias 955-w
-tvi955-hb:\
-# alias 955-hb
+# name tvi921 (unknown)
+# name tvi92B (unknown)
+# name tvi92D (unknown)
+# name tvi924 (unknown)
+# name tvi925 (unknown)
+# name tvi925-hi (unknown)
+# name tvi950 (unknown)
+# name tvi950-2p (unknown)
+# name tvi950-4p (unknown)
+# name tvi950-rv (unknown)
+# name tvi950-rv-2p (unknown)
+# name tvi950-rv-4p (unknown)
+# name tvi955 (unknown)
+# name tvi955-w (unknown)
+# alias 955-w (unknown)
+# name tvi955-hb (unknown)
+# alias 955-hb (unknown)
 tvi970:\
 	:RA=\E[?7h:\
 	:SA=\E[?7l:\
@@ -11200,7 +11200,7 @@ nsterm+s:\
 	:hs:\
 	:ts=\E]2;:\
 	:ws#50:
-nsterm+c:\
+# name nsterm+c (unknown)
 nsterm+c41:\
 	:AB=\E[4%dm:\
 	:AF=\E[3%dm:\
