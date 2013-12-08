@@ -1,5 +1,5 @@
 dnl Process this file with autoconf to produce a configure script.
-AC_REVISION($Revision: 1.9 $)
+AC_REVISION($Revision: 1.11 $)
 AC_PREREQ(2.13.20030927)
 rm -f config.cache
 
@@ -10,17 +10,11 @@ AC_CONFIG_HEADER(config.h:config_h.in)
 CF_CHECK_CACHE
 AC_ARG_PROGRAM
 
-AC_PROG_CC
+CF_PROG_CC
 AC_PROG_CPP
-AC_GCC_TRADITIONAL
 
-AC_AIX
-AC_ISC_POSIX
-AC_MINIX
-
-CF_INTEL_COMPILER
 CF_PROG_EXT
-CF_ANSI_CC_REQD
+CF_PROG_LINT
 AC_CONST
 AC_C_INLINE
 CF_XOPEN_SOURCE

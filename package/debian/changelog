@@ -1,3 +1,9 @@
+tctest (20131208) unstable; urgency=low
+
+  * update configure script
+
+ -- Thomas E. Dickey <dickey@invisible-island.net>  Sun, 08 Dec 2013 10:12:37 -0500
+
 tctest (20111001) unstable; urgency=low
 
   * Initial release
