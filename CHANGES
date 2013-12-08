@@ -1,3 +1,29 @@
+2013-12-08  Thomas E. Dickey  <dickey@invisible-island.net>
+
+	* configure: regen
+
+	* makefile.in: fix substitution warnings from autoconf
+
+	* aclocal.m4, configure.in: add check for lint-program
+
+	* configure: regen
+
+	* aclocal.m4:
+	resync with my-autoconf, pull in CF_PROG_CC and discard unused macros
+
+	* COPYING, package/debian/copyright, package/debian/changelog, package/tctest.spec, VERSION:
+	bump
+
+	* configure.in: use CF_PROG_CC
+
+2013-10-25  Thomas E. Dickey  <dickey@invisible-island.net>
+
+	* config.sub: 2013-10-01
+
+2013-09-07  Thomas E. Dickey  <dickey@invisible-island.net>
+
+	* config.guess: 2013-06-10
+
 2011-10-01  Thomas E. Dickey  <dickey@invisible-island.net>
 
 	* tctest.c: icc warnings
