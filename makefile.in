@@ -1,4 +1,4 @@
-# $Id: makefile.in,v 1.9 2013/12/08 18:00:05 tom Exp $
+# $Id: makefile.in,v 1.11 2015/07/06 09:10:24 tom Exp $
 
 SHELL		= /bin/sh
 THIS		= tctest
@@ -113,7 +113,7 @@ clean :: mostlyclean
 	- $(RM) $(ALL)
 
 distclean :: clean
-	- $(RM) makefile config.status config.cache config.log config.h
+	- $(RM) makefile config.status config.cache config.log config.h man2html.tmp
 
 realclean: distclean
 	- $(RM) test_*$x
@@ -135,7 +135,7 @@ $(OBJ):	config.h
 $(INSTALL_DIRS):
 	mkdir -p $@
 ################################################################################
-.SUFFIXES : $o .i .html .$(manext) .cat .ps .pdf .txt
+.SUFFIXES : $o .i
 
 .c$o:
 	@RULE_CC@
@@ -144,30 +144,3 @@ $(INSTALL_DIRS):
 .c.i :
 	@RULE_CC@
 	@ECHO_CC@$(CPP) -C $(CPPFLAGS) $*.c >$@
-
-.$(manext).cat :
-	- nroff -man $(srcdir)/$(THIS).$(manext) >$@
-
-.$(manext).html :
-	GROFF_NO_SGR=stupid $(SHELL) -c "tbl $*.$(manext) | groff -Thtml -man" >$@
-
-.$(manext).ps :
-	$(SHELL) -c "tbl $*.$(manext) | groff -man" >$@
-
-.$(manext).txt :
-	GROFF_NO_SGR=stupid $(SHELL) -c "tbl $*.$(manext) | nroff -Tascii -man | col -bx" >$@
-
-.ps.pdf :
-	ps2pdf $*.ps
-################################################################################
-docs :: $(THIS).html \
-	$(THIS).pdf \
-	$(THIS).ps \
-	$(THIS).txt
-clean ::
-	$(RM) $(THIS).html $(THIS).pdf $(THIS).ps $(THIS).txt
-$(THIS).html : $(THIS).$(manext)
-$(THIS).pdf : $(THIS).ps
-$(THIS).ps : $(THIS).$(manext)
-$(THIS).txt : $(THIS).$(manext)
-################################################################################

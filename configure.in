@@ -1,5 +1,5 @@
 dnl Process this file with autoconf to produce a configure script.
-AC_REVISION($Revision: 1.11 $)
+AC_REVISION($Revision: 1.12 $)
 AC_PREREQ(2.13.20030927)
 rm -f config.cache
 
@@ -121,8 +121,10 @@ then
 	CF_MISSING_EXTERN($cf_tc_externs)
 fi
 
+CF_WITH_MAN2HTML
 CF_MAKE_TAGS
 CF_DISABLE_RPATH_HACK
 
 ###	output makefile and config.h
 AC_OUTPUT(makefile,,,sort)
+CF_MAKE_DOCS(tctest,1)

@@ -1,3 +1,9 @@
+tctest (20150706) unstable; urgency=low
+
+  * update configure script, add --with-man2html option
+
+ -- Thomas E. Dickey <dickey@invisible-island.net>  Mon, 06 Jul 2015 05:14:26 -0400
+
 tctest (20131208) unstable; urgency=low
 
   * update configure script
