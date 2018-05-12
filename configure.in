@@ -1,6 +1,6 @@
 dnl Process this file with autoconf to produce a configure script.
-AC_REVISION($Revision: 1.12 $)
-AC_PREREQ(2.13.20030927)
+AC_REVISION($Revision: 1.13 $)
+AC_PREREQ(2.52.20170501)
 rm -f config.cache
 
 dnl
@@ -34,55 +34,65 @@ tic.h \
 
 AC_LONG_FILE_NAMES
 
-cf_cv_screen=auto
+AC_MSG_CHECKING(if we have identified curses libraries)
+AC_TRY_LINK([#include <curses.h>],
+	[initscr(); tgoto("?", 0,0)],
+	cf_result=yes,
+	cf_result=no)
+AC_MSG_RESULT($cf_result)
 
-AC_MSG_CHECKING(for specified curses/termcap library type)
-AC_ARG_WITH(ncursesw,
-	[  --with-ncursesw         use wide ncurses-libraries],
-	[cf_cv_screen=ncursesw],[
+# Do not use CF_WITH_NCURSES_ETC, since we need *termcap*, not *curses*.
+if test "$cf_result" = no ; then
+	cf_cv_screen=auto
 
-AC_ARG_WITH(ncurses,
-	[  --with-ncurses          use ncurses-libraries],
-	[cf_cv_screen=ncurses],[
+	AC_MSG_CHECKING(for specified curses/termcap library type)
+	AC_ARG_WITH(ncursesw,
+		[  --with-ncursesw         use wide ncurses-libraries],
+		[cf_cv_screen=ncursesw],[
 
-AC_ARG_WITH(curses,
-	[  --with-curses           use curses-libraries rather than termcap],
-	[cf_cv_screen=curses],[
+	AC_ARG_WITH(ncurses,
+		[  --with-ncurses          use ncurses-libraries],
+		[cf_cv_screen=ncurses],[
 
-AC_ARG_WITH(curses-colr,
-	[  --with-curses-colr      compile/link with HPUX 10.x color-curses],
-	[cf_cv_screen=curses_colr],[
+	AC_ARG_WITH(curses,
+		[  --with-curses           use curses-libraries rather than termcap],
+		[cf_cv_screen=curses],[
 
-AC_ARG_WITH(curses-5lib,
-	[  --with-curses-5lib      compile/link with SunOS 5lib curses],
-	[cf_cv_screen=curses_5lib])])])])])
+	AC_ARG_WITH(curses-colr,
+		[  --with-curses-colr      compile/link with HPUX 10.x color-curses],
+		[cf_cv_screen=curses_colr],[
 
-AC_MSG_RESULT($cf_cv_screen)
+	AC_ARG_WITH(curses-5lib,
+		[  --with-curses-5lib      compile/link with SunOS 5lib curses],
+		[cf_cv_screen=curses_5lib])])])])])
 
-cf_cv_termlib=terminfo
+	AC_MSG_RESULT($cf_cv_screen)
 
-case $cf_cv_screen in
-curses|curses_*)
-	CF_CURSES_CONFIG
-	;;
-ncurses)
-	CF_NCURSES_CONFIG
-	;;
-ncursesw)
-	cf_cv_libtype=w
-	CF_NCURSES_CONFIG(ncursesw)
-	;;
-*)
-	AC_CHECK_LIB(otermcap, tgetent,
-		[CF_ADD_LIBS(-lotermcap)
-		 cf_cv_termlib=termcap],
-		[AC_CHECK_LIB(termcap, tgetent,
-			[CF_ADD_LIBS(-ltermcap)
+	cf_cv_termlib=terminfo
+
+	case $cf_cv_screen in
+	curses|curses_*)
+		CF_CURSES_CONFIG
+		;;
+	ncurses)
+		CF_NCURSES_CONFIG
+		;;
+	ncursesw)
+		cf_cv_libtype=w
+		CF_NCURSES_CONFIG(ncursesw)
+		;;
+	*)
+		AC_CHECK_LIB(otermcap, tgetent,
+			[CF_ADD_LIBS(-lotermcap)
 			 cf_cv_termlib=termcap],
-			[CF_TERMCAP_LIBS
-			 CF_FUNC_TGETENT])])
-	;;
-esac
+			[AC_CHECK_LIB(termcap, tgetent,
+				[CF_ADD_LIBS(-ltermcap)
+				 cf_cv_termlib=termcap],
+				[CF_TERMCAP_LIBS
+				 CF_FUNC_TGETENT])])
+		;;
+	esac
+fi
 
 CF_BROKEN_TGETENT_STATUS
 
