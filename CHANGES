@@ -1,3 +1,24 @@
+2018-05-12  Thomas E. Dickey  <dickey@invisible-island.net>
+
+	* configure: regen
+
+	* configure.in:
+	if the curses/termcap libraries are preset using CFLAGS/LIBS, do not
+	look for the actual libraries.
+
+	* aclocal.m4: resync with my-autoconf
+
+	* configure: regen
+
+	* COPYING, VERSION, package/debian/changelog, package/debian/copyright, package/tctest.spec:
+	bump
+
+2018-02-05  Thomas E. Dickey  <dickey@invisible-island.net>
+
+	* config.sub: 2018-01-15
+
+	* config.guess: 2018-01-26
+
 2015-07-06  Thomas E. Dickey  <dickey@invisible-island.net>
 
 	* package/debian/copyright, COPYING, package/debian/changelog, package/tctest.spec, VERSION:
@@ -508,11 +529,11 @@
 
 	* config_h.in: RCS_BASE
 
-1992-08-25  Thomas E. Dickey  <dickey@software.org>
+1992-08-25  dickey@software.org
 
 	* testing/bsd44.tc: RCS_BASE
 
-1990-05-21  Thomas E. Dickey  <dickey@software.org>
+1990-05-21  dickey@software.org
 
 	* testing/bsd43.tc: RCS_BASE
 
