@@ -1,5 +1,5 @@
 /******************************************************************************
- * Copyright 2011 by Thomas E. Dickey                                         *
+ * Copyright 2011,2021 by Thomas E. Dickey                                    *
  * All Rights Reserved.                                                       *
  *                                                                            *
  * Permission to use, copy, modify, and distribute this software and its      *
@@ -22,7 +22,7 @@
 /*
  * Author: Thomas E. Dickey
  *
- * $Id: tctest.c,v 1.59 2011/10/01 20:54:32 tom Exp $
+ * $Id: tctest.c,v 1.60 2021/03/28 13:19:00 tom Exp $
  *
  * A simple test-program for the termcap interface.
  *
@@ -741,6 +741,12 @@ check_tgoto(const char *capname, const char *buffer)
 		} else {
 		    int need = 0;
 		    switch (*p) {
+		    case '>':
+			++need;
+			/*FALLTHRU */
+		    case '+':
+			++need;
+			/*FALLTHRU */
 		    case 'd':
 		    case '2':
 		    case '3':
@@ -750,12 +756,9 @@ check_tgoto(const char *capname, const char *buffer)
 		    case 'B':
 		    case 'D':
 		    case 'r':
-			need = 0;
-		    case '+':
-			need = 1;
-			break;
-		    case '>':
-			need = 2;
+			if (v_opt > 2)
+			    fprintf(report, "%s - %d parameters\n",
+				    capname, need);
 			break;
 		    default:
 			++total_warning;
