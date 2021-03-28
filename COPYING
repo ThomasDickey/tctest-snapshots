@@ -1,6 +1,6 @@
--- $Id: COPYING,v 1.4 2018/05/12 19:18:12 tom Exp $
+-- $Id: COPYING,v 1.5 2021/03/28 11:02:52 tom Exp $
 
-  Copyright 2011-2015,2018 by Thomas E. Dickey
+  Copyright 2011-2018,2021 by Thomas E. Dickey
   All Rights Reserved.
 
   Permission to use, copy, modify, and distribute this software and its

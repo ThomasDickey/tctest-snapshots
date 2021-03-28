@@ -1,3 +1,23 @@
+2021-03-28  Thomas E. Dickey  <dickey@invisible-island.net>
+
+	* aclocal.m4: corrected initial date for this particular collection
+
+	* tctest.c:
+	added a -vvv check to show the number of parameters needed for a capability
+
+	* package/debian/rules, package/debian/compat, VERSION, package/debian/changelog, package/debian/copyright, package/tctest.spec, COPYING:
+	bump
+
+	* configure: regen
+
+	* aclocal.m4: resync with my-autoconf
+
+	* configure.in: use CF_WITHOUT_X
+
+2020-08-16  Thomas E. Dickey  <dickey@invisible-island.net>
+
+	* config.guess, config.sub: 2020-08-17
+
 2018-05-12  Thomas E. Dickey  <dickey@invisible-island.net>
 
 	* configure: regen
