@@ -1,3 +1,21 @@
+2022-10-08  Thomas E. Dickey  <dickey@invisible-island.net>
+
+	* tctest.1: check-manpage fixes
+
+	* COPYING, VERSION, package/debian/changelog, package/debian/copyright,
+	  package/tctest.spec:
+	bump
+
+	* aclocal.m4: resync with my-autoconf
+
+	* configure: regen
+
+	* configure.in: resync with my-autoconf
+
+2022-08-01  Thomas E. Dickey  <dickey@invisible-island.net>
+
+	* config.guess, config.sub: 2022-08-01
+
 2021-03-28  Thomas E. Dickey  <dickey@invisible-island.net>
 
 	* aclocal.m4: corrected initial date for this particular collection
@@ -5,7 +23,9 @@
 	* tctest.c:
 	added a -vvv check to show the number of parameters needed for a capability
 
-	* package/debian/rules, package/debian/compat, VERSION, package/debian/changelog, package/debian/copyright, package/tctest.spec, COPYING:
+	* package/debian/rules, package/debian/compat, VERSION,
+	  package/debian/changelog, package/debian/copyright,
+	  COPYING:
 	bump
 
 	* configure: regen
@@ -30,7 +50,8 @@
 
 	* configure: regen
 
-	* COPYING, VERSION, package/debian/changelog, package/debian/copyright, package/tctest.spec:
+	* COPYING, VERSION, package/debian/changelog, package/debian/copyright,
+	  package/tctest.spec:
 	bump
 
 2018-02-05  Thomas E. Dickey  <dickey@invisible-island.net>
@@ -41,7 +62,8 @@
 
 2015-07-06  Thomas E. Dickey  <dickey@invisible-island.net>
 
-	* package/debian/copyright, COPYING, package/debian/changelog, package/tctest.spec, VERSION:
+	* package/debian/copyright, COPYING, package/debian/changelog,
+	  VERSION:
 	bump
 
 	* configure: regen
@@ -76,7 +98,8 @@
 	* aclocal.m4:
 	resync with my-autoconf, pull in CF_PROG_CC and discard unused macros
 
-	* COPYING, package/debian/copyright, package/debian/changelog, package/tctest.spec, VERSION:
+	* COPYING, package/debian/copyright, package/debian/changelog,
+	  VERSION:
 	bump
 
 	* configure.in: use CF_PROG_CC
@@ -97,7 +120,7 @@
 
 	* makefile.in: add docs rule
 
-	* testing/entry-size2.gnu, testing/entry-size.gnu, testing/waste-size.gnu:
+	* testing/waste-size.gnu:
 	RCS_BASE
 
 	* testing/includes.ref: resync for a case where names cannot be found
@@ -312,7 +335,8 @@
 
 	* testing/escapes.tc: add test-case for carets
 
-	* testing/vim-amiga.ref, testing/freebsd.ref, testing/bsd43.ref, testing/bsd42.ref:
+	* testing/vim-amiga.ref, testing/freebsd.ref, testing/bsd43.ref,
+	  testing/bsd42.ref:
 	regen
 
 	* tctest.c:
@@ -346,7 +370,8 @@
 
 2011-07-29  Thomas E. Dickey  <dickey@invisible-island.net>
 
-	* testing/freebsd.ref, testing/bsd43.ref, testing/bsd42.ref, testing/vim-amiga.ref:
+	* testing/freebsd.ref, testing/bsd43.ref, testing/bsd42.ref,
+	  testing/vim-amiga.ref:
 	regen
 
 	* tctest.c:
@@ -445,7 +470,8 @@
 
 	* makefile.in: add VERSION file
 
-	* package/debian/rules, package/debian/docs, package/debian/watch, package/debian/control, package/debian/changelog:
+	* package/debian/rules, package/debian/docs, package/debian/watch,
+	  package/debian/changelog:
 	RCS_BASE
 
 	* testing/run_test.sh:
