@@ -1,3 +1,17 @@
+2023-01-30  Thomas E. Dickey  <dickey@invisible-island.net>
+
+	* makefile.in, testing/run_test.sh: shellcheck-warnings
+
+	* configure: regen
+
+	* configure.in: initialize $ac_includes_default
+
+	* COPYING, VERSION, package/debian/changelog, package/debian/copyright,
+	  package/tctest.spec:
+	bump
+
+	* aclocal.m4: resync with my-autoconf
+
 2022-10-08  Thomas E. Dickey  <dickey@invisible-island.net>
 
 	* tctest.1: check-manpage fixes
@@ -25,7 +39,7 @@
 
 	* package/debian/rules, package/debian/compat, VERSION,
 	  package/debian/changelog, package/debian/copyright,
-	  COPYING:
+	  package/tctest.spec, COPYING:
 	bump
 
 	* configure: regen
@@ -33,6 +47,10 @@
 	* aclocal.m4: resync with my-autoconf
 
 	* configure.in: use CF_WITHOUT_X
+
+2020-11-30  Thomas E. Dickey  <dickey@invisible-island.net>
+
+	* install-sh: update to 2020-11-14
 
 2020-08-16  Thomas E. Dickey  <dickey@invisible-island.net>
 
@@ -63,7 +81,7 @@
 2015-07-06  Thomas E. Dickey  <dickey@invisible-island.net>
 
 	* package/debian/copyright, COPYING, package/debian/changelog,
-	  VERSION:
+	  package/tctest.spec, VERSION:
 	bump
 
 	* configure: regen
@@ -99,7 +117,7 @@
 	resync with my-autoconf, pull in CF_PROG_CC and discard unused macros
 
 	* COPYING, package/debian/copyright, package/debian/changelog,
-	  VERSION:
+	  package/tctest.spec, VERSION:
 	bump
 
 	* configure.in: use CF_PROG_CC
@@ -120,7 +138,7 @@
 
 	* makefile.in: add docs rule
 
-	* testing/waste-size.gnu:
+	* testing/entry-size2.gnu, testing/entry-size.gnu, testing/waste-size.gnu:
 	RCS_BASE
 
 	* testing/includes.ref: resync for a case where names cannot be found
@@ -471,7 +489,7 @@
 	* makefile.in: add VERSION file
 
 	* package/debian/rules, package/debian/docs, package/debian/watch,
-	  package/debian/changelog:
+	  package/debian/control, package/debian/changelog:
 	RCS_BASE
 
 	* testing/run_test.sh:
@@ -574,6 +592,8 @@
 1994-07-11  Thomas E. Dickey  <dickey@clark.net>
 
 	* config_h.in: RCS_BASE
+
+	* config_h.in: s/Header/Id/
 
 1992-08-25  dickey@software.org
 

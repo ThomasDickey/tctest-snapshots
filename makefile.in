@@ -1,4 +1,4 @@
-# $Id: makefile.in,v 1.11 2015/07/06 09:10:24 tom Exp $
+# $Id: makefile.in,v 1.12 2023/01/31 00:32:36 tom Exp $
 
 SHELL		= /bin/sh
 THIS		= tctest
@@ -71,12 +71,14 @@ all ::	$(ALL)
 $(PROGRAM): $(OBJ)
 	@ECHO_LD@$(LINK) $(CFLAGS) $(LDFLAGS) -o $@ $(OBJ) $(LIBS)
 
+RUN_TEST = cd testing && EGREP="@EGREP@" FGREP="@FGREP@" ./run_test.sh
+
 check: $(PROGRAM)
-	cd testing && ./run_test.sh
+	$(RUN_TEST)
 check-cap: $(PROGRAM)
-	cd testing && ./run_test.sh -c
+	$(RUN_TEST) -c
 check-tic: $(PROGRAM)
-	cd testing && ./run_test.sh -t
+	$(RUN_TEST) -t
 
 NAME_OF_ACTUAL = $(ACTUAL)$x
 PATH_OF_ACTUAL = $(BINDIR)/$(ACTUAL)$x

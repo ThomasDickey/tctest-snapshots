@@ -1,5 +1,5 @@
 #!/bin/sh
-# $Id: run_test.sh,v 1.25 2011/09/27 00:05:39 tom Exp $
+# $Id: run_test.sh,v 1.26 2023/01/31 00:29:01 tom Exp $
 # vi:ts=4 sw=4
 # test-script for tctest
 
@@ -10,7 +10,10 @@ unset LINES
 unset COLUMNS
 unset TERMCAP
 
-case x`(infocmp |egrep '^#') 2>/dev/null` in
+: "${EGREP:-grep -E}"
+: "${FGREP:-grep -F}"
+
+case x`(infocmp |$EGREP '^#') 2>/dev/null` in
 *.db)
 	HASH=yes
 	;;
@@ -41,7 +44,7 @@ done
 for name in *.tc
 do
 	# Help persuade the termcap library to look only at our file.
-	TERMINFO=$HERE/$name
+	TERMINFO=$HERE/"$name"
 	export TERMINFO
 
 	TERMPATH=$TERMINFO
@@ -50,18 +53,19 @@ do
 	TERMINFO_DIRS=$TERMINFO
 	export TERMINFO_DIRS
 
-	root=`basename $name .tc`
-	rm -rf $root.all $root.err $root.std $root
-	trap "rm -rf $root.err $root.std *.db $root" 0 1 2 5 15
+	root=`basename "$name" .tc`
+	rm -rf "$root".all "$root".err "$root".std "$root"
+	trap 'rm -rf $root.err $root.std *.db $root; exit 1' HUP INT QUIT TERM
+	trap 'rm -rf $root.err $root.std *.db $root' EXIT
 
 	echo "** $name"
 
 	case $TYPE in
 	cap)
-		ln -s $name $root
+		ln -s "$name" "$root"
 		$TIME sh -c "cap_mkdb -v $root 2>/dev/null"
-		name=$root
-		TERMCAP=$HERE/$root
+		name="$root"
+		TERMCAP=$HERE/"$root"
 		export TERMCAP
 		TERMPATH=$TERMCAP
 		export TERMPATH
@@ -69,15 +73,15 @@ do
 	tic)
 		if test $HASH = no
 		then
-			mkdir $root
+			mkdir "$root"
 		fi
 
-		TERMINFO=$HERE/$root
+		TERMINFO=$HERE/"$root"
 		export TERMINFO
-		TERMINFO_DIR=$TERMINFO
+		TERMINFO_DIRS=$TERMINFO
 		export TERMINFO_DIRS
 
-		DATE=`tic -V 2>/dev/null |fgrep ncurses|sed -e 's/^.*\.//'`
+		DATE=`tic -V 2>/dev/null |$FGREP ncurses|sed -e 's/^.*\.//'`
 		TICS=
 		if test -n "$DATE"
 		then
@@ -100,32 +104,32 @@ do
 	echo
 	echo "...standard"
 	$TIME sh -c "$PROG -f $name -a -o $root.std -s $OPTS 2>$root.err"
-	echo "** `egrep -v '^[#	]' $root.std |wc -l` entries, `egrep '^	' $root.std |wc -l` capabilities, `cat $root.err | wc -l` library warnings"
+	echo "** `$EGREP -v '^[#	]' "$root".std |wc -l` entries, `$EGREP '^	' "$root".std |wc -l` capabilities, `cat "$root".err | wc -l` library warnings"
 
 	echo
 	echo "...complete"
-	$TIME sh -c "$PROG -b -f $name -a -o $root.all $OPTS 2>$root.err"
-	echo "** `egrep -v '^[#	]' $root.std |wc -l` entries, `egrep '^	' $root.std |wc -l` capabilities, `cat $root.err | wc -l` library warnings"
+	$TIME sh -c "$PROG -b -f $name -a -o \"$root\".all $OPTS 2>$root.err"
+	echo "** `$EGREP -v '^[#	]' "$root".std |wc -l` entries, `$EGREP '^	' "$root".std |wc -l` capabilities, `cat "$root".err | wc -l` library warnings"
 
 	echo
-	if test -f $root.ref
+	if test -f "$root".ref
 	then
-		if cmp -s $root.ref $root.all
+		if cmp -s "$root".ref "$root".all
 		then
 			echo "...okay $name"
-			rm -f $root.all
+			rm -f "$root".all
 		else
-			diff -u $root.ref $root.all |diffstat
+			diff -u "$root".ref "$root".all |diffstat
 		fi
 	else
-		cp $root.all $root.ref
+		cp "$root".all "$root".ref
 		echo "...saved $root.ref"
 	fi
-	if cmp -s $root.std $root.ref
+	if cmp -s "$root".std "$root".ref
 	then
 		:
 	else
-		diff -u $root.ref $root.std |diffstat
+		diff -u "$root".ref "$root".std |diffstat
 	fi
-	rm -rf $root.err $root.std *.db $root
+	rm -rf "$root".err "$root".std ./*.db "$root"
 done

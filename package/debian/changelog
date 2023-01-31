@@ -1,3 +1,9 @@
+tctest (20230130) unstable; urgency=low
+
+  * maintenance updates
+
+ -- Thomas E. Dickey <dickey@invisible-island.net>  Mon, 30 Jan 2023 19:07:02 -0500
+
 tctest (20221008) unstable; urgency=low
 
   * update configure script
