@@ -1,5 +1,5 @@
 .\"*****************************************************************************
-.\" Copyright 2011,2022 by Thomas E. Dickey                                    *
+.\" Copyright 2011-2022,2024 by Thomas E. Dickey                               *
 .\" All Rights Reserved.                                                       *
 .\"                                                                            *
 .\" Permission to use, copy, modify, and distribute this software and its      *
@@ -18,18 +18,19 @@
 .\" ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR *
 .\" IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.                *
 .\"*****************************************************************************
-.\" $Id: tctest.1,v 1.7 2022/10/08 14:45:17 tom Exp $
-.TH TCTEST 1
+.\" $Id: tctest.1,v 1.9 2024/04/29 19:14:00 tom Exp $
+.TH TCTEST 1 2024-04-29 "TERMCAP-Test" "User commands"
 .SH NAME
-\fBtctest\fP \- termcap library checker
+\fBtctest\fP \-
+termcap library checker
 .SH SYNOPSIS
 \fBtctest\fI [options] [file-specifications]\fR
 .SH DESCRIPTION
-\fBtctest\fP exercises the termcap library (or emulation of termcap)
+\fBtctest\fP exercises the \%termcap library (or emulation of \%termcap)
 with which it is linked.
 It provides several command-line options,
 making it simple to construct test-cases to compare implementations
-of termcap.
+of \%termcap.
 .SH OPTIONS
 After processing options,
 \fBtctest\fP uses any command-line parameters as the names of
@@ -38,29 +39,29 @@ If no command-line parameters are given,
 \fBtctest\fP tries the \fBTERM\fP environment variable.
 If that is not set, the program uses the \fBdumb\fP terminal description.
 .PP
-The termcap library function
-\fBtgetent\fP locates the termcap file,
-looking at the \fBTERMCAP\fP environment variable (or \fB/etc/termcap\fP).
+The \%termcap library function
+\fBtgetent\fP locates the \%termcap file,
+looking at the \fB\%TERMCAP\fP environment variable (or \fB/etc/termcap\fP).
 \fBtctest\fP manipulates this environment variable,
 allowing one to use alternate terminal databases.
 .PP
 Some of the options provide only summary behavior.
-The most useful output from \fBtctest\fP is in \fItermcap\fP
+The most useful output from \fBtctest\fP is in \fI\%termcap\fP
 format, with one capability per line.
 It is noted that the extra whitespace would be poorly handled
-by some termcap implementations, counting toward the 1023 byte
+by some \%termcap implementations, counting toward the 1023 byte
 limit on an entry's size.
 The reason for listing it in this way is to provide easy comparison.
 .PP
 These are the options:
 .TP
 \fB\-1\fP
-when processing a termcap file, e.g., with \fB\-a\fP,
+when processing a \%termcap file, e.g., with \fB\-a\fP,
 call \fBtgetent\fP only once per entry using the primary name.
 Use this for getting per-entry statistics versus the per-call statistics.
 .TP
 \fB\-a\fP
-show capabilities for all names in termcap file.
+show capabilities for all names in \%termcap file.
 This overrides the \fB\-b\fP option.
 .TP
 \fB\-b\fP
@@ -68,19 +69,19 @@ use brute-force to find all capabilities, e.g., for the names given on
 the command-line.
 .TP
 \fB\-c\fP
-\fBtctest\fP uses the names from a built-in table of termcap names
+\fBtctest\fP uses the names from a built-in table of \%termcap names
 chosen to correspond to terminfo capability names.
 This is the default;
 the \fB\-c\fP option is provided to cancel \fB\-b\fP.
 .TP
 \fB\-e\fP
-use $TERMCAP variable if it exists.
+use $\%TERMCAP variable if it exists.
 If this option is not set,
-\fBtctest\fP unsets the \fBTERMCAP\fP environment variable.
+\fBtctest\fP unsets the \fB\%TERMCAP\fP environment variable.
 .TP
 \fB\-f\fP \fINAME\fP
-use this termcap file.
-\fBtctest\fP sets the \fBTERMCAP\fP environment variable to the
+use this \%termcap file.
+\fBtctest\fP sets the \fB\%TERMCAP\fP environment variable to the
 file's absolute path.
 .TP
 \fB\-g\fP
@@ -117,7 +118,7 @@ total wasted space (tabs, newlines) for \fBtgetent\fP calls returning this size
 .RE
 .TP
 \fB\-l\fP
-list names and aliases in termcap file.
+list names and aliases in \%termcap file.
 .TP
 \fB\-n\fP
 do not query for the capability names.
@@ -129,7 +130,7 @@ By default that goes to the standard output.
 If this option is used, verbose and summary reports are written
 to the standard output instead of the standard error,
 to allow separating them from error messages that may be written
-by the termcap library.
+by the \%termcap library.
 .TP
 \fB\-r\fP \fICOUNT\fP
 repeat the processing of the terminal database this many times.
@@ -151,8 +152,9 @@ printing warnings to the standard error.
 .TP
 \fB\-V\fP
 print the program version and exit
+.SH AUTHORS
+Thomas Dickey <dickey@invisible-island.net>.
 .SH SEE ALSO
-.PP
 .BR tgetent (3)
 documentation for ncurses highlights the differences.
 This is a starting point;
@@ -160,10 +162,7 @@ although the original BSD source code is recommended reading as well.
 .PP
 .BR ncurses (3)
 is a terminfo-based library,
-which provides a termcap interface.
-Normally it ignores the \fBTERMCAP\fP variable,
+which provides a \%termcap interface.
+Normally it ignores the \fB\%TERMCAP\fP variable,
 but it can be configured to provide a more accurate emulation of the
-termcap library, e.g., loading the terminal entries base on \fBTERMCAP\fP.
-.SH AUTHOR
-.PP
-Thomas Dickey <dickey@invisible-island.net>.
+\%termcap library, e.g., loading the terminal entries base on \fB\%TERMCAP\fP.

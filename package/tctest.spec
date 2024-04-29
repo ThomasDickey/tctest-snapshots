@@ -1,16 +1,16 @@
-Summary:  tctest - termcap library checker
+Summary:  Termcap library checker
 %define AppProgram tctest
-%define AppVersion 20230130
+%define AppVersion 20240429
 %define AppRelease 1
-# $XTermId: tctest.spec,v 1.13 2023/01/31 00:07:02 tom Exp $
+# $XTermId: tctest.spec,v 1.16 2024/04/29 19:10:44 tom Exp $
 Name: %{AppProgram}
 Version: %{AppVersion}
 Release: %{AppRelease}
 License: MIT
 Group: Applications/Development
-URL: ftp://invisible-island.net/%{AppProgram}
-Source0: %{AppProgram}-%{AppVersion}.tgz
 Packager: Thomas Dickey <dickey@invisible-island.net>
+URL: https://invisible-island.net/%{AppProgram}
+Source0: https://invisible-island.net/archives/%{AppProgram}-%{AppVersion}.tgz
 
 %description
 The 'tctest' program makes several checks for syntax and other features of
@@ -23,25 +23,20 @@ a termcap library interface, e.g,. such as provided by ncurses.
 %build
 
 INSTALL_PROGRAM='${INSTALL}' \
-	./configure \
-		--target %{_target_platform} \
-		--prefix=%{_prefix} \
-		--bindir=%{_bindir} \
-		--libdir=%{_libdir} \
-		--mandir=%{_mandir} \
-		--with-ncurses
+%configure \
+	--target %{_target_platform} \
+	--prefix=%{_prefix} \
+	--bindir=%{_bindir} \
+	--libdir=%{_libdir} \
+	--mandir=%{_mandir} \
+	--with-ncurses
 
 make
 
 %install
 [ "$RPM_BUILD_ROOT" != "/" ] && rm -rf $RPM_BUILD_ROOT
 
-make install                    DESTDIR=$RPM_BUILD_ROOT
-
-strip $RPM_BUILD_ROOT%{_bindir}/%{AppProgram}
-
-%clean
-[ "$RPM_BUILD_ROOT" != "/" ] && rm -rf $RPM_BUILD_ROOT
+make install DESTDIR=$RPM_BUILD_ROOT
 
 %files
 %defattr(-,root,root)
@@ -50,6 +45,9 @@ strip $RPM_BUILD_ROOT%{_bindir}/%{AppProgram}
 
 %changelog
 # each patch should add its ChangeLog entries here
+
+* Mon Apr 29 2024 Thomas Dickey
+- linted
 
 * Sun Jul 24 2011 Thomas Dickey
 - initial version
