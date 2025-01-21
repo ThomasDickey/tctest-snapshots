@@ -1,5 +1,5 @@
 /******************************************************************************
- * Copyright 2011,2021 by Thomas E. Dickey                                    *
+ * Copyright 2011-2021,2025 by Thomas E. Dickey                               *
  * All Rights Reserved.                                                       *
  *                                                                            *
  * Permission to use, copy, modify, and distribute this software and its      *
@@ -22,7 +22,7 @@
 /*
  * Author: Thomas E. Dickey
  *
- * $Id: tctest.c,v 1.60 2021/03/28 13:19:00 tom Exp $
+ * $Id: tctest.c,v 1.62 2025/01/21 21:34:50 tom Exp $
  *
  * A simple test-program for the termcap interface.
  *
@@ -83,7 +83,7 @@ extern void _nc_freeall(void);
 
 #define DumpIt       (a_opt || !(l_opt || s_opt))
 #define isASCII(c)   ((c) > ' ' && (c) <= '~')
-#define isCapName(c) (isASCII(c) && strchr("^=:\\", c) == 0)
+#define isCapName(c) (isASCII(c) && strchr("^=:\\", c) == NULL)
 #define UCH(c)       ((unsigned char)(c))
 
 /* options */
@@ -91,7 +91,7 @@ static int opt_1 = 0;
 static int a_opt = 0;
 static int b_opt = 0;
 static int e_opt = 0;
-static char *f_opt = 0;
+static char *f_opt = NULL;
 static int g_opt = 0;
 static int l_opt = 0;
 static int r_opt = 0;
@@ -223,7 +223,7 @@ static FILE *
 open_output(const char *name)
 {
     FILE *fp = fopen(name, "w");
-    if (fp == 0)
+    if (fp == NULL)
 	failed(name);
     return fp;
 }
@@ -253,7 +253,7 @@ find_termcap_file(void)
     const char *env = getenv("TERMCAP");
 
     result = "/etc/termcap";
-    if (env != 0 && *env == '/')
+    if (env != NULL && *env == '/')
 	result = env;
     return result;
 }
@@ -263,7 +263,7 @@ open_termcap_file(void)
 {
     const char *name = find_termcap_file();
     FILE *fp = fopen(name, "r");
-    if (fp == 0)
+    if (fp == NULL)
 	failed(name);
     return fp;
 }
@@ -278,7 +278,7 @@ set_termcap_file(const char *fname)
 
     /* the $TERMCAP variable must be an absolute pathname */
     if (*fname != '/') {
-	if (getcwd(buffer, sizeof(buffer) - 2) == 0) {
+	if (getcwd(buffer, sizeof(buffer) - 2) == NULL) {
 	    failed("getcwd");
 	}
 	strcat(buffer, "/");
@@ -293,9 +293,9 @@ set_termcap_file(const char *fname)
 static void
 free_list(char **list)
 {
-    if (list != 0) {
+    if (list != NULL) {
 	int n;
-	for (n = 0; list[n] != 0; ++n) {
+	for (n = 0; list[n] != NULL; ++n) {
 	    free(list[n]);
 	}
 	free(list);
@@ -305,17 +305,17 @@ free_list(char **list)
 static char **
 make_list(char **list)
 {
-    char **result = 0;
-    if (list != 0) {
+    char **result = NULL;
+    if (list != NULL) {
 	size_t n;
-	for (n = 0; list[n] != 0; ++n) {
+	for (n = 0; list[n] != NULL; ++n) {
 	    ;
 	}
 	if (n) {
 	    ++n;
 	    result = calloc(n, sizeof(char *));
-	    if (result != 0) {
-		for (n = 0; list[n] != 0; ++n) {
+	    if (result != NULL) {
+		for (n = 0; list[n] != NULL; ++n) {
 		    result[n] = list[n];
 		}
 	    }
@@ -327,9 +327,9 @@ make_list(char **list)
 static void
 show_list(char **list)
 {
-    if (list != 0) {
+    if (list != NULL) {
 	int n;
-	for (n = 0; list[n] != 0; ++n) {
+	for (n = 0; list[n] != NULL; ++n) {
 	    const char *next = list[n + 1] ? "\\" : "";
 	    fprintf(output, "%s%s\n", list[n], next);
 	}
@@ -342,16 +342,16 @@ same_list(char **a, char **b)
     int result = 1;
     int n;
 
-    if (a == 0 || b == 0) {
+    if (a == NULL || b == NULL) {
 	result = 0;
     } else {
-	for (n = 0; a[n] != 0 && b[n] != 0; ++n) {
+	for (n = 0; a[n] != NULL && b[n] != NULL; ++n) {
 	    if (strcmp(a[n], b[n])) {
 		result = 0;
 		break;
 	    }
 	}
-	if ((a[n] != 0) ^ (b[n] != 0)) {
+	if ((a[n] != NULL) ^ (b[n] != NULL)) {
 	    result = 0;
 	}
     }
@@ -363,16 +363,16 @@ index2name(unsigned inx)
 {
     static char result[3];
 
-    result[0] = index2chr[inx / MOD_INDEX];
-    result[1] = index2chr[inx % MOD_INDEX];
+    result[0] = (char) index2chr[inx / MOD_INDEX];
+    result[1] = (char) index2chr[inx % MOD_INDEX];
 
-    return (result[0] && result[1]) ? result : 0;
+    return (result[0] && result[1]) ? result : NULL;
 }
 
 static unsigned
 name2index(const char *name)
 {
-    return ((chr2index[UCH(name[0])] * MOD_INDEX) + chr2index[UCH(name[1])]);
+    return (unsigned) ((chr2index[UCH(name[0])] * MOD_INDEX) + chr2index[UCH(name[1])]);
 }
 
 static void
@@ -388,13 +388,13 @@ init_buckets(void)
 
     /* make arrays to simplify converting between by_name-index and name */
     for (j = k = 0; j < 256; ++j) {
-	if (isCapName(j)) {
-	    chr2index[j] = ++k;
+	if (isCapName((int)j)) {
+	    chr2index[j] = UCH(++k);
 	}
     }
     for (j = 0, k = 1; j < 256; ++j) {
 	if (chr2index[j] == k) {
-	    index2chr[k++] = j;
+	    index2chr[k++] = UCH(j);
 	}
     }
 
@@ -521,7 +521,7 @@ count_includes(const char *buffer)
     const char *p = strchr(buffer, ':');
     int ch;
 
-    if (p != 0) {
+    if (p != NULL) {
 	while ((ch = *p++) != '\0' && (*p != '\0')) {
 	    if (ch == '\\') {
 		++p;
@@ -576,12 +576,12 @@ count_tgetent(char *buffer)
 
     total_tgetent++;
 
-    if (buffer != 0 && *buffer != '\0') {
+    if (buffer != NULL && *buffer != '\0') {
 	/* check for NetBSD extension */
-	if ((str = safe_tgetstr("ZZ", &areap)) != 0) {
+	if ((str = safe_tgetstr("ZZ", &areap)) != NULL) {
 	    char *ptr;
 	    char ch;
-	    if (sscanf(str, "%p%c", &ptr, &ch) == 1) {
+	    if (sscanf(str, "%p%c", (void **) &ptr, &ch) == 1) {
 		buffer = ptr;
 	    }
 	}
@@ -723,7 +723,7 @@ uses_params(const char *capname)
 static void
 check_tgoto(const char *capname, const char *buffer)
 {
-    if (buffer != 0 && *buffer != '\0') {
+    if (buffer != NULL && *buffer != '\0') {
 	const char *p;
 	int done = 0;
 	for (p = buffer; !done && (*p != '\0'); ++p) {
@@ -846,7 +846,7 @@ safe_tgetstr(NCURSES_CONST char *cap, char **areap)
 
     setcatch(catcher);
     if (setjmp(my_jumper) != 0) {
-	result = 0;
+	result = NULL;
 	total_failure++;
     } else {
 	result = tgetstr(cap, areap);
@@ -859,14 +859,14 @@ static char *
 dumpit(const char *cap, char **areap)
 {
     NCURSES_CONST char *capname = (NCURSES_CONST char *) cap;
-    char *result = 0;
-    char buffer[MAXBUF], *append = 0;
+    char *result = NULL;
+    char buffer[MAXBUF], *append = NULL;
     char *str;
     int num;
 
-    if ((str = safe_tgetstr(capname, areap)) != 0) {
+    if ((str = safe_tgetstr(capname, areap)) != NULL) {
 	int params = uses_params(capname);
-	char *cpy = 0;
+	char *cpy = NULL;
 #ifdef USE_LIBTIC
 	char mybuf[MAXBUF];
 	char *p, *q;
@@ -878,8 +878,8 @@ dumpit(const char *cap, char **areap)
 	    *p++ = *q;
 	}
 	*p = 0;
-	cpy = _nc_infotocap(0, mybuf, params);
-	if (cpy != 0) {
+	cpy = _nc_infotocap(NULL, mybuf, params);
+	if (cpy != NULL) {
 	    if (v_opt > 3) {
 		fprintf(report, "string %s\n", capname);
 		fprintf(report, "< %s\n", str);
@@ -896,6 +896,7 @@ dumpit(const char *cap, char **areap)
 #endif
 	if (str == (char *) -1) {
 	    sprintf(buffer, "\t:%s@:", capname);
+	    append = buffer + strlen(buffer);
 	} else {
 	    if (params > 0)
 		check_tgoto(capname, str);
@@ -923,7 +924,7 @@ dumpit(const char *cap, char **areap)
 		    strcpy(append, "\\t");
 		    break;
 		case '^':
-		    if (cpy == 0) {
+		    if (cpy == NULL) {
 			strcpy(append, "\\^");
 		    } else {
 			strcpy(append, "^");
@@ -947,7 +948,7 @@ dumpit(const char *cap, char **areap)
 		    strcpy(append, "\\072");
 		    break;
 		case '\\':
-		    if (cpy == 0 || !*str) {
+		    if (cpy == NULL || !*str) {
 			strcpy(append, "\\\\");
 		    } else {
 			/* documentation incorrectly asserts these escapes are
@@ -987,7 +988,7 @@ dumpit(const char *cap, char **areap)
 	result = strdup(buffer);
     }
 
-    if (g_opt && result != 0) {
+    if (g_opt && result != NULL) {
 	by_name[name2index(cap)].entries += 1;
     }
 
@@ -1083,7 +1084,7 @@ brute_force(char *name)
 		    cap[1] = (char) c2;
 		    if (isCapName(c2)) {
 			char *value = dumpit(cap, &ap);
-			if (value != 0) {
+			if (value != NULL) {
 			    vector[count++] = value;
 			}
 		    }
@@ -1091,7 +1092,7 @@ brute_force(char *name)
 	    }
 	}
     }
-    vector[count] = 0;
+    vector[count] = NULL;
     report_one_size(buffer, count, area, (int) (ap - area));
     return make_list(vector);
 }
@@ -1109,12 +1110,12 @@ conventional(char *name)
 	size_t n;
 	for (n = 0; n < SIZEOF(known_tcap); ++n) {
 	    char *value = dumpit(known_tcap[n], &ap);
-	    if (value != 0) {
+	    if (value != NULL) {
 		vector[count++] = value;
 	    }
 	}
     }
-    vector[count] = 0;
+    vector[count] = NULL;
     report_one_size(buffer, count, area, (int) (ap - area));
     return make_list(vector);
 }
@@ -1122,7 +1123,7 @@ conventional(char *name)
 static char **
 dump_by_name(char *name)
 {
-    char **result = 0;
+    char **result = NULL;
 
     if (b_opt > 0) {
 	result = brute_force(name);
@@ -1174,7 +1175,7 @@ dump_entry(char *name, int *in_file, int *in_data, char ***last)
 	} else {
 	    if (DumpIt) {
 		fprintf(output, "# alias %s\n", name);
-		if (list == 0) {
+		if (list == NULL) {
 		    fprintf(output, "# (alias unknown)\n");
 		} else if (!same_list(list, *last)) {
 		    fprintf(output, "# (alias differs)\n");
@@ -1233,7 +1234,7 @@ get_entry(FILE *fp, char *buffer, size_t length)
 	size_t have;
 	size_t skip = 0;
 
-	while (reused || (fgets(current, (int) sizeof(current), fp) != 0)) {
+	while (reused || (fgets(current, (int) sizeof(current), fp) != NULL)) {
 	    reused = 0;
 	    if (*current == '#') {
 		*current = '\0';
@@ -1290,13 +1291,13 @@ dump_all(int contents)
 {
     char buffer[MAXBUF];
     FILE *fp = open_termcap_file();
-    char **last = 0;
+    char **last = NULL;
     int in_file = 1;
 
     while (get_entry(fp, buffer, sizeof(buffer)) != 0) {
 	int in_data = 1;
 	char *next = buffer;
-	char *later = 0;
+	char *later = NULL;
 	char *value;
 
 	++total_entries;
@@ -1312,14 +1313,14 @@ dump_all(int contents)
 		}
 	    }
 	}
-	while ((value = strtok(next, "|")) != 0 && strchr(value, ':') == 0) {
+	while ((value = strtok(next, "|")) != NULL && strchr(value, ':') == NULL) {
 	    if (contents) {
 		if ((value == buffer) && (strlen(value) == 2)) {
 		    later = value;
 		} else {
 		    dump_entry(value, &in_file, &in_data, &last);
 		    if (opt_1) {
-			later = 0;
+			later = NULL;
 			break;
 		    }
 		}
@@ -1327,7 +1328,7 @@ dump_all(int contents)
 		fflush(report);
 		fprintf(output, "# %s %s\n", next ? "name" : "alias", value);
 	    }
-	    next = 0;
+	    next = NULL;
 	}
 	if (contents && later) {
 	    dump_entry(later, &in_file, &in_data, &last);
@@ -1409,7 +1410,7 @@ main(int argc, char *argv[])
 	    break;
 	case 'o':
 	    output = fopen(optarg, "w");
-	    if (output == 0)
+	    if (output == NULL)
 		failed(optarg);
 	    report = stdout;
 	    break;
@@ -1478,7 +1479,7 @@ main(int argc, char *argv[])
 	    for (n = optind; n < argc; ++n) {
 		dump_one(argv[n]);
 	    }
-	} else if ((name = getenv("TERM")) != 0) {
+	} else if ((name = getenv("TERM")) != NULL) {
 	    dump_one(name);
 	} else {
 	    static char dumb[] = "dumb";

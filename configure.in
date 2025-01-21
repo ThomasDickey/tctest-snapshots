@@ -1,5 +1,5 @@
 dnl Process this file with autoconf to produce a configure script.
-AC_REVISION($Revision: 1.16 $)
+AC_REVISION($Revision: 1.17 $)
 AC_PREREQ(2.52.20230114)
 rm -f config.cache
 
@@ -8,6 +8,7 @@ AC_INIT(tctest.c)
 AC_CONFIG_HEADER(config.h:config_h.in)
 
 CF_CHECK_CACHE
+CF_WITH_SYSTYPE
 AC_ARG_PROGRAM
 
 CF_PROG_CC
@@ -23,6 +24,7 @@ AC_CONST
 AC_C_INLINE
 CF_XOPEN_SOURCE
 CF_WITHOUT_X
+CF_GLOB_FULLPATH
 
 CF_MAKEFLAGS
 AC_PROG_INSTALL
